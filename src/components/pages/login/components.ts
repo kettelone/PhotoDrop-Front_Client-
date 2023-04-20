@@ -59,15 +59,6 @@ const Numberinput = styled.input`
 		outline: none;
 	}
 `
-const CreateButton = styled.button`
-	background-color: #3300cc;
-	color: #ffffff;
-	width: 345px;
-	height: 50px;
-	border: none;
-	border-radius: 50px;
-	margin: 20px 15px;
-`
 const ButtonContainer = styled.div``
 const ConsentConatainer = styled.div`
 	color: #6d6d6d;
@@ -81,7 +72,6 @@ export {
 	ConsentP1,
 	ConsentConatainer,
 	ButtonContainer,
-	CreateButton,
 	NumberContainer,
 	Numberinput,
 	StrokeImg,

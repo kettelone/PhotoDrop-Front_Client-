@@ -1,15 +1,19 @@
 import React, { useState, ChangeEvent } from 'react';
-import Header from '../../common/header/Header';
+import { useNavigate } from 'react-router-dom';
+// import Header from '../../common/header/Header';
 import stroke from '../../../assets/stroke.svg'
 import CountrySelect from '../../modals/countrySelect/CountrySelect';
 import { useAppSelector } from '../../../app/hooks'
-
+import loginService from '../../../service/loginService';
+import { CODE_CONFIRMATION_ROUTE } from '../../../utils/consts'
+import Button from '../../common/button/Button';
+import { updateFullNumber } from '../../../app/countrySlice/countrySlice'
+import { useAppDispatch } from '../../../app/hooks';
 import {
   ConsentP2,
   ConsentP1,
   ConsentConatainer,
   ButtonContainer,
-  CreateButton,
   NumberContainer,
   Numberinput,
   StrokeImg,
@@ -25,8 +29,11 @@ import {
 
 
 const Login = () => {
+
   const { country, dial_code } = useAppSelector(state => state.countryUpdate)
   const [digits, setDigits] = useState<string>('')
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const handlePhoneNumber = (event: ChangeEvent<HTMLInputElement>) => {
     const regex = /^[0-9\b]+$/;
@@ -39,11 +46,12 @@ const Login = () => {
     document.getElementById('countryModal')?.classList.add('show')
   }
 
-  const handleCreate = () => {
+  const handleCreate = async () => {
     if (dial_code && digits.length === 10) {
-      const fullPhoneNumber = `${dial_code.substring(1)}${digits}`
-      
-      console.log(fullPhoneNumber)
+      const fullNumber = `${dial_code.substring(1)}${digits}`
+      dispatch(updateFullNumber({ fullNumber }))
+      navigate(CODE_CONFIRMATION_ROUTE)
+      await loginService.requestOtp(fullNumber)
     }
 
   }
@@ -51,7 +59,7 @@ const Login = () => {
   return (
     <Container>
       <CountrySelect />
-      <Header/>
+      {/* <Header/> */}
     <Body>
       <Title>Let`s get started</Title>
       <InputLabel>Enter your phone number</InputLabel>
@@ -81,9 +89,9 @@ const Login = () => {
           </NumberContainer>
         </InputContainer>
         <ButtonContainer>
-          <CreateButton
+          <Button
           onClick={handleCreate}
-          >Create Account</CreateButton>
+          >Create Account</Button>
         </ButtonContainer>
       <ConsentConatainer>
         <ConsentP1>

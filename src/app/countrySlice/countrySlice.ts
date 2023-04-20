@@ -3,7 +3,8 @@ import { RootState } from '../store'
 
 const initialState = {
 	country: 'US',
-	dial_code: '+1'
+	dial_code: '+1',
+	fullNumber: ''
 }
 
 export const countrySlice = createSlice({
@@ -13,11 +14,15 @@ export const countrySlice = createSlice({
 		update: (state, { payload: { code, dial } }) => {
 			state.country = code
 			state.dial_code = dial
+		},
+		updateFullNumber: (state, { payload: { fullNumber } }) => {
+			console.log(fullNumber)
+			state.fullNumber = fullNumber
 		}
 	}
 })
 
-export const { update } = countrySlice.actions
+export const { update, updateFullNumber } = countrySlice.actions
 
 export const selectCountry = (state: RootState) => state.countryUpdate
 

@@ -3,9 +3,9 @@ import styled from 'styled-components'
 const Container = styled.div`
 	display: none;
 	position: absolute;
+	top: 0;
 	width: 100%;
 	background-color: white;
-	/* font-family: 'Termina Test', sans-serif; */
 	font-size: 16px;
 `
 
