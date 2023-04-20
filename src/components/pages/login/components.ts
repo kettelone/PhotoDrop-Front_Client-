@@ -24,7 +24,7 @@ const CountryInput = styled.span`
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-	width: 70px;
+	width: 4.35em;
 	height: 40px;
 	background-color: #f4f4f4;
 	border: 1px solid #eeeeee;
@@ -42,7 +42,7 @@ const StrokeImg = styled.img``
 const NumberContainer = styled.div`
 	display: flex;
 	align-items: center;
-	width: 275px;
+	width: 17.2em;
 	height: 40px;
 	padding: 15px 13px 14px 13px;
 	background-color: #f4f4f4;
