@@ -40,8 +40,6 @@ const CodeConfirmation = () => {
   const phoneNumber = useAppSelector(state => state.countryUpdate.fullNumber)
 
   const handleNext = async () => {
-    console.log('Next clicked')
-    console.log(phoneNumber, otp)
     // await loginService.login(phoneNumber,otp)
   }
 

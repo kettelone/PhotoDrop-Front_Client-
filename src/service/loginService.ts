@@ -5,7 +5,6 @@ export const cookies = new Cookies()
 
 class Login {
 	public async requestOtp(login: string) {
-		console.log({ login })
 		try {
 			await $host.post('/auth/login', {
 				phoneNumber: login
