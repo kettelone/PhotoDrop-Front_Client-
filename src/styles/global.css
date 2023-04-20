@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Futura PT', sans-serif;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.show{
+  display: block!important;
+}
