@@ -24,4 +24,9 @@ const ResendButton = styled.button`
 	padding: 4px 15px 0px;
 `
 
-export { Container, Title, SubTitle, Phone, ResendButton }
+const ButtonContainer = styled.div`
+	display: flex;
+	justify-content: center;
+`
+
+export { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer }

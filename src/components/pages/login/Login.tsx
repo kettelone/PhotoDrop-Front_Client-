@@ -47,7 +47,7 @@ const Login = () => {
   }
 
   const handleCreate = async () => {
-    if (dial_code && digits.length < 10 && digits.length >=9) {
+    if (dial_code && digits.length <= 10 && digits.length >=9) {
       const fullNumber = `${dial_code.substring(1)}${digits}`
       dispatch(updateFullNumber({ fullNumber }))
       navigate(CODE_CONFIRMATION_ROUTE)

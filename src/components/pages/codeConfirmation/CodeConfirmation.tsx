@@ -1,33 +1,33 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
 import OtpInput from 'react-otp-input';
 import Button from '../../common/button/Button';
+import { useNavigate } from 'react-router-dom';
 import './index.css'
 import loginService from '../../../service/loginService';
 import { useAppSelector } from '../../../app/hooks';
-import { Container, Title, SubTitle, Phone, ResendButton } from './components'
+import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer } from './components'
+import { UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
 
 
 const CodeConfirmation = () => {
   const [otp, setOtp] = useState('');
   const [resendPressed, setResendPressed] = useState(false)
+  const navigate = useNavigate()
   const phoneNumber = useAppSelector(state => state.countryUpdate.fullNumber)
 
   const handleNext = async () => {
-    // await loginService.login(phoneNumber,otp)
+    const response = await loginService.login(phoneNumber, otp)
+    if (response) {
+      navigate(UPLOAD_SELFIE_ROUTE)
+    }
   }
 
-  const handleReset = () => {
+  const handleReset = async () => {
+    if (!resendPressed) {
+      await loginService.requestOtp(phoneNumber)
+    }
     setResendPressed(true)
   }
-
-
-  const ButtonContainer = styled.div`
-  display:flex;
-  justify-content:center;
-  /* padding: 1.25em 0.95em; */
-
-`
 
   return (
     <Container>

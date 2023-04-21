@@ -17,11 +17,16 @@ class Login {
 
 	public async login(login: string, otp: string) {
 		try {
-			await $host.post('/auth/login', {
+			const response = await $host.post('/auth/login', {
 				phoneNumber: login,
 				otp: otp
 			})
-			return
+
+			const { accessToken } = response.data
+
+			//Set cookie
+			cookies.set('jwt_authorization', accessToken)
+			return true
 		} catch (e) {
 			return false
 		}
