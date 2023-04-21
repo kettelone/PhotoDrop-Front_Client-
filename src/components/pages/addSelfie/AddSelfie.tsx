@@ -1,6 +1,6 @@
-import React from 'react';
+import React , {useState} from 'react';
 import styled from 'styled-components';
-import personIcon from './personIcon.png'
+import personIcon from './personIcon.svg'
 import { Title, SubTitle, IconContainer, AddSign } from './components'
 
 const Input = styled.input`
@@ -8,9 +8,13 @@ const Input = styled.input`
 `
 
 const AddSelfie = () => {
+  const [selectedPhoto, setSelectedPhoto] = useState()
 
-  const handleClick = () => {
-    console.log('Clicked')
+  const selectPhoto = (event: any) => {
+    if (event.target.files) { 
+      console.log(event.target.files[0])
+      setSelectedPhoto(event.target.files[0])
+    }
   }
 
   return (
@@ -20,10 +24,13 @@ const AddSelfie = () => {
       <IconContainer>
         <img src={personIcon} alt='icon' />
         <AddSign htmlFor="imageOnly"
-          onClick={handleClick}
         />
-    
-        <Input id="imageOnly" type="file" accept="image/*"/>
+        <Input
+          type="file"
+          id="imageOnly"
+          onChange={selectPhoto}
+          accept="image/*"
+        />
       </IconContainer>
     </div>
   );
