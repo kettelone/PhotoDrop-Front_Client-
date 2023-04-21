@@ -19,7 +19,11 @@ const InputLabel = styled.div`
 	color: #262626;
 	padding: 1em;
 `
-const InputContainer = styled.div`display: flex;`
+const InputContainer = styled.div`
+	display: flex;
+	max-width: 100vw;
+	padding: 0px 15px;
+`
 const CountryInput = styled.span`
 	display: flex;
 	align-items: center;
@@ -28,13 +32,12 @@ const CountryInput = styled.span`
 	height: 40px;
 	background-color: #f4f4f4;
 	border: 1px solid #eeeeee;
-	margin-left: 15px;
 	border-radius: 10px;
 `
 const StrokeContainer = styled.span`display: flex;`
 const FlagImg = styled.img`
-	width: 28px;
-	height: 28px;
+	width: 2em;
+	height: 2em;
 `
 
 const StrokeImg = styled.img``
@@ -59,12 +62,15 @@ const Numberinput = styled.input`
 		outline: none;
 	}
 `
-const ButtonContainer = styled.div``
+const ButtonContainer = styled.div`
+	max-width: 100vw;
+	display: flex;
+`
 const ConsentConatainer = styled.div`
 	color: #6d6d6d;
 	font-size: 14px;
 `
-const ConsentP1 = styled.div`margin: 0px 19px 38px 16px;`
+const ConsentP1 = styled.div`margin: 0px 1.35em 2.7em 1.15em;`
 const ConsentP2 = styled.div`margin: 0px 15px;`
 
 export {

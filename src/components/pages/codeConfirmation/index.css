@@ -1,16 +1,18 @@
 .inputStyle {
-  width: 45px!important;
+  width: 1.875em!important;
   height: 40px;
   font-family: 'Futura PT', sans-serif;
   font-size: 1.5em;
   border-radius: 10px;
   border: 1px solid #EEEEEE;
-  margin-left: 15px;
+  margin-left: 0.5em;
   background-color: #F4F4F4;
   padding: 0px;
 }
 
 .containerStyle{
+  justify-content: center;
+  margin-right: 0.6em;
   margin-top: 15px;
   margin-bottom: 15px;
 }

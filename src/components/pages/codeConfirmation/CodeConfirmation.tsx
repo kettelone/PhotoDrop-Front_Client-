@@ -5,34 +5,8 @@ import Button from '../../common/button/Button';
 import './index.css'
 import loginService from '../../../service/loginService';
 import { useAppSelector } from '../../../app/hooks';
+import { Container, Title, SubTitle, Phone, ResendButton } from './components'
 
-const Container = styled.div`
-  margin-top:106px;
-`
-
-const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: 'Termina Test', sans-serif;
-  font-size:22px;
-  font-weight:700;
-  color:#262626;
-`
-const SubTitle = styled.div`
-  padding: 14px 15px 4px;
-  font-size:16px;
-`
-const Phone = styled.span`
-  font-weight:500;
-`
-
-const ResendButton = styled.button`
-  border:none;
-  background:none;
-  color:#3300CC;
-  font-size:16px;
-  padding:4px 15px 0px;
-`
 
 const CodeConfirmation = () => {
   const [otp, setOtp] = useState('');
@@ -47,6 +21,13 @@ const CodeConfirmation = () => {
     setResendPressed(true)
   }
 
+
+  const ButtonContainer = styled.div`
+  display:flex;
+  justify-content:center;
+  /* padding: 1.25em 0.95em; */
+
+`
 
   return (
     <Container>
@@ -69,11 +50,13 @@ const CodeConfirmation = () => {
 
         >Resend code</ResendButton>
       </div>
+      <ButtonContainer>
       <Button 
         style={{ opacity: otp.length === 6 ? 1 : 0.5 }}
         disabled={otp.length === 6 ? false : true}
         onClick={handleNext}
-      >Next</Button>
+        >Next</Button>
+      </ButtonContainer>
     </Container>
   );
 };
