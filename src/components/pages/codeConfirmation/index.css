@@ -10,9 +10,16 @@
   padding: 0px;
 }
 
+@media only screen and (max-width: 350px) {
+.inputStyle {
+    margin-left: 0.35em;
+  }
+}
+
 .containerStyle{
   justify-content: center;
   margin-right: 0.6em;
   margin-top: 15px;
   margin-bottom: 15px;
+  padding: 0px 0.5em;
 }
