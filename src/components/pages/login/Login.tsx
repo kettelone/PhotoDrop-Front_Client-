@@ -53,7 +53,6 @@ const Login = () => {
       navigate(CODE_CONFIRMATION_ROUTE)
       await loginService.requestOtp(fullNumber)
     }
-
   }
 
   return (
