@@ -1,0 +1,16 @@
+.containerClassName{
+  background-color: #262626;
+}
+
+.mediaClassName{
+  
+}
+
+.cropAreaClassName{
+  box-shadow: 0 0 0 9999em #262626!important;
+  max-width: 15.5em;
+  max-height: 15.5em;
+  min-height: 15.5em;
+  border-radius: 100%;
+  min-width: 15.5em;
+}

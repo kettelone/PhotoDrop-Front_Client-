@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import countryReducer from './countrySlice/countrySlice'
 import userReducer from './userSlice/userSlice'
+import selfieReducer from './selfieSlice/selfieSlice'
 
 export const store = configureStore({
 	reducer: {
 		countryUpdate: countryReducer,
-		userUpdate: userReducer
+		userUpdate: userReducer,
+		selfieUpdate: selfieReducer
 	}
 })
 
