@@ -1,71 +1,28 @@
 import React, {useEffect, useState} from 'react';
-import styled from 'styled-components';
-import { Container, Img } from './components'
+import {
+  Container,
+  Title,
+  CloseButton,
+  Instruction,
+  ButtonsContainer,
+  StyledButton,
+  Span,
+  Input } from './components'
 import Cropper from 'react-easy-crop'
 import closeIcon from './closeIcon.svg'
 import './index.css'
+import getCroppedImg from './saveCroppedImage';
+import selfieService from '../../../service/selfieService';
+import {uploadToS3} from './uploadToS3'
 
-const Title = styled.div`
-  color: white;
-  position:absolute;
-  margin-top: 1.5em;
-  top: 0;
-  right: 50%;
-  transform: translate(50%);
-  z-index:2;
-  font-size:18px;
-  font-weight:500;
-`
-
-const CloseButton = styled.button`
-  position:absolute;
-  top: 0;
-  z-index:2;
-  background:none;
-  border:none;
-  margin-top: 1.5em;
-  margin-left: 1em;
-`
-const Instruction = styled.div`
-  font-size:16px;
-  position:absolute;
-  z-index:2;
-  color:white;
-  right: 50%;
-  transform: translate(50%);
-  width: 100%;
-  text-align: center;
-  /* margin-top: 25%; */
-  `
-
-const ButtonsContainer = styled.div`
-    display:flex;
-    position:absolute;
-    z-index:2;
-    bottom:0;
-    right: 50%;
-    transform: translate(50%);
-    margin-bottom: 2.5em;
-    padding: 0em 1em;
-    width: 100%;
-    justify-content: space-between;
-  `
-
-  const RetakeButton = styled.button`
-    background: none;
-    color: white;
-    border-radius: 50px;
-    width: 10.5em;
-    height: 3.15em;
-    border: 1px solid white;
-  `
 
 const CropSelfie = (props: any) => {
 
   const [preview, setPreview] = useState<undefined | string>()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
-
+  const [croppedImage, setCroppedImage] = useState<Blob | null>(null)
+  
   useEffect(() => {
     if (!props.selfie) {
       setPreview(undefined)
@@ -79,17 +36,56 @@ const CropSelfie = (props: any) => {
     return () => URL.revokeObjectURL(objectUrl)
   }, [props.selfie])
 
-  const onCropComplete = () => {
-    console.log('Crop complete')
-  }
 
   const closeModal = () => {
     document.getElementById('initialSelfie')?.classList.remove('show')
+    setPreview(undefined)
   }
+
+  const resetURL = () => {
+    setTimeout(() => {
+      setPreview(undefined)
+    },500)
+
+  }
+
+  const handleRetake = (event:any) => {
+    const objectUrl = URL.createObjectURL(event.target.files[0])
+    setPreview(objectUrl)
+  }
+
+
+  const onCropComplete = async (croppedArea: any, croppedAreaPixels: any) => {
+    try {
+      if (preview) {
+        const croppedImage :any = await getCroppedImg(
+          preview,
+          croppedAreaPixels
+        )
+        setCroppedImage(croppedImage)
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  const saveSelfie = async () => {
+    const presignedPostUrl = await selfieService.signSelfie()
+    try {
+      if (croppedImage) {
+        //@ts-ignore
+        const fileName = presignedPostUrl.data.fields.key
+        const image = new File([croppedImage], fileName)
+        const response = await uploadToS3('image/jpeg', image, presignedPostUrl)
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
 
   return (
     <Container id="initialSelfie">
-      
       <CloseButton
         onClick={closeModal}
       >
@@ -115,8 +111,24 @@ const CropSelfie = (props: any) => {
         }
       />
       <ButtonsContainer>
-        <RetakeButton> Retake</RetakeButton >
-        <RetakeButton> Retake</RetakeButton >
+        <StyledButton
+          color="white"
+          backgroundColor="#262626"
+          htmlFor='retakePhoto'
+          onClick={resetURL}
+        > Retake</StyledButton >
+        <Input
+          type="file"
+          id="retakePhoto"
+          onChange={handleRetake}
+          accept="image/*"
+        />
+        <Span></Span>
+        <StyledButton
+          color="none"
+          backgroundColor="white"
+          onClick={saveSelfie}
+        > Save</StyledButton >
       </ButtonsContainer>
     </Container>
   );

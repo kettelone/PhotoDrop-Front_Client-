@@ -17,7 +17,7 @@ class Login {
 
 	public async login(login: string, otp: string) {
 		try {
-			const response = await $host.post('/auth/login', {
+			const response = await $host.post('/auth/login/verify', {
 				phoneNumber: login,
 				otp: otp
 			})
@@ -25,7 +25,7 @@ class Login {
 			const { accessToken } = response.data
 
 			//Set cookie
-			cookies.set('jwt_authorization', accessToken)
+			cookies.set('jwt_auth', accessToken)
 			return true
 		} catch (e) {
 			return false

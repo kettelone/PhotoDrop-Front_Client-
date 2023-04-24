@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import personIcon from './personIcon.svg'
 import { Title, SubTitle, IconContainer, AddSign } from './components'
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
+import { useAppSelector } from '../../../app/hooks';
 
 const Input = styled.input`
   display:none;

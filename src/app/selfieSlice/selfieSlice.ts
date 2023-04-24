@@ -1,13 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
-const initialState = {}
+const initialState = {
+	selfieUrl: ''
+}
 
 export const selfieSlice = createSlice({
 	name: 'selfie',
 	initialState,
 	reducers: {
-		update: (state, { payload: {} }) => {}
+		update: (state, { payload: { selfieUrl } }) => {
+			console.log({ selfieUrl })
+			state.selfieUrl = selfieUrl
+		}
 	}
 })
 
