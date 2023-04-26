@@ -58,6 +58,9 @@ const FakeButton = styled(Button)`
 		@media only screen and (min-width: 375px) {
 		max-width:300px!important;
 	}
+		@media only screen and (max-width: 355px) {
+		max-width:100%!important;
+	}
 `
 const Copyright = styled.div`
 	margin-bottom: 19px;

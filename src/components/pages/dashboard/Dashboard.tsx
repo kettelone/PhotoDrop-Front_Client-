@@ -38,9 +38,9 @@ const Dashboard = () => {
   const [selfie, setSelfie] = useState()
 
   useEffect(() => {
+    setIsLoading(true)
     const loggedIn = checkToken()
     if (loggedIn) {
-      setIsLoading(true)
       const fetchData = async () => {
         const data = await albumsService.getAlbums()
         if (data) {
