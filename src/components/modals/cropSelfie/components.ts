@@ -35,7 +35,6 @@ const Instruction = styled.div`
 	transform: translate(50%);
 	width: 100%;
 	text-align: center;
-	padding-bottom: 42px;
 `
 
 const ButtonsContainer = styled.div`

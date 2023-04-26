@@ -7,7 +7,7 @@ const PhotoIcon = styled.div`
 	right: 0;
 	padding: 8px;
 	@media only screen and (min-width: 375px) {
-		padding-bottom: 33px;
+		padding-right: 33px;
 	}
 `
 

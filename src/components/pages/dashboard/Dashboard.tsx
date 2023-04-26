@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import albumsService from '../../../service/albumService'
 import checkToken from '../../../utils/checkJWT';
 import { LOGIN_ROUTE } from '../../../utils/consts';
@@ -35,7 +34,7 @@ const Dashboard = () => {
   const navigate = useNavigate()
   const[isLoading, setIsLoading] = useState(false)
   const dispatch = useAppDispatch()
-  const [selfie, setSelfie] = useState()
+  const [selfie, setSelfie] = useState<string | undefined>()
 
   useEffect(() => {
     setIsLoading(true)
@@ -47,9 +46,9 @@ const Dashboard = () => {
           const { albums, allPhotos, user } = data.data
           const { selfieUrl } = user
           dispatch(update({ selfieUrl }))
-          setSelfie(selfieUrl)
           dispatch(updateAlbum({albums}))
-          dispatch(updatePhoto({allPhotos}))
+          dispatch(updatePhoto({ allPhotos }))
+          setSelfie(selfieUrl)
         }
         setIsLoading(false)
       }
@@ -58,7 +57,7 @@ const Dashboard = () => {
     } else {
       navigate(LOGIN_ROUTE);
     }
-  }, [])
+  }, [selfie])
   
 
   return (

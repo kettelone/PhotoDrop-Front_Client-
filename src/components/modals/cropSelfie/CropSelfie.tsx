@@ -75,8 +75,8 @@ const CropSelfie = (props: { selfie: File |null }) => {
     try {
       if (croppedImage) {
          await uploadToS3(croppedImage, presignedPostUrl)
-        closeModal()
         navigate(DASHBOARD_ROUTE)
+        closeModal()
       }
     } catch (e) {
       console.log(e)

@@ -8,6 +8,10 @@ const Title = styled.div`
 	text-align: center;
 	font-weight: 700;
 	color: #262626;
+
+	@media only screen and (min-height: 570px) {
+		width: 6em;
+	}
 `
 
 const SubTitle = styled.div`
