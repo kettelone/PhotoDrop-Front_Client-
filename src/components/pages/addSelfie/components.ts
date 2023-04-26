@@ -38,4 +38,6 @@ const AddSign = styled.label`
 		justify-content: center;
 	}
 `
-export { Title, SubTitle, IconContainer, AddSign }
+const Input = styled.input`display: none;`
+
+export { Title, SubTitle, IconContainer, AddSign, Input }

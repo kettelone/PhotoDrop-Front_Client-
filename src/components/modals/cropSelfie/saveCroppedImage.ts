@@ -1,3 +1,5 @@
+//
+
 export const createImage = (url: string) =>
 	new Promise((resolve, reject) => {
 		const image = new Image()
@@ -81,12 +83,11 @@ export default async function getCroppedImg(
 	ctx.putImageData(data, 0, 0)
 
 	// As Base64 string
-	// return canvas.toDataURL('image/jpeg');
-
-	// As a blob
-	return new Promise((resolve, reject) => {
-		canvas.toBlob((file) => {
-			if (file) resolve(URL.createObjectURL(file))
-		}, 'image/jpeg')
+	const url = canvas.toDataURL('image/jpeg')
+	const CroppedSelfie = fetch(url).then((res) => res.blob()).then((blob) => {
+		const file = new File([ blob ], 'File name', { type: 'image/png' })
+		return file
 	})
+
+	return CroppedSelfie
 }

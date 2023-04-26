@@ -13,23 +13,28 @@ import closeIcon from './closeIcon.svg'
 import './index.css'
 import getCroppedImg from './saveCroppedImage';
 import selfieService from '../../../service/selfieService';
-import {uploadToS3} from './uploadToS3'
+import { uploadToS3 } from './uploadToS3'
+import { useNavigate } from 'react-router-dom';
+import { DASHBOARD_ROUTE } from '../../../utils/consts';
 
 
-const CropSelfie = (props: any) => {
+const CropSelfie = (props: { selfie: File |null }) => {
 
   const [preview, setPreview] = useState<undefined | string>()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
   const [croppedImage, setCroppedImage] = useState<Blob | null>(null)
-  
+  const navigate = useNavigate()
+
+  let objectUrl = ''
+
   useEffect(() => {
     if (!props.selfie) {
       setPreview(undefined)
       return
     }
 
-    const objectUrl = URL.createObjectURL(props.selfie)
+     objectUrl = URL.createObjectURL(props.selfie)
     setPreview(objectUrl)
 
     // free memory when ever this component is unmounted
@@ -38,19 +43,15 @@ const CropSelfie = (props: any) => {
 
 
   const closeModal = () => {
+    URL.revokeObjectURL(objectUrl)
     document.getElementById('initialSelfie')?.classList.remove('show')
     setPreview(undefined)
   }
 
-  const resetURL = () => {
-    setTimeout(() => {
-      setPreview(undefined)
-    },500)
-
-  }
-
-  const handleRetake = (event:any) => {
-    const objectUrl = URL.createObjectURL(event.target.files[0])
+  const handleRetake = (event: any) => {
+    // setPreview(undefined)
+    URL.revokeObjectURL(objectUrl)
+    objectUrl = URL.createObjectURL(event.target.files[0])
     setPreview(objectUrl)
   }
 
@@ -73,10 +74,10 @@ const CropSelfie = (props: any) => {
     const presignedPostUrl = await selfieService.signSelfie()
     try {
       if (croppedImage) {
-        //@ts-ignore
-        const fileName = presignedPostUrl.data.fields.key
-        const image = new File([croppedImage], fileName)
-        const response = await uploadToS3('image/jpeg', image, presignedPostUrl)
+        const response = await uploadToS3(croppedImage, presignedPostUrl)
+        console.log("Before close")
+        closeModal()
+        navigate(DASHBOARD_ROUTE)
       }
     } catch (e) {
       console.log(e)
@@ -97,11 +98,14 @@ const CropSelfie = (props: any) => {
         image={preview}
         crop={crop}
         zoom={zoom}
+        zoomWithScroll={true}
         aspect={4 / 3}
+        maxZoom={7}
         onCropChange={setCrop}
         onCropComplete={onCropComplete}
         onZoomChange={setZoom}
         showGrid={false}
+        cropShape={'round'}
         classes={
           {
           containerClassName: 'containerClassName',
@@ -115,7 +119,7 @@ const CropSelfie = (props: any) => {
           color="white"
           backgroundColor="#262626"
           htmlFor='retakePhoto'
-          onClick={resetURL}
+          // onClick={resetURL}
         > Retake</StyledButton >
         <Input
           type="file"

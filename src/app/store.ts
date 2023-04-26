@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import countryReducer from './countrySlice/countrySlice'
-import userReducer from './userSlice/userSlice'
+import albumsReducer from './albumsSlice/albumsSlice'
 import selfieReducer from './selfieSlice/selfieSlice'
+import photosReducer from './photosSlice/photosSlice'
 
 export const store = configureStore({
 	reducer: {
 		countryUpdate: countryReducer,
-		userUpdate: userReducer,
-		selfieUpdate: selfieReducer
+		albumsUpdate: albumsReducer,
+		selfieUpdate: selfieReducer,
+		photosUpdate: photosReducer
 	}
 })
 

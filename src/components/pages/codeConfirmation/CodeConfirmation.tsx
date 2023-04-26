@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import './index.css'
 import loginService from '../../../service/loginService';
 import { useAppSelector } from '../../../app/hooks';
-import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer } from './components'
+import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer, Wrapper } from './components'
 import { UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
+
 
 
 const CodeConfirmation = () => {
@@ -30,6 +31,7 @@ const CodeConfirmation = () => {
   }
 
   return (
+    <Wrapper>
     <Container>
       <Title>What`s the code?</Title>
       <SubTitle>Enter the code sent to <Phone>+{phoneNumber}</Phone></SubTitle>
@@ -57,7 +59,8 @@ const CodeConfirmation = () => {
         onClick={handleNext}
         >Next</Button>
       </ButtonContainer>
-    </Container>
+      </Container>
+    </Wrapper>
   );
 };
 

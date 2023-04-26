@@ -69,6 +69,7 @@ const ButtonContainer = styled.div`
 const ConsentConatainer = styled.div`
 	color: #6d6d6d;
 	font-size: 14px;
+	max-width: 600px;
 `
 const ConsentP1 = styled.div`margin: 0px 1.35em 2.7em 1.15em;`
 const ConsentP2 = styled.div`margin: 0px 15px;`

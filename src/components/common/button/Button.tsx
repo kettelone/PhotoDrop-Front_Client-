@@ -8,6 +8,10 @@ const Button = styled.button`
 	border: none;
 	border-radius: 50px;
 	margin: 1.25em 0.95em;
+
+	@media only screen and (max-width: 355px) {
+		width: 18em;
+}
 `
 
 export default Button

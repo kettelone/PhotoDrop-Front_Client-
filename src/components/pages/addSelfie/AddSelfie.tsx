@@ -1,16 +1,11 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import personIcon from './personIcon.svg'
-import { Title, SubTitle, IconContainer, AddSign } from './components'
+import { Title, SubTitle, IconContainer, AddSign, Input } from './components'
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
-import { useAppSelector } from '../../../app/hooks';
-
-const Input = styled.input`
-  display:none;
-`
 
 const AddSelfie = () => {
-  const [selectedFile, setSelectedFile] = useState('')
+  const [selectedFile, setSelectedFile] = useState<null | File>(null)
 
   const selectPhoto = (event: any) => {
     if (event.target.files) { 

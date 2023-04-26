@@ -10,7 +10,9 @@ import {
   CloseButton,
   OneCountry,
   SpanCountryName,
-  Separator } from './components'
+  Separator,
+  Wrapper
+} from './components'
 import {countries, commonCountries} from './info'; 
 
 const CountrySelect = () => {
@@ -35,6 +37,7 @@ const CountrySelect = () => {
         onClick={closeModal}
         >Close</CloseButton>
       </HeaderContainer>
+      <Wrapper>
       <CommonCoutries>
         <Title>Common countries</Title>
         {
@@ -83,7 +86,8 @@ const CountrySelect = () => {
             >{country.name}</SpanCountryName>
           </OneCountry>
         )
-      }
+        }
+      </Wrapper>
     </Container>
   );
 };

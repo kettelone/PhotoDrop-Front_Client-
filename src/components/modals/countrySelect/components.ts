@@ -54,6 +54,11 @@ const Separator = styled.div`
 	background-color: #f4f4f4;
 	height: 30px;
 `
+
+const Wrapper = styled.div`
+	height: 90vh;
+	overflow: scroll;
+`
 export {
 	Container,
 	HeaderContainer,
@@ -62,5 +67,6 @@ export {
 	CloseButton,
 	OneCountry,
 	SpanCountryName,
-	Separator
+	Separator,
+	Wrapper
 }

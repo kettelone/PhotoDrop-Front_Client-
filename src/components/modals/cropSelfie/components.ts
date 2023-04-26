@@ -44,7 +44,6 @@ const ButtonsContainer = styled.div`
 	right: 50%;
 	transform: translate(50%);
 	margin-bottom: 2.5em;
-	/* padding: 0em 1em; */
 	justify-content: space-between;
 `
 

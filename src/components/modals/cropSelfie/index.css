@@ -2,8 +2,12 @@
   background-color: #262626;
 }
 
+.containerClassName img{
+  width: 20em;
+}
+
 .mediaClassName{
-  
+    
 }
 
 .cropAreaClassName{

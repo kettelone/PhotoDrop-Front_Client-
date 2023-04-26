@@ -29,4 +29,17 @@ const ButtonContainer = styled.div`
 	justify-content: center;
 `
 
-export { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer }
+const Wrapper = styled.div`
+	display: flex;
+	justify-content: center;
+`
+
+export {
+	Container,
+	Title,
+	SubTitle,
+	Phone,
+	ResendButton,
+	ButtonContainer,
+	Wrapper
+}

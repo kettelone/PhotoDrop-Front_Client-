@@ -10,7 +10,6 @@ export const selfieSlice = createSlice({
 	initialState,
 	reducers: {
 		update: (state, { payload: { selfieUrl } }) => {
-			console.log({ selfieUrl })
 			state.selfieUrl = selfieUrl
 		}
 	}
