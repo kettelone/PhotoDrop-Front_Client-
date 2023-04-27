@@ -15,10 +15,9 @@ import getCroppedImg from './saveCroppedImage';
 import selfieService from '../../../service/selfieService';
 import { uploadToS3 } from './uploadToS3'
 import { useNavigate } from 'react-router-dom';
-import { DASHBOARD_ROUTE } from '../../../utils/consts';
 
 
-const CropSelfie = (props: { selfie: File |null }) => {
+const CropSelfie = (props: { selfie: File |null , page:string}) => {
 
   const [preview, setPreview] = useState<undefined | string>()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -75,7 +74,7 @@ const CropSelfie = (props: { selfie: File |null }) => {
     try {
       if (croppedImage) {
          await uploadToS3(croppedImage, presignedPostUrl)
-        navigate(DASHBOARD_ROUTE)
+        navigate(props.page)
         closeModal()
       }
     } catch (e) {

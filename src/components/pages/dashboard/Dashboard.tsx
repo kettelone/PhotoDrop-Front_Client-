@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import albumsService from '../../../service/albumService'
 import checkToken from '../../../utils/checkJWT';
-import { LOGIN_ROUTE } from '../../../utils/consts';
+import { LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import { update } from '../../../app/selfieSlice/selfieSlice';
 import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
 import { updatePhoto } from '../../../app/photosSlice/photosSlice';
@@ -57,7 +57,7 @@ const Dashboard = () => {
     } else {
       navigate(LOGIN_ROUTE);
     }
-  }, [selfie])
+  }, [])
   
 
   return (
@@ -68,7 +68,9 @@ const Dashboard = () => {
         : ''
       }
       <Container>
-            <PhotoIcon>
+        <PhotoIcon
+          onClick={() => navigate(PROFILE_ROUTE)}
+        >
               <Img src={selfie} alt="selfie" />
             </PhotoIcon>
             <Wrapper>

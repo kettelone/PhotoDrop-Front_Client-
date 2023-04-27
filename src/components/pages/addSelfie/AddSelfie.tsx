@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import personIcon from './personIcon.svg'
 import { Title, SubTitle, IconContainer, AddSign, Input } from './components'
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
+import { DASHBOARD_ROUTE } from '../../../utils/consts';
 
 const AddSelfie = () => {
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
@@ -16,7 +16,7 @@ const AddSelfie = () => {
 
   return (
     <div>
-      <CropSelfie selfie={selectedFile}/>
+      <CropSelfie selfie={selectedFile} page={DASHBOARD_ROUTE} />
       <Title> Add a selfie</Title>
       <SubTitle>A selfie allows your photos to be synced with your account.</SubTitle>
       <IconContainer>
