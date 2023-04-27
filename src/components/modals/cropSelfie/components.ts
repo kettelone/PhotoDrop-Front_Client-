@@ -35,6 +35,12 @@ const Instruction = styled.div`
 	transform: translate(50%);
 	width: 100%;
 	text-align: center;
+	@media only screen and (max-height: 570px) {
+		top: 6em;
+	}
+	@media only screen and (max-height: 490px) {
+		top: 5em;
+	}
 `
 
 const ButtonsContainer = styled.div`
