@@ -39,24 +39,24 @@ const Profile = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // setIsLoading(true)
-    // const loggedIn = checkToken()
-    // if (loggedIn) {
-    //   const fetchData = async () => {
-    //     const data = await albumsService.getAlbums()
-    //     if (data) {
-    //       const { user } = data.data
-    //       const { selfieUrl } = user
-    //       dispatch(update({ selfieUrl }))
-    //       setSelfie(selfieUrl)
-    //     }
-    //     setIsLoading(false)
-    //   }
-    //   fetchData()
+    setIsLoading(true)
+    const loggedIn = checkToken()
+    if (loggedIn) {
+      const fetchData = async () => {
+        const data = await albumsService.getAlbums()
+        if (data) {
+          const { user } = data.data
+          const { selfieUrl } = user
+          dispatch(update({ selfieUrl }))
+          setSelfie(selfieUrl)
+        }
+        setIsLoading(false)
+      }
+      fetchData()
 
-    // } else {
-    //   navigate(LOGIN_ROUTE);
-    // }
+    } else {
+      navigate(LOGIN_ROUTE);
+    }
   }, [])
 
   const selectPhoto = (event: any) => {

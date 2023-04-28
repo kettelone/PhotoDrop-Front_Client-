@@ -39,7 +39,7 @@ const Dashboard = () => {
   useEffect(() => {
     const loggedIn = checkToken()
     if (loggedIn) {
-      const fetchData =  () => {
+      const fetchData =  async() => {
         setTimeout(async() => {
           const data = await albumsService.getAlbums()
           if (data) {
@@ -72,7 +72,7 @@ const Dashboard = () => {
         <PhotoIcon
           onClick={() => navigate(PROFILE_ROUTE)}
         >
-              <Img src={selfie} alt="selfie" />
+          <Img src={selfie} alt="selfie" />
             </PhotoIcon>
             <Wrapper>
               <GraphicsContainer>

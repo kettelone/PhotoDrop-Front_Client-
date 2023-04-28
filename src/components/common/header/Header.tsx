@@ -11,10 +11,17 @@ const StyledHeader = styled.header`
   padding: 1.15em 0em;
 `
 
+const Img = styled.img`
+@media only screen and (min-width: 740px) {
+	width: 179px;
+  height: 22px;
+}
+`
+
 const Header = () => {
   return (
     <StyledHeader>
-      <img src={photoDrop} alt='photoDrop' />
+      <Img src={photoDrop} alt='photoDrop' />
     </StyledHeader>
   );
 };

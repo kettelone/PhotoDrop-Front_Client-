@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ALBUMS_DASHBOARD_ROUTE } from '../../../utils/consts';
-import { Container, TitleWrapper, Title, Input, StyledButton, Line } from './components'
+import { Wrapper,Container, TitleWrapper, Title, Input, StyledButton, Line, TermsNConditions } from './components'
 import accountService from '../../../service/accountService';
 import { useNavigate } from 'react-router-dom';
 import hey from './hey.svg'
@@ -26,7 +26,7 @@ const ProvideEmail = () => {
   }
 
   return (
-    <div>
+    <Wrapper>
       <Container>
         <TitleWrapper>
         <Title>
@@ -45,7 +45,10 @@ const ProvideEmail = () => {
           onClick={saveEmail}
         >See your photos!</StyledButton>
       </Container>
-    </div>
+      <TermsNConditions>
+        By continuing, you indicate that you have read and agree to our <u>Terms of Use</u> & <u>Privacy Policy</u>
+      </TermsNConditions>
+    </Wrapper>
   );
 };
 

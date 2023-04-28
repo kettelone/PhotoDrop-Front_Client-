@@ -6,7 +6,6 @@ import CountrySelect from '../../modals/countrySelect/CountrySelect';
 import { useAppSelector } from '../../../app/hooks'
 import loginService from '../../../service/loginService';
 import { CODE_CONFIRMATION_ROUTE } from '../../../utils/consts'
-import Button from '../../common/button/Button';
 import { updateFullNumber } from '../../../app/countrySlice/countrySlice'
 import { useAppDispatch } from '../../../app/hooks';
 import {
@@ -24,7 +23,8 @@ import {
   InputLabel,
   Title,
   Body,
-  Container
+  Container,
+  StyledButton
 } from './components'
 
 
@@ -88,9 +88,9 @@ const Login = () => {
           </NumberContainer>
         </InputContainer>
         <ButtonContainer>
-          <Button
+          <StyledButton
           onClick={handleCreate}
-          >Create Account</Button>
+          >Create Account</StyledButton>
         </ButtonContainer>
       <ConsentConatainer>
         <ConsentP1>

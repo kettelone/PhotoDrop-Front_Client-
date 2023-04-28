@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Button from '../../common/button/Button'
 
 const Container = styled.div``
 
@@ -7,12 +8,18 @@ const Body = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	@media only screen and (min-width: 740px) {
+		margin-top: 235px;
+	}
 `
 const Title = styled.div`
 	font-family: 'Termina Test', sans-serif;
 	text-align: center;
 	font-weight: 700;
 	color: #262626;
+	@media only screen and (min-width: 740px) {
+		font-size: 30px;
+	}
 `
 const InputLabel = styled.div`
 	font-weight: 500;
@@ -23,6 +30,9 @@ const InputContainer = styled.div`
 	display: flex;
 	max-width: 100vw;
 	padding: 0px 15px;
+	@media only screen and (min-width: 740px) {
+		max-width: 420px;
+	}
 `
 const CountryInput = styled.span`
 	display: flex;
@@ -53,6 +63,9 @@ const NumberContainer = styled.div`
 	margin-left: 10px;
 	border-radius: 10px;
 	font-size: 16px;
+	@media only screen and (min-width: 740px) {
+		width: 20em;
+	}
 `
 const Numberinput = styled.input`
 	border: none;
@@ -65,6 +78,15 @@ const Numberinput = styled.input`
 const ButtonContainer = styled.div`
 	max-width: 100vw;
 	display: flex;
+	@media only screen and (min-width: 740px) {
+		max-width: 420px;
+	}
+`
+
+const StyledButton = styled(Button)`
+	@media only screen and (min-width: 740px) {
+		width: 420px;
+	}
 `
 const ConsentConatainer = styled.div`
 	color: #6d6d6d;
@@ -89,5 +111,6 @@ export {
 	InputLabel,
 	Title,
 	Body,
-	Container
+	Container,
+	StyledButton
 }

@@ -9,6 +9,9 @@ const Container = styled.div`
 	align-items: center;
 	padding: 0px 15px;
 	margin-top: 167px;
+	@media only screen and (min-width: 740px) {
+		margin-top: 253px;
+	}
 `
 const Title = styled.div`
 	font-family: 'Termina Test', sans-serif;
@@ -16,6 +19,9 @@ const Title = styled.div`
 	font-size: 18px;
 	color: #262626;
 	margin-bottom: 20px;
+	@media only screen and (min-width: 740px) {
+		font-size: 30px;
+	}
 `
 
 const Input = styled.input`
@@ -27,12 +33,18 @@ const Input = styled.input`
 	max-width: 345px;
 	padding: 15px 13px 14px 13px;
 	margin-bottom: 21px;
+	@media only screen and (min-width: 740px) {
+		max-width: 420px;
+	}
 `
 
 const StyledButton = styled(Button)`
   margin:0px;
   width: 100%!important;
   max-width:345px;
+	@media only screen and (min-width: 740px) {
+		max-width: 420px;
+	}
 `
 
 export { Container, Title, Input, StyledButton }
