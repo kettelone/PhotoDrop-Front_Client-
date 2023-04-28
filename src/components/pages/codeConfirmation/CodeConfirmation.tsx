@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './index.css'
 import loginService from '../../../service/loginService';
 import { useAppSelector } from '../../../app/hooks';
-import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer, Wrapper } from './components'
+import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer, Wrapper, ErrorMessage } from './components'
 import { UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
 
 
@@ -13,6 +13,7 @@ import { UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
 const CodeConfirmation = () => {
   const [otp, setOtp] = useState('');
   const [resendPressed, setResendPressed] = useState(false)
+  const [isError, setIsError] = useState(false)
   const navigate = useNavigate()
   const phoneNumber = useAppSelector(state => state.countryUpdate.fullNumber)
 
@@ -20,6 +21,13 @@ const CodeConfirmation = () => {
     const response = await loginService.login(phoneNumber, otp)
     if (response) {
       navigate(UPLOAD_SELFIE_ROUTE)
+    } else {
+      setIsError(true)
+      console.log(isError)
+      setTimeout(() => {
+        setIsError(false)
+      }, 4000)
+      console.log(isError)
     }
   }
 
@@ -58,7 +66,11 @@ const CodeConfirmation = () => {
         disabled={otp.length === 6 ? false : true}
         onClick={handleNext}
         >Next</Button>
-      </ButtonContainer>
+        </ButtonContainer>
+        {isError
+          ? <ErrorMessage id="error-message">The code in not matching</ErrorMessage>
+          :''
+        }
       </Container>
     </Wrapper>
   );

@@ -33,6 +33,29 @@ const Wrapper = styled.div`
 	display: flex;
 	justify-content: center;
 `
+const ErrorMessage = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 21.5em;
+	height: 3em;
+	text-align: center;
+	background-color: rgb(255, 70, 76);
+	color: white;
+	border-radius: 5px;
+	font-size: 16px;
+	margin: 0em 0.95em;
+	animation: fadeIn 1s;
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+`
 
 export {
 	Container,
@@ -41,5 +64,6 @@ export {
 	Phone,
 	ResendButton,
 	ButtonContainer,
-	Wrapper
+	Wrapper,
+	ErrorMessage
 }

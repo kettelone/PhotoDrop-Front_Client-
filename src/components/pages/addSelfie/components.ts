@@ -9,7 +9,7 @@ const Title = styled.div`
 	font-weight: 700;
 	color: #262626;
 
-	@media only screen and (min-height: 570px) {
+	@media only screen and (max-height: 570px) {
 		width: 6em;
 	}
 `

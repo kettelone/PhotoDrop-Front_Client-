@@ -32,25 +32,26 @@ import test3 from './test3.jpg'
 
 const Dashboard = () => {
   const navigate = useNavigate()
-  const[isLoading, setIsLoading] = useState(false)
+  const[isLoading, setIsLoading] = useState(true)
   const dispatch = useAppDispatch()
   const [selfie, setSelfie] = useState<string | undefined>()
 
   useEffect(() => {
-    setIsLoading(true)
     const loggedIn = checkToken()
     if (loggedIn) {
-      const fetchData = async () => {
-        const data = await albumsService.getAlbums()
-        if (data) {
-          const { albums, allPhotos, user } = data.data
-          const { selfieUrl } = user
-          dispatch(update({ selfieUrl }))
-          dispatch(updateAlbum({albums}))
-          dispatch(updatePhoto({ allPhotos }))
-          setSelfie(selfieUrl)
-        }
-        setIsLoading(false)
+      const fetchData =  () => {
+        setTimeout(async() => {
+          const data = await albumsService.getAlbums()
+          if (data) {
+            const { albums, allPhotos, user } = data.data
+            const { selfieUrl } = user
+            dispatch(update({ selfieUrl }))
+            dispatch(updateAlbum({ albums }))
+            dispatch(updatePhoto({ allPhotos }))
+            setSelfie(selfieUrl)
+          }
+          setIsLoading(false)
+        },5000)
       }
       fetchData()
 

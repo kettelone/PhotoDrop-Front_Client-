@@ -2,7 +2,6 @@ import React from 'react'
 import { $host } from '.'
 import Cookies from 'universal-cookie'
 const cookies = new Cookies()
-const token = cookies.get('jwt_auth')
 
 class Selfie {
 	public async signSelfie() {

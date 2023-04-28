@@ -48,7 +48,6 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   }
 
   const handleRetake = (event: any) => {
-    // setPreview(undefined)
     URL.revokeObjectURL(objectUrl)
     objectUrl = URL.createObjectURL(event.target.files[0])
     setPreview(objectUrl)
@@ -73,9 +72,9 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
     const presignedPostUrl = await selfieService.signSelfie()
     try {
       if (croppedImage) {
-         await uploadToS3(croppedImage, presignedPostUrl)
-        navigate(props.page)
         closeModal()
+        navigate(props.page)
+        await uploadToS3(croppedImage, presignedPostUrl)
       }
     } catch (e) {
       console.log(e)
