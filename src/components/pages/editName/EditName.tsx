@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import GoBack from '../../common/goBack/GoBack';
-import { PROFILE_ROUTE } from '../../../utils/consts';
+import { PROVIDE_EMAIL_ROUTE } from '../../../utils/consts';
 import { Container, Title, Input, StyledButton } from './components'
 import accountService from '../../../service/accountService';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ const EditName = () => {
     if (name) {
       const response = await accountService.editName(name)
       if (response) {
-        
+        navigate(PROVIDE_EMAIL_ROUTE)
       }
     }
   }
