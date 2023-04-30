@@ -20,7 +20,7 @@ const Img = styled.img`
 
 const Header = () => {
   return (
-    <StyledHeader>
+    <StyledHeader id="header">
       <Img src={photoDrop} alt='photoDrop' />
     </StyledHeader>
   );

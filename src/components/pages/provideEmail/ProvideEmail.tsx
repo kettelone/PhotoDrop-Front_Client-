@@ -13,7 +13,6 @@ const ProvideEmail = () => {
 
   const handleChange = (e: any) => {
     setEmail(e.target.value)
-    console.log({email})
   }
 
   const saveEmail = async () => {

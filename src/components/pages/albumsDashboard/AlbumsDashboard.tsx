@@ -3,7 +3,7 @@ import { useAppSelector } from '../../../app/hooks';
 import { useNavigate } from 'react-router-dom';
 import checkToken from '../../../utils/checkJWT';
 import albumService from '../../../service/albumService';
-
+import { Link } from 'react-router-dom';
 import {
   Container,
   PhotoIcon,
@@ -11,13 +11,22 @@ import {
   AlbumsContainer,
   PhotosContainer,
   Title,
-  AlbumsPreview
+  Albums,
+  Album,
+  AlbumCover,
+  TitlePhotos,
+  Photos,
+  Photo,
+  AlbumName
 } from './components'
 
 const AlbumsDashboard = () => {
   const [selfie, setSelfie] = useState()
+  const [albums, setAlbums] = useState<Array<any>>()
+  const [photos, setPhotos] = useState<Array<any>>()
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+
 
   useEffect(() => {
     setIsLoading(true)
@@ -26,11 +35,15 @@ const AlbumsDashboard = () => {
       const fetchData = async () => {
         const data = await albumService.getAlbums()
         if (data) {
-          const { user } = data.data
+          const { user, albums, allPhotos } = data.data
           const { selfieUrl } = user
           setSelfie(selfieUrl)
+          setAlbums(albums)
+          setPhotos(allPhotos)
         }
-        setIsLoading(false)
+        setTimeout(() => {
+          setIsLoading(false)
+        },500)
       }
       fetchData()
 
@@ -39,16 +52,44 @@ const AlbumsDashboard = () => {
   }, [])
   return (
     <Container>
-      <PhotoIcon
-      >
+      <div>
+      <PhotoIcon>
         <Img src={selfie} alt="selfie" />
       </PhotoIcon>
       <AlbumsContainer>
         <Title>Albums</Title>
+        <Albums>
+            {albums?.map(album => 
+              <Link to={`/album/${album.albumID}`} key={album.albumID}>
+            <Album>
+              <AlbumCover src={album.url} alt="cover" />
+              <AlbumName>Album Name</AlbumName>
+                </Album>
+              </Link>
+          )}
+        </Albums>
       </AlbumsContainer>
+      <TitlePhotos>All photos</TitlePhotos> 
+      <div>
       <PhotosContainer>
-        <Title>All photos</Title>
+        <Photos>
+          {photos?.map(photo =>
+            <Photo src={photo.url} alt='photo' key={photo.photoID } />
+            )}
+        </Photos>
+        <Photos>
+          {photos?.map(photo =>
+            <Photo src={photo.url} alt='photo' key={photo.photoID} />
+          )}
+        </Photos>
+        <Photos>
+          {photos?.map(photo =>
+            <Photo src={photo.url} alt='photo' key={photo.photoID} />
+          )}
+          </Photos> 
       </PhotosContainer>
+        </div>
+      </div>
     </Container>
   );
 };
