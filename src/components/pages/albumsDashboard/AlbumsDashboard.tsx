@@ -77,16 +77,6 @@ const AlbumsDashboard = () => {
             <Photo src={photo.url} alt='photo' key={photo.photoID } />
             )}
         </Photos>
-        <Photos>
-          {photos?.map(photo =>
-            <Photo src={photo.url} alt='photo' key={photo.photoID} />
-          )}
-        </Photos>
-        <Photos>
-          {photos?.map(photo =>
-            <Photo src={photo.url} alt='photo' key={photo.photoID} />
-          )}
-          </Photos> 
       </PhotosContainer>
         </div>
       </div>
