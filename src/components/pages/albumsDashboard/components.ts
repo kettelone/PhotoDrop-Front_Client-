@@ -16,6 +16,9 @@ const PhotoIcon = styled.div`
 	@media only screen and (min-width: 450px) {
 		padding-right: 33px;
 	}
+	@media only screen and (min-width: 740px) {
+		padding: 12.5px 33px 12.5px 12.5px;
+	}
 `
 const Img = styled.img`
 	width: 35px;
@@ -45,9 +48,6 @@ const AlbumName = styled.div`
 		line-height: 17.95px;
 	}
 `
-
-const PhotosContainer = styled.div``
-
 const TitlePhotos = styled.div`
 	margin-left: 15px;
 	font-size: 15px;
@@ -71,37 +71,52 @@ const Albums = styled.div`display: flex;`
 const Album = styled.div`margin-right: 5px;`
 
 const AlbumCover = styled.img`
+	max-width: 200px;
+	max-height: 255px;
+	aspect-ratio: 78.6/100;
+	width: 95.75%;
 	border-radius: 10px;
 	object-fit: cover;
 	cursor: pointer;
-	max-width: 200px;
-	max-height: 255px;
-	width: 95.5%;
-	height: 122.55%;
-`
-const Photos = styled.div`
-	display: flex;
-	justify-content: center;
 `
 
 const Photo = styled.img`
-	width: 33.33%;
+	width: 100%;
 	max-width: 400px;
 	object-fit: cover;
 	cursor: pointer;
+`
+
+const GridContainer = styled.div`
+	display: grid;
+	grid-row-gap: 0px;
+	justify-content: center;
+	grid-template-columns: auto auto auto;
+`
+
+const Blur = styled.div`
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(
+		white 0.9
+	); // Make sure this color has an opacity of less than 1
+	backdrop-filter: blur(5px); // This be the blur
+	z-index: 2;
 `
 export {
 	Container,
 	PhotoIcon,
 	Img,
 	AlbumsContainer,
-	PhotosContainer,
 	Title,
 	Albums,
 	Album,
 	AlbumCover,
 	TitlePhotos,
-	Photos,
 	Photo,
-	AlbumName
+	AlbumName,
+	GridContainer,
+	Blur
 }

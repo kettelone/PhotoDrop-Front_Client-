@@ -2,27 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import checkToken from '../../../utils/checkJWT';
 import albumService from '../../../service/albumService';
-import GoBack from '../../common/goBack/GoBack';
 import { ALBUMS_DASHBOARD_ROUTE } from '../../../utils/consts';
 import { useParams } from 'react-router-dom';
+import Loader from '../../modals/loader/Loader';
+import { Link } from 'react-router-dom';
+import arrowLeft from '../../../assets/arrowLeft.svg'
 
 import {
+  Wrapper,
   TopContainer,
   Name,
   Date,
   Amount,
-  PhotosContainer,
-  Photos,
-  Photo
+  Photo,
+  TextWrapper,
+  TextContainer,
+  DateAmount,
+  GridContainer,
+  Blur,
+  GoBack,
+  ButtonContainer,
+  StyledButton
 } from './components'
+import Footer from '../../common/footer/Footer';
 
 const Album = () => {
   let { id } = useParams();
-  if (id) {
-    document.getElementById('header')?.classList.add("hide")
-  }
+
   const [photos, setPhotos] = useState<Array<any>>()
+  const [quantity, setQuantity] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
+  const [albumName, setAlbumName] = useState('')
   const navigate = useNavigate()
 
 
@@ -33,10 +43,14 @@ const Album = () => {
       const fetchData = async () => {
         const data = await albumService.getAlbums()
         if (data) {
-          const { allPhotos } = data.data
+          const { allPhotos,albums } = data.data
           //@ts-ignore
           const albumPhotos = allPhotos.filter(photo => photo.albumID === id)
+          setQuantity(albumPhotos.length)
           setPhotos(albumPhotos)
+          //@ts-ignore
+          const album = albums.filter(album => album.albumID === id)
+          setAlbumName(album[0].name)
         }
         setTimeout(() => {
           setIsLoading(false)
@@ -48,23 +62,51 @@ const Album = () => {
     }
   }, [])
   return (
-    <div>
-      <TopContainer>
-        <GoBack route={ALBUMS_DASHBOARD_ROUTE} />
-        <Name>Album name</Name>
-        <Date>Jan 10, 2022</Date>
-        <Amount>{ 1} photos</Amount>
+    <Wrapper>
+      {
+        isLoading
+          ? <div><Loader /><Blur /></div>
+          : ''
+      }
+      <TopContainer id="top">
+        <GoBack>
+        <Link to={ALBUMS_DASHBOARD_ROUTE}>
+          <div>
+            <img src={arrowLeft} alt="arrow-let " />
+          </div>
+          </Link>
+        </GoBack>
+        <TextWrapper>
+          <TextContainer>
+            <Name>{albumName}</Name>
+          <DateAmount>
+              <Date>Jan 10, 2022 •</Date>
+              <Amount>{quantity} { quantity === 1 ? 'photo' :'photos'}</Amount>
+          </DateAmount>
+          </TextContainer>
+        </TextWrapper>
       </TopContainer>
-      <PhotosContainer>
-        <Photos>
-          {photos?.map(photo =>
-            <Photo src={photo.url} alt='photo' key={photo.photoID} />
-          )}
-        </Photos>
-      </PhotosContainer>
-
-
-    </div>
+      <div>
+        <GridContainer id="grid">
+          {
+            photos && photos.length > 0
+              ? photos.map(photo =>
+                <Photo
+                  src={photo.url}
+                  alt="photo"
+                  className='photos'
+                  data-name={photo.photoID}
+                  key={photo.url}
+                // onClick={handlePhoto}
+                />
+              )
+              : ''
+          }
+        </GridContainer>
+      </div>
+      <ButtonContainer><StyledButton>Unlock your photos</StyledButton></ButtonContainer>
+      <Footer/>
+    </Wrapper>
   );
 };
 

@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { useAppSelector } from '../../../app/hooks';
-import { useNavigate } from 'react-router-dom';
 import checkToken from '../../../utils/checkJWT';
 import albumService from '../../../service/albumService';
 import { Link } from 'react-router-dom';
+import Loader from '../../modals/loader/Loader';
 import {
   Container,
   PhotoIcon,
   Img,
   AlbumsContainer,
-  PhotosContainer,
   Title,
   Albums,
   Album,
   AlbumCover,
   TitlePhotos,
-  Photos,
   Photo,
-  AlbumName
+  AlbumName,
+  GridContainer,
+  Blur
 } from './components'
+import Footer from '../../common/footer/Footer';
 
 const AlbumsDashboard = () => {
   const [selfie, setSelfie] = useState()
   const [albums, setAlbums] = useState<Array<any>>()
   const [photos, setPhotos] = useState<Array<any>>()
   const [isLoading, setIsLoading] = useState(false)
-  const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -51,6 +50,12 @@ const AlbumsDashboard = () => {
     }
   }, [])
   return (
+    <div>
+           {
+        isLoading
+          ? <div><Loader /><Blur /></div>
+          : ''
+      }
     <Container>
       <div>
       <PhotoIcon>
@@ -61,26 +66,37 @@ const AlbumsDashboard = () => {
         <Albums>
             {albums?.map(album => 
               <Link to={`/album/${album.albumID}`} key={album.albumID}>
-            <Album>
-              <AlbumCover src={album.url} alt="cover" />
-              <AlbumName>Album Name</AlbumName>
+                <Album>
+                  <AlbumCover src={album.url} alt="cover" />
+                  <AlbumName>{album.name}</AlbumName>
                 </Album>
               </Link>
           )}
         </Albums>
       </AlbumsContainer>
       <TitlePhotos>All photos</TitlePhotos> 
-      <div>
-      <PhotosContainer>
-        <Photos>
-          {photos?.map(photo =>
-            <Photo src={photo.url} alt='photo' key={photo.photoID } />
-            )}
-        </Photos>
-      </PhotosContainer>
+        <div>
+          <GridContainer id="grid">
+            {
+              photos && photos.length > 0
+                ? photos.map(photo =>
+                    <Photo
+                      src={photo.url}
+                      alt="photo"
+                      className='photos'
+                      data-name={photo.photoID}
+                      key={photo.url}
+                    // onClick={handlePhoto}
+                    />
+                )
+                : ''
+            }
+          </GridContainer>
         </div>
       </div>
-    </Container>
+      </Container>
+      <Footer/>
+    </div>
   );
 };
 
