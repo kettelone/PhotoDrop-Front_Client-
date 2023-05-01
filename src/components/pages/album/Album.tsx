@@ -35,6 +35,7 @@ const Album = () => {
   const [quantity, setQuantity] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
   const [albumName, setAlbumName] = useState('')
+  const[isPaid, setIsPaid] = useState(false)
   const navigate = useNavigate()
 
 
@@ -53,6 +54,7 @@ const Album = () => {
           //@ts-ignore
           const album = albums.filter(album => album.albumID === id)
           setAlbumName(album[0].name)
+          setIsPaid(album[0].isPaid)
         }
         setTimeout(() => {
           setIsLoading(false)
@@ -114,11 +116,16 @@ const Album = () => {
           }
         </GridContainer>
       </div>
-      <ButtonContainer>
-        <StyledButton
-        onClick={handlePayment}
-        >Unlock your photos</StyledButton>
-      </ButtonContainer>
+      {
+        isPaid
+          ?''
+          : <ButtonContainer>
+            <StyledButton
+              onClick={handlePayment}
+            >Unlock your photos</StyledButton>
+          </ButtonContainer>
+      }
+
       <Footer/>
     </Wrapper>
   );
