@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import Loader from '../../modals/loader/Loader';
 import { Link } from 'react-router-dom';
 import arrowLeft from '../../../assets/arrowLeft.svg'
+import paymentService from '../../../service/paymentService';
 
 import {
   Wrapper,
@@ -28,6 +29,7 @@ import Footer from '../../common/footer/Footer';
 
 const Album = () => {
   let { id } = useParams();
+
 
   const [photos, setPhotos] = useState<Array<any>>()
   const [quantity, setQuantity] = useState(0)
@@ -61,6 +63,14 @@ const Album = () => {
     } else {
     }
   }, [])
+
+  const handlePayment = async () => {
+    if (!id) {
+      return
+    }
+    const paymentLink = await paymentService.requestPayment(id)
+    window.location.replace(paymentLink);
+  }
   return (
     <Wrapper>
       {
@@ -104,7 +114,11 @@ const Album = () => {
           }
         </GridContainer>
       </div>
-      <ButtonContainer><StyledButton>Unlock your photos</StyledButton></ButtonContainer>
+      <ButtonContainer>
+        <StyledButton
+        onClick={handlePayment}
+        >Unlock your photos</StyledButton>
+      </ButtonContainer>
       <Footer/>
     </Wrapper>
   );

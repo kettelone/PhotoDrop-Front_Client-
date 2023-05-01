@@ -112,6 +112,7 @@ const StyledButton = styled(Button)`
 font-weight:500;
 margin-top:40px;
 margin-bottom:40px;
+cursor:pointer;
 @media only screen and (min-width: 376px) {
 		margin-top: 100px;
 		margin-bottom: 100px;
