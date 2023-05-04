@@ -11,7 +11,7 @@ import {
   Input  
   } from './components'
 import Cropper from 'react-easy-crop'
-import closeIcon from './closeIcon.svg'
+import closeIcon from '../../../assets/closeIcon.svg'
 import './index.css'
 import getCroppedImg from './saveCroppedImage';
 import selfieService from '../../../service/selfieService';
