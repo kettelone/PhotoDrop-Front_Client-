@@ -4,6 +4,7 @@ import photoDrop from '../../../assets/photoDrop.svg'
 
 const StyledHeader = styled.header`
   display:flex;
+  height:55px;
   align-items: center;
   justify-content: center;
   border-top: 1px solid #F1F0EC;

@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {
   Container,
+  Wrapper,
   Title,
   CloseButton,
   Instruction,
   ButtonsContainer,
   StyledButton,
   Span,
-  Input } from './components'
+  Input  
+  } from './components'
 import Cropper from 'react-easy-crop'
 import closeIcon from './closeIcon.svg'
 import './index.css'
@@ -15,6 +17,8 @@ import getCroppedImg from './saveCroppedImage';
 import selfieService from '../../../service/selfieService';
 import { uploadToS3 } from './uploadToS3'
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
 const CropSelfie = (props: { selfie: File |null , page:string}) => {
@@ -23,6 +27,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
   const [croppedImage, setCroppedImage] = useState<Blob | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
   let objectUrl = ''
@@ -69,12 +74,14 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   }
 
   const saveSelfie = async () => {
+    setIsLoading(true)
     const presignedPostUrl = await selfieService.signSelfie()
     try {
       if (croppedImage) {
-        closeModal()
-        navigate(props.page)
         await uploadToS3(croppedImage, presignedPostUrl)
+        navigate(props.page)
+        setIsLoading(false)
+        closeModal()
       }
     } catch (e) {
       console.log(e)
@@ -84,6 +91,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
 
   return (
     <Container id="initialSelfie">
+      <Wrapper id='wrapper'>
       <CloseButton
         onClick={closeModal}
       >
@@ -110,7 +118,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
           cropAreaClassName: 'cropAreaClassName'
           }
         }
-      />
+          />
       <ButtonsContainer>
         <StyledButton
           color="white"
@@ -129,9 +137,16 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
           color="none"
           backgroundColor="white"
           onClick={saveSelfie}
-        > Save</StyledButton >
-      </ButtonsContainer>
-    </Container>
+          >
+            {isLoading
+              ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
+              : 'Save'
+            }
+          </StyledButton >
+        </ButtonsContainer>
+      </Wrapper>
+      </Container>
+
   );
 };
 

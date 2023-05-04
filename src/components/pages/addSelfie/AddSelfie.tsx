@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import personIcon from './personIcon.svg'
-import { Title, SubTitle, IconContainer, AddSign, Input } from './components'
+import { Wrapper,Container,Title, SubTitle, IconContainer, AddSign, Input } from './components'
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import { DASHBOARD_ROUTE } from '../../../utils/consts';
+import checkToken from '../../../utils/checkJWT';
+import { useNavigate } from 'react-router-dom';
 
 const AddSelfie = () => {
+const navigate = useNavigate()
+  useEffect(() => {
+    const isLoggedIn = checkToken()
+    if (isLoggedIn) {
+      navigate(DASHBOARD_ROUTE)
+    }
+  }, [])
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
 
   const selectPhoto = (event: any) => {
@@ -15,8 +24,9 @@ const AddSelfie = () => {
   }
 
   return (
-    <div>
+    <Wrapper>
       <CropSelfie selfie={selectedFile} page={DASHBOARD_ROUTE} />
+      <Container>
       <Title> Add a selfie</Title>
       <SubTitle>A selfie allows your photos to be synced with your account.</SubTitle>
       <IconContainer>
@@ -28,8 +38,9 @@ const AddSelfie = () => {
           onChange={selectPhoto}
           accept="image/*"
         />
-      </IconContainer>
-    </div>
+        </IconContainer>
+      </Container>
+    </Wrapper>
   );
 };
 

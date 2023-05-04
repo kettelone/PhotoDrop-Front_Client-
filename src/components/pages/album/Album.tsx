@@ -8,6 +8,7 @@ import Loader from '../../modals/loader/Loader';
 import { Link } from 'react-router-dom';
 import arrowLeft from '../../../assets/arrowLeft.svg'
 import paymentService from '../../../service/paymentService';
+import PhotoModal from '../../modals/photo/Photo';
 
 import {
   Wrapper,
@@ -35,6 +36,8 @@ const Album = () => {
   const [quantity, setQuantity] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
   const [albumName, setAlbumName] = useState('')
+  const [url, setUrl] = useState('')
+  const [photoId, setPhotoId] = useState('')
   const[isPaid, setIsPaid] = useState(false)
   const navigate = useNavigate()
 
@@ -73,8 +76,21 @@ const Album = () => {
     const paymentLink = await paymentService.requestPayment(id)
     window.location.replace(paymentLink);
   }
+
+  const handlePhoto = (url: string, id: string) => {
+    
+    setUrl(url)
+    setPhotoId(id)
+    document.getElementById('singlePhoto')?.classList.add('show')
+  }
+
+
   return (
     <Wrapper>
+      <PhotoModal
+        url={url}
+        photoId={photoId}
+      />
       {
         isLoading
           ? <div><Loader /><Blur /></div>
@@ -104,12 +120,12 @@ const Album = () => {
             photos && photos.length > 0
               ? photos.map(photo =>
                 <Photo
+                  onClick={() => handlePhoto(photo.url, photo.photoID)}
                   src={photo.url}
                   alt="photo"
                   className='photos'
                   data-name={photo.photoID}
                   key={photo.url}
-                // onClick={handlePhoto}
                 />
               )
               : ''

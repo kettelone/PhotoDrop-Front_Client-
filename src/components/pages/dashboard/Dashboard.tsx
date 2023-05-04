@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import albumsService from '../../../service/albumService'
 import checkToken from '../../../utils/checkJWT';
-import { LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { DASHBOARD_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import { update } from '../../../app/selfieSlice/selfieSlice';
 import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
 import { updatePhoto } from '../../../app/photosSlice/photosSlice';
@@ -31,12 +31,21 @@ import test3 from './test3.jpg'
 
 
 const Dashboard = () => {
+
+  useEffect(() => {
+    const isLoggedIn = checkToken()
+    if (isLoggedIn) {
+      navigate(DASHBOARD_ROUTE)
+    }
+  }, [])
+
   const navigate = useNavigate()
   const[isLoading, setIsLoading] = useState(true)
   const dispatch = useAppDispatch()
   const [selfie, setSelfie] = useState<string | undefined>()
 
   useEffect(() => {
+    document.body.classList.add('no-scroll')
     const loggedIn = checkToken()
     if (loggedIn) {
       const fetchData =  async() => {
@@ -51,7 +60,8 @@ const Dashboard = () => {
             setSelfie(selfieUrl)
           }
           setIsLoading(false)
-        },5000)
+          document.body.classList.remove('no-scroll')
+        },4000)
       }
       fetchData()
 

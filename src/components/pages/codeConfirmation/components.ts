@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
-const Container = styled.div`margin-top: 106px;`
+const Container = styled.div`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+`
 
 const Title = styled.div`
 	display: flex;
@@ -37,7 +42,6 @@ const ErrorMessage = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 21.5em;
 	height: 3em;
 	text-align: center;
 	background-color: rgb(255, 70, 76);

@@ -4,12 +4,14 @@ import Button from '../../common/button/Button'
 const Container = styled.div``
 
 const Body = styled.div`
-	margin-top: 136px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	@media only screen and (min-width: 740px) {
-		margin-top: 235px;
 	}
 `
 const Title = styled.div`
@@ -45,6 +47,9 @@ const CountryInput = styled.span`
 	border-radius: 10px;
 `
 const StrokeContainer = styled.span`display: flex;`
+
+const FlagSpan = styled.span`display: flex;`
+
 const FlagImg = styled.img`
 	width: 2em;
 	height: 2em;
@@ -104,6 +109,7 @@ export {
 	NumberContainer,
 	Numberinput,
 	StrokeImg,
+	FlagSpan,
 	FlagImg,
 	StrokeContainer,
 	CountryInput,

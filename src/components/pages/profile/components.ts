@@ -38,6 +38,11 @@ const Img = styled.img`
 `
 
 const Pen = styled.img``
+
+const LoaderWrapper = styled.div`
+	position: absolute;
+	left: 0;
+`
 const Blur = styled.div`
 	position: fixed;
 	top: 0;
@@ -93,6 +98,7 @@ const Description = styled.div`height: 11px;`
 const ArrowWrapper = styled.div`
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 `
 const ArrowContainer = styled.div`
 	width: 30px;
@@ -116,5 +122,6 @@ export {
 	Title,
 	Description,
 	ArrowWrapper,
-	ArrowContainer
+	ArrowContainer,
+	LoaderWrapper
 }

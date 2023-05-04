@@ -1,10 +1,14 @@
 import styled from 'styled-components'
 
 const Container = styled.div`display: none;`
+
+const Wrapper = styled.div``
 const Img = styled.img`
 	width: 100%;
 	height: 100%;
 `
+
+const TopContainer = styled.div``
 const Title = styled.div`
 	color: white;
 	position: absolute;
@@ -15,6 +19,9 @@ const Title = styled.div`
 	z-index: 2;
 	font-size: 18px;
 	font-weight: 500;
+	@media only screen and (min-height: 600px) {
+		top: 22.5%;
+	}
 `
 
 const CloseButton = styled.button`
@@ -25,6 +32,12 @@ const CloseButton = styled.button`
 	border: none;
 	margin-top: 1.5em;
 	margin-left: 1em;
+	cursor: pointer;
+
+	@media only screen and (min-height: 900px) {
+		top: 22.5%;
+		left: 40%;
+	}
 `
 const Instruction = styled.div`
 	font-size: 16px;
@@ -41,16 +54,22 @@ const Instruction = styled.div`
 	@media only screen and (max-height: 490px) {
 		top: 5em;
 	}
+	@media only screen and (min-height: 900px) {
+		top: 34%;
+	}
 `
 
 const ButtonsContainer = styled.div`
 	display: flex;
 	position: absolute;
-	bottom: 0;
+	bottom: 0%;
 	right: 50%;
 	transform: translate(50%);
 	margin-bottom: 2.5em;
 	justify-content: space-between;
+	@media only screen and (min-height: 900px) {
+		bottom: 20%;
+	}
 `
 
 const StyledButton =
@@ -70,7 +89,7 @@ const StyledButton =
     border: 1px solid white;
     font-weight: 500;
     font-size: 18px;
-
+		cursor:pointer;
    @media only screen and (max-width: 355px) {
       width:8.5em;
    }
@@ -83,8 +102,10 @@ const Span = styled.span`
 const Input = styled.input`display: none;`
 export {
 	Container,
+	Wrapper,
 	Img,
 	Title,
+	TopContainer,
 	CloseButton,
 	Instruction,
 	ButtonsContainer,

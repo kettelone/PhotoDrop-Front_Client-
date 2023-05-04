@@ -7,6 +7,7 @@ const Container = styled.div`
 	width: 100%;
 	background-color: white;
 	font-size: 16px;
+	z-index: 3;
 `
 
 const HeaderContainer = styled.div`

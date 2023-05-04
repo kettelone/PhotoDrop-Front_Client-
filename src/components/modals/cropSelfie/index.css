@@ -3,7 +3,7 @@
 }
 
 .containerClassName img{
-  
+  max-width: 400px;
 }
 
 .mediaClassName{
@@ -15,6 +15,5 @@
   max-width: 15.5em;
   max-height: 15.5em;
   min-height: 15.5em;
-  border-radius: 100%;
   min-width: 15.5em;
 }

@@ -1,9 +1,19 @@
 import styled from 'styled-components'
 
+const Wrapper = styled.div``
+
+const Container = styled.div`
+	height: calc(100vh - (55px));
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 181px;
+`
+
 const Title = styled.div`
 	display: flex;
 	justify-content: center;
-	margin-top: 4.5em;
 	font-family: 'Termina Test', sans-serif;
 	text-align: center;
 	font-weight: 700;
@@ -40,4 +50,4 @@ const AddSign = styled.label`
 `
 const Input = styled.input`display: none;`
 
-export { Title, SubTitle, IconContainer, AddSign, Input }
+export { Wrapper, Container, Title, SubTitle, IconContainer, AddSign, Input }

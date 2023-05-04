@@ -1,26 +1,40 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import OtpInput from 'react-otp-input';
 import Button from '../../common/button/Button';
 import { useNavigate } from 'react-router-dom';
 import './index.css'
 import loginService from '../../../service/loginService';
-import { useAppSelector } from '../../../app/hooks';
 import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer, Wrapper, ErrorMessage } from './components'
-import { UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
-
+import { DASHBOARD_ROUTE, UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import checkToken from '../../../utils/checkJWT';
 
 
 const CodeConfirmation = () => {
+
+  useEffect(() => {
+    const isLoggedIn = checkToken()
+    if (isLoggedIn) {
+      navigate(DASHBOARD_ROUTE)
+    }
+  }, [])
+  
   const [otp, setOtp] = useState('');
   const [resendPressed, setResendPressed] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const navigate = useNavigate()
-  const phoneNumber = useAppSelector(state => state.countryUpdate.fullNumber)
-
+  const  phoneNumber = localStorage.getItem('phoneNumber')
   const handleNext = async () => {
+    if (!phoneNumber) {
+      return 
+    }
+    setIsLoading(true)
     const response = await loginService.login(phoneNumber, otp)
     if (response) {
       navigate(UPLOAD_SELFIE_ROUTE)
+      setIsLoading(false)
     } else {
       setIsError(true)
       console.log(isError)
@@ -32,7 +46,8 @@ const CodeConfirmation = () => {
   }
 
   const handleReset = async () => {
-    if (!resendPressed) {
+    if (!resendPressed && phoneNumber) {
+      setOtp('')
       await loginService.requestOtp(phoneNumber)
     }
     setResendPressed(true)
@@ -65,7 +80,12 @@ const CodeConfirmation = () => {
         style={{ opacity: otp.length === 6 ? 1 : 0.5 }}
         disabled={otp.length === 6 ? false : true}
         onClick={handleNext}
-        >Next</Button>
+          >{
+              isLoading
+                ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
+                :"Next"
+            }
+          </Button>
         </ButtonContainer>
         {isError
           ? <ErrorMessage id="error-message">The code in not matching</ErrorMessage>

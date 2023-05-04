@@ -3,15 +3,18 @@ import styled from 'styled-components'
 
 import Button from '../../common/button/Button'
 
+const Wrapper = styled.div``
+
 const Container = styled.div`
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 0px 15px;
-	margin-top: 167px;
-	@media only screen and (min-width: 740px) {
-		margin-top: 253px;
-	}
 `
 const Title = styled.div`
 	font-family: 'Termina Test', sans-serif;
@@ -47,4 +50,4 @@ const StyledButton = styled(Button)`
 	}
 `
 
-export { Container, Title, Input, StyledButton }
+export { Wrapper, Container, Title, Input, StyledButton }

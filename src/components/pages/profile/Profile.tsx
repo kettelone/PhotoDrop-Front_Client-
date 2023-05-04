@@ -27,7 +27,8 @@ import {
   Title,
   Description,
   ArrowWrapper,
-  ArrowContainer
+  ArrowContainer,
+  LoaderWrapper
  } from './components'
 
 const Profile = () => {
@@ -37,6 +38,7 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
 
   useEffect(() => {
     setIsLoading(true)
@@ -72,13 +74,13 @@ const Profile = () => {
 
   return (
     <Wrapper>
-      <GoBack route={ DASHBOARD_ROUTE} />
-      <Container>
       {
         isLoading
-          ? <div><Loader /><Blur /></div>
+          ? <LoaderWrapper><Loader /><Blur /></LoaderWrapper>
           : ''
       }
+      <GoBack route={ DASHBOARD_ROUTE} />
+      <Container>
       <CropSelfie selfie={selectedFile} page={PROFILE_ROUTE} />
       <Welcome>Welcome, {userName}.</Welcome>
       <YourSelfie>Your selfie</YourSelfie>

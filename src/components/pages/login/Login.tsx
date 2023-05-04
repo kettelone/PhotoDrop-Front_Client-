@@ -1,13 +1,16 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent ,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-// import Header from '../../common/header/Header';
 import stroke from '../../../assets/stroke.svg'
 import CountrySelect from '../../modals/countrySelect/CountrySelect';
 import { useAppSelector } from '../../../app/hooks'
 import loginService from '../../../service/loginService';
-import { CODE_CONFIRMATION_ROUTE } from '../../../utils/consts'
+import { CODE_CONFIRMATION_ROUTE, DASHBOARD_ROUTE } from '../../../utils/consts'
 import { updateFullNumber } from '../../../app/countrySlice/countrySlice'
 import { useAppDispatch } from '../../../app/hooks';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import checkToken from '../../../utils/checkJWT';
+
 import {
   ConsentP2,
   ConsentP1,
@@ -24,15 +27,23 @@ import {
   Title,
   Body,
   Container,
-  StyledButton
+  StyledButton,
+  FlagSpan
 } from './components'
 
 
 const Login = () => {
+const navigate = useNavigate()
+  useEffect(() => {
+    const isLoggedIn = checkToken()
+    if (isLoggedIn) {
+      navigate(DASHBOARD_ROUTE)
+    }
+  },[])
 
   const { country, dial_code } = useAppSelector(state => state.countryUpdate)
   const [digits, setDigits] = useState<string>('')
-  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
   const dispatch = useAppDispatch()
 
   const handlePhoneNumber = (event: ChangeEvent<HTMLInputElement>) => {
@@ -47,18 +58,20 @@ const Login = () => {
   }
 
   const handleCreate = async () => {
-    if (dial_code && digits.length <= 10 && digits.length >=9) {
+    if (dial_code && digits.length <= 10 && digits.length >= 9) {
+      setIsLoading(true)
       const fullNumber = `${dial_code.substring(1)}${digits}`
       dispatch(updateFullNumber({ fullNumber }))
-      navigate(CODE_CONFIRMATION_ROUTE)
+      localStorage.setItem('phoneNumber', fullNumber)
       await loginService.requestOtp(fullNumber)
+      setIsLoading(false)
+      navigate(CODE_CONFIRMATION_ROUTE)
     }
   }
 
   return (
     <Container>
       <CountrySelect />
-      {/* <Header/> */}
     <Body>
       <Title>Let`s get started</Title>
       <InputLabel>Enter your phone number</InputLabel>
@@ -66,11 +79,11 @@ const Login = () => {
           <CountryInput
             onClick={hanleCountry}
           >
-            <span>
+            <FlagSpan>
               <FlagImg
                 src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${country}.svg`}
               />
-            </span>
+            </FlagSpan>
             <StrokeContainer>
               <StrokeImg
                 src={stroke}
@@ -89,8 +102,11 @@ const Login = () => {
         </InputContainer>
         <ButtonContainer>
           <StyledButton
-          onClick={handleCreate}
-          >Create Account</StyledButton>
+            onClick={handleCreate}
+          >{isLoading
+              ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
+              : 'Create Account'
+            }</StyledButton>
         </ButtonContainer>
       <ConsentConatainer>
         <ConsentP1>
