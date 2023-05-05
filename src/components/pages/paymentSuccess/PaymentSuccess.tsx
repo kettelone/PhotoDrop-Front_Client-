@@ -17,6 +17,13 @@ const PaymentSuccess = () => {
     return savedItem || "";
   });
 
+  const [albumName, setAlbumName] = useState(() => {
+    const savedItem = localStorage.getItem("albumName");
+    return savedItem || "";
+  });
+
+
+
 
   const goToAlbum = () => {
     console.log(albumCover)
@@ -27,7 +34,7 @@ const PaymentSuccess = () => {
     <Wrapper>
     <Container>
       <Title>Thank you!</Title>
-      <P1>The album <b>Brooklyn Bridge</b> is now unlocked.</P1>
+        <P1>The album <b>{albumName ? albumName: 'Your album'}</b> is now unlocked.</P1>
       <P2>You can now download, share, post, and print your hi-res, watermark-free, glorious memories.</P2>
         <Img src={albumCover} alt="congrats_unlocked"/>
         <StyledButton

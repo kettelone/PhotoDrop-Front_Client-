@@ -92,6 +92,8 @@ const Album = () => {
     }
     localStorage.setItem('albumID', id)
     localStorage.setItem('albumCover', albumCover)
+    localStorage.setItem('albumName', albumName)
+
     const paymentLink = await paymentService.requestPayment(id)
       window.location.replace(paymentLink);
       setPaymentLoading(false)

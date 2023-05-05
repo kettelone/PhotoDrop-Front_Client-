@@ -9,14 +9,15 @@ class Payment {
 	public async requestPayment(albumID: string) {
 		try {
 			const token = cookies.get('jwt_auth')
-			// const decoded: { phone: string } = jwt_decode(token)
+			const decoded: { phone: string } = jwt_decode(token)
 
 			const response = await $host.post(
 				'/stripe/payment',
 				{
 					successLink: `https://photo-drop-front-client.vercel.app/success`,
-					failLink: `https://photo-drop-front-client.vercel.app`,
-					albumID: albumID
+					failLink: `https://photo-drop-front-client.vercel.app/failed`,
+					albumID: albumID,
+					phoneNumber: decoded.phone
 				},
 				{
 					headers: {

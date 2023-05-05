@@ -13,6 +13,7 @@ import PaymentSuccess from '../components/pages/paymentSuccess/PaymentSuccess';
 import AccountSettings from '../components/pages/accountSettings/AccountSettings';
 import EditPhone from '../components/pages/editMobile/EditModile';
 import NewCodeConfirmation from '../components/pages/newPhoneConfirmation/NewPhoneConfirmation';
+import PaymentFailed from '../components/pages/paymentFailed/PaymentFailed';
 import {
   LOGIN_ROUTE,
   CODE_CONFIRMATION_ROUTE,
@@ -25,7 +26,8 @@ import {
   ALBUM_ROUTE,
   SUCCESS_ROUTE,
   ACCOUNT_SETTINGS, EDIT_PHONE_ROUTE,
-  CONFIRM_EDIT_PHONE_ROUTE
+  CONFIRM_EDIT_PHONE_ROUTE,
+  FAILED_ROUTE
 
 } from '../utils/consts';
 
@@ -46,6 +48,7 @@ const AppRouter = () => {
       <Route path={ALBUMS_DASHBOARD_ROUTE} element={<AlbumsDashboard />} />
       <Route path={ALBUM_ROUTE} element={<Album />} />
       <Route path={SUCCESS_ROUTE} element={<PaymentSuccess />} />
+      <Route path={FAILED_ROUTE} element={<PaymentFailed />} />
       <Route path="*" element={<Login />} />
     </Routes>
   );

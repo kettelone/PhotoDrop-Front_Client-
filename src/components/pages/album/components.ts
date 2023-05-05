@@ -85,7 +85,7 @@ const DateAmount = styled.div`
 	}
 `
 
-const GridWrapper = styled.div`min-height: 30vh;`
+const GridWrapper = styled.div`min-height: 60vh;`
 
 const GridContainer = styled.div`
 	display: grid;
