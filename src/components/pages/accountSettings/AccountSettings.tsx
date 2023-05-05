@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import checkToken from '../../../utils/checkJWT';
 import {
   Header,
   Wrapper,
@@ -19,10 +20,16 @@ import arrowRight from '../../../assets/arrowRight.svg'
 import GoBack from '../../common/goBack/GoBack';
 import mailIcon from './mailIcon.svg'
 import phoneIcon from './phoneIcon.svg'
-import { DASHBOARD_ROUTE, EDIT_PHONE_ROUTE } from '../../../utils/consts';
+import { DASHBOARD_ROUTE, EDIT_PHONE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 
 
 const AccountSettings = () => {
+  useEffect(() => {
+    const isLoggedIn = checkToken()
+    if (!isLoggedIn) {
+      navigate(LOGIN_ROUTE)
+    }
+  }, [])
   const [phone, setPhone] = useState(() => {
     const savedItem = localStorage.getItem("phoneNumber");
     return savedItem || "";

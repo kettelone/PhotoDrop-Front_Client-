@@ -48,6 +48,27 @@ const AddSign = styled.label`
 		justify-content: center;
 	}
 `
+
+const Blur = styled.div`
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(
+		white 0.9
+	); // Make sure this color has an opacity of less than 1
+	backdrop-filter: blur(5px); // This be the blur
+	z-index: 2;
+`
 const Input = styled.input`display: none;`
 
-export { Wrapper, Container, Title, SubTitle, IconContainer, AddSign, Input }
+export {
+	Wrapper,
+	Container,
+	Title,
+	SubTitle,
+	IconContainer,
+	AddSign,
+	Input,
+	Blur
+}

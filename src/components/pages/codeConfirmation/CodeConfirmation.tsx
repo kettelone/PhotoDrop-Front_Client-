@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import './index.css'
 import loginService from '../../../service/loginService';
 import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer, Wrapper, ErrorMessage } from './components'
-import { DASHBOARD_ROUTE, UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
+import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import checkToken from '../../../utils/checkJWT';
+import albumService from '../../../service/albumService';
 
 
 const CodeConfirmation = () => {
@@ -33,7 +34,24 @@ const CodeConfirmation = () => {
     setIsLoading(true)
     const response = await loginService.login(phoneNumber, otp)
     if (response) {
-      navigate(UPLOAD_SELFIE_ROUTE)
+        const fetchData = async () => {
+          setTimeout(async () => {
+            const data = await albumService.getAlbums()
+            if (data) {
+              const { allPhotos, user } = data.data
+              const { selfieUrl } = user
+              if (!selfieUrl) {
+                navigate(UPLOAD_SELFIE_ROUTE)
+              }else if (selfieUrl && allPhotos.length > 0) {
+                navigate(ALBUMS_DASHBOARD_ROUTE)
+              } else if (selfieUrl) {
+                navigate(DASHBOARD_ROUTE)
+              }
+            }
+            document.body.classList.remove('no-scroll')
+          }, 1000)
+        }
+        fetchData()
       setIsLoading(false)
     } else {
       setIsError(true)
