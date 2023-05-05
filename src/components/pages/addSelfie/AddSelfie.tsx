@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import personIcon from './personIcon.svg'
 import { Wrapper,Container,Title, SubTitle, IconContainer, AddSign, Input } from './components'
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
-import { DASHBOARD_ROUTE } from '../../../utils/consts';
+import { DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 import checkToken from '../../../utils/checkJWT';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,8 +10,8 @@ const AddSelfie = () => {
 const navigate = useNavigate()
   useEffect(() => {
     const isLoggedIn = checkToken()
-    if (isLoggedIn) {
-      navigate(DASHBOARD_ROUTE)
+    if (!isLoggedIn) {
+      navigate(LOGIN_ROUTE) 
     }
   }, [])
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
