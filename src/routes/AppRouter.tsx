@@ -9,6 +9,8 @@ import EditName from '../components/pages/editName/EditName';
 import ProvideEmail from '../components/pages/provideEmail/ProvideEmail';
 import AlbumsDashboard from '../components/pages/albumsDashboard/AlbumsDashboard';
 import Album from '../components/pages/album/Album';
+import PaymentSuccess from '../components/pages/paymentSuccess/PaymentSuccess';
+import AccountSettings from '../components/pages/accountSettings/AccountSettings';
 import {
   LOGIN_ROUTE,
   CODE_CONFIRMATION_ROUTE,
@@ -18,7 +20,9 @@ import {
   EDIT_NAME_ROUTE,
   PROVIDE_EMAIL_ROUTE,
   ALBUMS_DASHBOARD_ROUTE,
-  ALBUM_ROUTE
+  ALBUM_ROUTE,
+  SUCCESS_ROUTE,
+  ACCOUNT_SETTINGS
 } from '../utils/consts';
 
 
@@ -32,8 +36,10 @@ const AppRouter = () => {
       <Route path={PROFILE_ROUTE} element={<Profile />} />
       <Route path={EDIT_NAME_ROUTE} element={<EditName />} />
       <Route path={PROVIDE_EMAIL_ROUTE} element={<ProvideEmail />} />
+      <Route path={ACCOUNT_SETTINGS} element={<AccountSettings />} />
       <Route path={ALBUMS_DASHBOARD_ROUTE} element={<AlbumsDashboard />} />
       <Route path={ALBUM_ROUTE} element={<Album />} />
+      <Route path={SUCCESS_ROUTE} element={<PaymentSuccess />} />
       <Route path="*" element={<Login />} />
     </Routes>
   );

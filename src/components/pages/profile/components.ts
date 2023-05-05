@@ -9,6 +9,10 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 23em;
+	@media only screen and (min-width: 740px) {
+		width: 22%;
+		min-width: 500px;
+	}
 `
 const Welcome = styled.div`
 	font-weight: 700;
@@ -17,12 +21,18 @@ const Welcome = styled.div`
 	text-align: center;
 	margin-top: 22px;
 	margin-bottom: 20px;
+	@media only screen and (min-width: 740px) {
+		font-size: 30px;
+	}
 `
 
 const YourSelfie = styled.div`
 	font-weight: 500;
 	font-size: 16px;
 	margin: 0px 15px 15px;
+	@media only screen and (min-width: 740px) {
+		font-size: 18px;
+	}
 `
 
 const SelfieContainer = styled.div`
@@ -37,7 +47,7 @@ const Img = styled.img`
 	border-radius: 50%;
 `
 
-const Pen = styled.img``
+const Pen = styled.img`cursor: pointer;`
 
 const LoaderWrapper = styled.div`
 	position: absolute;
@@ -86,6 +96,10 @@ const Option = styled.div`
 
 	@media only screen and (max-width: 340px) {
 		font-size: 12px;
+	}
+	@media only screen and (min-width: 740px) {
+		height: 60px;
+		font-size: 18px;
 	}
 `
 const Title = styled.div`

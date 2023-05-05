@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE } from '../../../utils/consts';
+import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 import { Wrapper,Container, TitleWrapper, Title, Input, StyledButton, Line, TermsNConditions } from './components'
 import accountService from '../../../service/accountService';
 import { useNavigate } from 'react-router-dom';
@@ -13,8 +13,8 @@ const ProvideEmail = () => {
   
   useEffect(() => {
     const isLoggedIn = checkToken()
-    if (isLoggedIn) {
-      navigate(DASHBOARD_ROUTE)
+    if (!isLoggedIn) {
+      navigate(LOGIN_ROUTE)
     }
   }, [])
 

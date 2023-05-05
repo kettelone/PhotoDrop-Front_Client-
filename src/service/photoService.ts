@@ -4,12 +4,15 @@ import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 
 class PhotoService {
-	public async getOriginalPhoto() {
+	public async getOriginalPhoto(id: string) {
 		try {
 			const token = cookies.get('jwt_auth')
-			const data = await $host.get('/user/addSelfie', {
+			const data = await $host.get('/info/getPhoto', {
 				headers: {
 					Authorization: `Bearer ${token}`
+				},
+				params: {
+					photoID: id
 				}
 			})
 			return data

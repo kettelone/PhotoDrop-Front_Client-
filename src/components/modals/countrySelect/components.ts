@@ -9,7 +9,15 @@ const Container = styled.div`
 	font-size: 16px;
 	z-index: 3;
 `
-
+const SubContainer = styled.div`
+	@media only screen and (min-width: 450px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		font-size: 18px;
+	}
+`
 const HeaderContainer = styled.div`
 	height: 40px;
 	font-weight: 700;
@@ -39,6 +47,11 @@ const CloseButton = styled.button`
 	height: 40px;
 	position: absolute;
 	right: 0;
+	cursor: pointer;
+	@media only screen and (min-width: 450px) {
+		right: 50%;
+		transform: translate(190px);
+	}
 `
 
 const OneCountry = styled.div`
@@ -47,6 +60,13 @@ const OneCountry = styled.div`
 	height: 40px;
 	border-bottom: 1px solid #f1f0ec;
 	margin-left: 0.5em;
+	cursor: pointer;
+	&:hover {
+		background-color: rgb(244, 244, 244);
+	}
+	@media only screen and (min-width: 450px) {
+		margin: 0;
+	}
 `
 
 const SpanCountryName = styled.span`margin-left: 0.75em;`
@@ -62,6 +82,7 @@ const Wrapper = styled.div`
 `
 export {
 	Container,
+	SubContainer,
 	HeaderContainer,
 	CommonCoutries,
 	Title,

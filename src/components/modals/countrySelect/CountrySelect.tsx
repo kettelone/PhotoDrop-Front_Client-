@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../../app/hooks'
 
 import {
   Container,
+  SubContainer,
   HeaderContainer,
   CommonCoutries,
   Title,
@@ -31,6 +32,7 @@ const CountrySelect = () => {
 
   return (
     <Container id='countryModal'>
+      <SubContainer>
       <HeaderContainer>
         <span>Select Country</span>
         <CloseButton
@@ -87,7 +89,8 @@ const CountrySelect = () => {
           </OneCountry>
         )
         }
-      </Wrapper>
+        </Wrapper>
+      </SubContainer>
     </Container>
   );
 };

@@ -85,6 +85,8 @@ const DateAmount = styled.div`
 	}
 `
 
+const GridWrapper = styled.div`min-height: 30vh;`
+
 const GridContainer = styled.div`
 	display: grid;
 	grid-row-gap: 0px;
@@ -132,6 +134,7 @@ export {
 	TextWrapper,
 	TextContainer,
 	DateAmount,
+	GridWrapper,
 	GridContainer,
 	Blur,
 	GoBack,

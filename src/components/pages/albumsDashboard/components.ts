@@ -87,6 +87,13 @@ const Photo = styled.img`
 	cursor: pointer;
 `
 
+const GridWrapper = styled.div`
+	min-height: 80vh;
+	@media only screen and (max-width: 450px) {
+		min-height: 60vh;
+	}
+`
+
 const GridContainer = styled.div`
 	display: grid;
 	grid-row-gap: 0px;
@@ -117,6 +124,7 @@ export {
 	TitlePhotos,
 	Photo,
 	AlbumName,
+	GridWrapper,
 	GridContainer,
 	Blur
 }

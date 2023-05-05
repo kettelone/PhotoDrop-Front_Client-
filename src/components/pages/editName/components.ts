@@ -45,6 +45,7 @@ const StyledButton = styled(Button)`
   margin:0px;
   width: 100%!important;
   max-width:345px;
+	cursor: pointer;
 	@media only screen and (min-width: 740px) {
 		max-width: 420px;
 	}

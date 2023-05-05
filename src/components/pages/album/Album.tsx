@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import checkToken from '../../../utils/checkJWT';
 import albumService from '../../../service/albumService';
-import { ALBUMS_DASHBOARD_ROUTE } from '../../../utils/consts';
+import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 import { useParams } from 'react-router-dom';
 import Loader from '../../modals/loader/Loader';
 import { Link } from 'react-router-dom';
 import arrowLeft from '../../../assets/arrowLeft.svg'
 import paymentService from '../../../service/paymentService';
 import PhotoModal from '../../modals/photo/Photo';
+import photoService from '../../../service/photoService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 import {
   Wrapper,
@@ -20,6 +23,7 @@ import {
   TextWrapper,
   TextContainer,
   DateAmount,
+  GridWrapper,
   GridContainer,
   Blur,
   GoBack,
@@ -31,11 +35,23 @@ import Footer from '../../common/footer/Footer';
 const Album = () => {
   let { id } = useParams();
 
+  useEffect(() => {
+    const isLoggedIn = checkToken()
+    if (!isLoggedIn) {
+      navigate(LOGIN_ROUTE)
+    }
 
+    if (id == 'false' || id == 'null') {
+      navigate(DASHBOARD_ROUTE)
+    }
+  }, [])
   const [photos, setPhotos] = useState<Array<any>>()
   const [quantity, setQuantity] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
+  const [photoLoading, setPhotoLoading] = useState(false)
+  const [paymentLoading, setPaymentLoading] =useState(false)
   const [albumName, setAlbumName] = useState('')
+  const [albumCover, setAlbumCover] = useState('')
   const [url, setUrl] = useState('')
   const [photoId, setPhotoId] = useState('')
   const[isPaid, setIsPaid] = useState(false)
@@ -56,6 +72,7 @@ const Album = () => {
           setPhotos(albumPhotos)
           //@ts-ignore
           const album = albums.filter(album => album.albumID === id)
+          setAlbumCover(album[0].url)
           setAlbumName(album[0].name)
           setIsPaid(album[0].isPaid)
         }
@@ -70,29 +87,41 @@ const Album = () => {
   }, [])
 
   const handlePayment = async () => {
+    setPaymentLoading(true)
     if (!id) {
       return
     }
+    localStorage.setItem('albumID', id)
+    localStorage.setItem('albumCover', albumCover)
     const paymentLink = await paymentService.requestPayment(id)
-    window.location.replace(paymentLink);
+      window.location.replace(paymentLink);
+      setPaymentLoading(false)
   }
 
-  const handlePhoto = (url: string, id: string) => {
-    
-    setUrl(url)
-    setPhotoId(id)
-    document.getElementById('singlePhoto')?.classList.add('show')
+  const handlePhoto = async (id: string) => {
+    setPhotoLoading(true)
+    const data = await photoService.getOriginalPhoto(id)
+    if (data) {
+      setUrl(data?.data)
+      setPhotoId(id)
+      document.body.classList.add('noScroll')
+      document.getElementById('singlePhoto')?.classList.add('show')
+      setTimeout(() => {
+        setPhotoLoading(false)
+      }, 2000)
+    }
   }
-
 
   return (
     <Wrapper>
       <PhotoModal
         url={url}
         photoId={photoId}
+        isPaid={isPaid}
+        albumId={id}
       />
       {
-        isLoading
+        isLoading || photoLoading
           ? <div><Loader /><Blur /></div>
           : ''
       }
@@ -114,13 +143,13 @@ const Album = () => {
           </TextContainer>
         </TextWrapper>
       </TopContainer>
-      <div>
+      <GridWrapper>
         <GridContainer id="grid">
           {
             photos && photos.length > 0
               ? photos.map(photo =>
                 <Photo
-                  onClick={() => handlePhoto(photo.url, photo.photoID)}
+                  onClick={() => handlePhoto(photo.photoID)}
                   src={photo.url}
                   alt="photo"
                   className='photos'
@@ -131,14 +160,20 @@ const Album = () => {
               : ''
           }
         </GridContainer>
-      </div>
+      </GridWrapper>
       {
         isPaid
           ?''
           : <ButtonContainer>
             <StyledButton
               onClick={handlePayment}
-            >Unlock your photos</StyledButton>
+            >
+            {
+                paymentLoading
+                  ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
+                  : "Unlock your photos"
+            }
+              </StyledButton>
           </ButtonContainer>
       }
 

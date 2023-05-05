@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../app/hooks';
 import { update } from '../../../app/selfieSlice/selfieSlice';
 import pen from './pen.svg'
-import { DASHBOARD_ROUTE, EDIT_NAME_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { ACCOUNT_SETTINGS, DASHBOARD_ROUTE, EDIT_NAME_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import checkToken from '../../../utils/checkJWT';
 import albumsService from '../../../service/albumService';
 import { LOGIN_ROUTE } from '../../../utils/consts';
 import Loader from '../../modals/loader/Loader';
-import arrowRight from './arrowRight.svg'
+import arrowRight from '../../../assets/arrowRight.svg'
 import GoBack from '../../common/goBack/GoBack';
 import {
   Wrapper,
@@ -67,11 +67,6 @@ const Profile = () => {
       setSelectedFile(event.target.files[0])
     }
   }
-
-  const goToEditName = () => {
-    navigate(EDIT_NAME_ROUTE)
-  }
-
   return (
     <Wrapper>
       {
@@ -79,7 +74,9 @@ const Profile = () => {
           ? <LoaderWrapper><Loader /><Blur /></LoaderWrapper>
           : ''
       }
-      <GoBack route={ DASHBOARD_ROUTE} />
+      <span onClick={()=>navigate(-1)}>
+        <GoBack />
+      </span>
       <Container>
       <CropSelfie selfie={selectedFile} page={PROFILE_ROUTE} />
       <Welcome>Welcome, {userName}.</Welcome>
@@ -107,7 +104,7 @@ const Profile = () => {
               </Description>
             </div>
             <ArrowWrapper
-              onClick={goToEditName}
+              onClick={()=>navigate(EDIT_NAME_ROUTE)}
             >
               <ArrowContainer>
                 <img src={arrowRight} alt="arrow-right" />
@@ -123,7 +120,9 @@ const Profile = () => {
               Update your phone and email
               </Description>
             </div>
-            <ArrowWrapper>
+            <ArrowWrapper
+              onClick={() => navigate(ACCOUNT_SETTINGS)}
+            >
               <ArrowContainer>
                 <img src={arrowRight} alt="arrow-right" />
               </ArrowContainer>

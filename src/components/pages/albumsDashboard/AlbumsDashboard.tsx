@@ -3,6 +3,7 @@ import checkToken from '../../../utils/checkJWT';
 import albumService from '../../../service/albumService';
 import { Link } from 'react-router-dom';
 import Loader from '../../modals/loader/Loader';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   PhotoIcon,
@@ -15,17 +16,19 @@ import {
   TitlePhotos,
   Photo,
   AlbumName,
+  GridWrapper,
   GridContainer,
   Blur
 } from './components'
 import Footer from '../../common/footer/Footer';
+import { LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 
 const AlbumsDashboard = () => {
   const [selfie, setSelfie] = useState()
   const [albums, setAlbums] = useState<Array<any>>()
   const [photos, setPhotos] = useState<Array<any>>()
   const [isLoading, setIsLoading] = useState(false)
-
+  const navigate = useNavigate()
 
   useEffect(() => {
     setIsLoading(true)
@@ -47,8 +50,13 @@ const AlbumsDashboard = () => {
       fetchData()
 
     } else {
+      navigate(LOGIN_ROUTE)
     }
   }, [])
+
+  const goToProfile = () => {
+    navigate(PROFILE_ROUTE)
+  }
   return (
     <div>
            {
@@ -58,7 +66,9 @@ const AlbumsDashboard = () => {
       }
     <Container>
       <div>
-      <PhotoIcon>
+          <PhotoIcon
+          onClick={goToProfile}
+          >
         <Img src={selfie} alt="selfie" />
       </PhotoIcon>
       <AlbumsContainer>
@@ -75,7 +85,7 @@ const AlbumsDashboard = () => {
         </Albums>
       </AlbumsContainer>
       <TitlePhotos>All photos</TitlePhotos> 
-        <div>
+        <GridWrapper>
           <GridContainer id="grid">
             {
               photos && photos.length > 0
@@ -92,7 +102,7 @@ const AlbumsDashboard = () => {
                 : ''
             }
           </GridContainer>
-        </div>
+          </GridWrapper>
       </div>
       </Container>
       <Footer/>

@@ -12,6 +12,7 @@ const Body = styled.div`
 	flex-direction: column;
 	align-items: center;
 	@media only screen and (min-width: 740px) {
+		font-size: 18px;
 	}
 `
 const Title = styled.div`
@@ -45,6 +46,7 @@ const CountryInput = styled.span`
 	background-color: #f4f4f4;
 	border: 1px solid #eeeeee;
 	border-radius: 10px;
+	cursor: pointer;
 `
 const StrokeContainer = styled.span`display: flex;`
 
@@ -89,6 +91,10 @@ const ButtonContainer = styled.div`
 `
 
 const StyledButton = styled(Button)`
+	cursor:pointer;
+	&:hover{
+		opacity:0.7;
+	}
 	@media only screen and (min-width: 740px) {
 		width: 420px;
 	}

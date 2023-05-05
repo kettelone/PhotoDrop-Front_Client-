@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import albumsService from '../../../service/albumService'
 import checkToken from '../../../utils/checkJWT';
-import { DASHBOARD_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import { update } from '../../../app/selfieSlice/selfieSlice';
 import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
 import { updatePhoto } from '../../../app/photosSlice/photosSlice';
@@ -34,8 +34,8 @@ const Dashboard = () => {
 
   useEffect(() => {
     const isLoggedIn = checkToken()
-    if (isLoggedIn) {
-      navigate(DASHBOARD_ROUTE)
+    if (!isLoggedIn) {
+      navigate(LOGIN_ROUTE)
     }
   }, [])
 
@@ -58,12 +58,16 @@ const Dashboard = () => {
             dispatch(updateAlbum({ albums }))
             dispatch(updatePhoto({ allPhotos }))
             setSelfie(selfieUrl)
+            if (allPhotos.length > 0) {
+              navigate(ALBUMS_DASHBOARD_ROUTE)
+            }
           }
           setIsLoading(false)
           document.body.classList.remove('no-scroll')
         },4000)
       }
       fetchData()
+
 
     } else {
       navigate(LOGIN_ROUTE);

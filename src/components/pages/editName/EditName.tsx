@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import GoBack from '../../common/goBack/GoBack';
-import { PROVIDE_EMAIL_ROUTE, PROFILE_ROUTE, DASHBOARD_ROUTE } from '../../../utils/consts';
+import { PROVIDE_EMAIL_ROUTE, PROFILE_ROUTE, DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 import { Wrapper,Container, Title, Input, StyledButton } from './components'
 import accountService from '../../../service/accountService';
 import { useNavigate } from 'react-router-dom';
@@ -13,8 +13,8 @@ import checkToken from '../../../utils/checkJWT';
 const EditName = () => {
   useEffect(() => {
     const isLoggedIn = checkToken()
-    if (isLoggedIn) {
-      navigate(DASHBOARD_ROUTE)
+    if (!isLoggedIn) {
+      navigate(LOGIN_ROUTE)
     }
 },[])
   const [name, setName] = useState('')
@@ -30,7 +30,7 @@ const EditName = () => {
     if (name) {
       const response = await accountService.editName(name)
       if (response) {
-        navigate(PROVIDE_EMAIL_ROUTE)
+        navigate(PROFILE_ROUTE)
         setIsLoading(false)
       }
     }
@@ -38,7 +38,9 @@ const EditName = () => {
 
   return (
     <Wrapper>
-      <GoBack route={ PROFILE_ROUTE} />
+      <span onClick={() => navigate(-1)}>
+        <GoBack />
+      </span>
       <Container>
         <Title>Your name</Title>
         <Input

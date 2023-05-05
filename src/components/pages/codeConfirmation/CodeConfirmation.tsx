@@ -37,7 +37,7 @@ const CodeConfirmation = () => {
       setIsLoading(false)
     } else {
       setIsError(true)
-      console.log(isError)
+      setIsLoading(false)
       setTimeout(() => {
         setIsError(false)
       }, 4000)

@@ -1,12 +1,36 @@
-import React from 'react';
-
-import { Img, Wrapper, Container, CloseButton } from './components'
+import React, {useState} from 'react';
+import paymentService from '../../../service/paymentService';
+import {
+  Img, Wrapper, Container, CloseButton, DownloadContainer,
+  Arrow,
+  Line,
+  Text,
+  ButtonContainer,
+  StyledButton
+} from './components'
 import closeIcon from '../../../assets/closeIcon.svg'
+import arrowDown from './arrowDown.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
-const PhotoModal = (props: { url: string, photoId: string }) => {
+
+const PhotoModal = (props: { url: string, photoId: string, isPaid: boolean, albumId:string|undefined }) => {
+  
+  const [isLoading, setIsLoading] = useState(false)
+  const handlePayment = async () => {
+    setIsLoading(true)
+    if (!props.albumId) {
+      return
+    }
+    const paymentLink = await paymentService.requestPayment(props.albumId)
+    window.location.replace(paymentLink);
+    setIsLoading(false)
+  }
+  
   const closeModal = () => {
     document.getElementById('singlePhoto')?.classList.remove('show')
   }
+
   return (
     <Wrapper id='singlePhoto'>
       <CloseButton
@@ -16,7 +40,29 @@ const PhotoModal = (props: { url: string, photoId: string }) => {
       </CloseButton>
       <Container>
         <Img src={props.url} alt={props.photoId} />
+
       </Container>
+      {
+        props.isPaid
+        ? <DownloadContainer
+          href={props.url} download >
+          <Arrow src={arrowDown} alt="arrowDown" />
+          <Line />
+          <Text>Download</Text>
+        </DownloadContainer>
+          :<ButtonContainer>
+            <StyledButton
+              onClick={handlePayment}
+            >
+              {
+                isLoading 
+                  ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
+                  :'Unlock photo'
+              }
+              </StyledButton>
+          </ButtonContainer>
+      }
+
     </Wrapper>
   );
 };

@@ -1,21 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import arrowLeft from '../../../assets/arrowLeft.svg'
 
 const Container = styled.div`
 	position: absolute;
 	top: 19px;
 	left: 15px;
+  cursor: pointer;
 `
 
-const GoBack = ({route}:{route:string}) => {
+const GoBack = () => {
   return (
-    <Link to={route}>
       <Container>
         <img src={arrowLeft} alt="arrow-let " />
       </Container>
-    </Link>
   );
 };
 
