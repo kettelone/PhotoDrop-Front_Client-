@@ -77,7 +77,8 @@ const CodeConfirmation = () => {
       </div>
       <ButtonContainer>
       <Button 
-        style={{ opacity: otp.length === 6 ? 1 : 0.5 }}
+            style={{
+              opacity: otp.length === 6 ? 1 : 0.5, cursor: "pointer"}}
         disabled={otp.length === 6 ? false : true}
         onClick={handleNext}
           >{

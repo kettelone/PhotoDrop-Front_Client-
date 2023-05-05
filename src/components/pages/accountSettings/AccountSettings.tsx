@@ -19,18 +19,19 @@ import arrowRight from '../../../assets/arrowRight.svg'
 import GoBack from '../../common/goBack/GoBack';
 import mailIcon from './mailIcon.svg'
 import phoneIcon from './phoneIcon.svg'
+import { DASHBOARD_ROUTE, EDIT_PHONE_ROUTE } from '../../../utils/consts';
 
 
 const AccountSettings = () => {
   const [phone, setPhone] = useState(() => {
-    const savedItem = localStorage.getItem("phone");
+    const savedItem = localStorage.getItem("phoneNumber");
     return savedItem || "";
   });
 
   const navigate = useNavigate()
   return (
     <div>
-      <span onClick={() => navigate(-1)}>
+      <span onClick={() => navigate(DASHBOARD_ROUTE)}>
         <GoBack />
       </span>
       <Wrapper>
@@ -50,7 +51,7 @@ const AccountSettings = () => {
                 </TextContainer>
               </OptionContainer>
           <ArrowWrapper
-            onClick={() => navigate('/')}
+            onClick={() => navigate(EDIT_PHONE_ROUTE)}
           >
             <ArrowContainer>
               <img src={arrowRight} alt="arrow-right" />

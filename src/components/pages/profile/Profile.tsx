@@ -49,7 +49,7 @@ const Profile = () => {
         if (data) {
           const { user } = data.data
           localStorage.setItem('phone', user.phone)
-          localStorage.setItem('phone', user.email)
+          localStorage.setItem('email', user.email)
           const { selfieUrl, name } = user
           if (name ) {
             setUserName(name)

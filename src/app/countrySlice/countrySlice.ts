@@ -16,7 +16,6 @@ export const countrySlice = createSlice({
 			state.dial_code = dial
 		},
 		updateFullNumber: (state, { payload: { fullNumber } }) => {
-			console.log(fullNumber)
 			state.fullNumber = fullNumber
 		}
 	}
