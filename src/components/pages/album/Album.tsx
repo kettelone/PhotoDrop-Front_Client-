@@ -34,17 +34,16 @@ import Footer from '../../common/footer/Footer';
 
 const Album = () => {
   let { id } = useParams();
-
   useEffect(() => {
     const isLoggedIn = checkToken()
     if (!isLoggedIn) {
       navigate(LOGIN_ROUTE)
     }
-
     if (id == 'false' || id == 'null') {
       navigate(DASHBOARD_ROUTE)
     }
   }, [])
+
   const [photos, setPhotos] = useState<Array<any>>()
   const [quantity, setQuantity] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
@@ -119,6 +118,7 @@ const Album = () => {
         photoId={photoId}
         isPaid={isPaid}
         albumId={id}
+        photoCover={albumCover}
       />
       {
         isLoading || photoLoading

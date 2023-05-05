@@ -18,8 +18,9 @@ const PaymentSuccess = () => {
   });
 
 
-
   const goToAlbum = () => {
+    console.log(albumCover)
+    console.log(id)
     navigate(`/album/${id}`)
   }
   return (

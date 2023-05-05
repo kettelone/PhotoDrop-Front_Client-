@@ -14,14 +14,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
-const PhotoModal = (props: { url: string, photoId: string, isPaid: boolean, albumId:string|undefined }) => {
+const PhotoModal = (props:
+  { url: string, photoId: string, isPaid: boolean, albumId: string | undefined, photoCover:string }) => {
   
   const [isLoading, setIsLoading] = useState(false)
+
   const handlePayment = async () => {
     setIsLoading(true)
     if (!props.albumId) {
       return
     }
+    localStorage.setItem('albumID', props.albumId)
+    localStorage.setItem('albumCover', props.photoCover)
     const paymentLink = await paymentService.requestPayment(props.albumId)
     window.location.replace(paymentLink);
     setIsLoading(false)
