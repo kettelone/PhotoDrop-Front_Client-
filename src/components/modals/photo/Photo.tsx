@@ -15,7 +15,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
 const PhotoModal = (props:
-  { url: string, photoId: string, isPaid: boolean, albumId: string | undefined, photoCover:string }) => {
+  { url: string, photoId: string, isPaid: boolean, albumId: string | undefined, photoCover: string, albumName:string }) => {
   
   const [isLoading, setIsLoading] = useState(false)
 
@@ -24,8 +24,11 @@ const PhotoModal = (props:
     if (!props.albumId) {
       return
     }
+
     localStorage.setItem('albumID', props.albumId)
     localStorage.setItem('albumCover', props.photoCover)
+    localStorage.setItem('albumName', props.albumName)
+
     const paymentLink = await paymentService.requestPayment(props.albumId)
     window.location.replace(paymentLink);
     setIsLoading(false)

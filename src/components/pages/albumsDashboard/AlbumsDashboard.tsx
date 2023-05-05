@@ -38,6 +38,7 @@ const AlbumsDashboard = () => {
         const data = await albumService.getAlbums()
         if (data) {
           const { user, albums, allPhotos } = data.data
+          console.log({user})
           const { selfieUrl } = user
           setSelfie(selfieUrl)
           setAlbums(albums)

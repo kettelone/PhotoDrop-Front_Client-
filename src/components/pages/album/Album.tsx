@@ -121,6 +121,7 @@ const Album = () => {
         isPaid={isPaid}
         albumId={id}
         photoCover={albumCover}
+        albumName={albumName}
       />
       {
         isLoading || photoLoading
