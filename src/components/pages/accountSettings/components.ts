@@ -18,6 +18,11 @@ const Wrapper = styled.div`
 	}
 `
 
+const SubWrapper = styled.div`
+	width: 100%;
+	max-width: 420px;
+`
+
 const OptionContainer = styled.div`display: flex;`
 const Options = styled.div`
 	display: flex;
@@ -53,9 +58,14 @@ const TextContainer = styled.div`
 const Title = styled.div`
 	font-weight: 500;
 	margin-bottom: 2px;
+	@media only screen and (min-width: 740px) {
+		margin-bottom: 5px;
+	}
 `
 
 const Description = styled.div`height: 11px;`
+
+const Green = styled.span`color: green;`
 
 const ArrowWrapper = styled.div`
 	display: flex;
@@ -71,11 +81,13 @@ const ArrowContainer = styled.div`
 export {
 	Header,
 	Wrapper,
+	SubWrapper,
 	Options,
 	Option,
 	OptionContainer,
 	Title,
 	Img,
+	Green,
 	Description,
 	TextContainer,
 	ArrowWrapper,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Wrapper,Container, Title, P1, P2, P3,Img, StyledButton } from './components'
 import successGif from './successGif.gif'
 import { useNavigate } from 'react-router-dom';
@@ -6,13 +6,17 @@ import { useNavigate } from 'react-router-dom';
 
 const PaymentSuccess = () => {
   const navigate = useNavigate()
-  const id = localStorage.getItem('albumID')
-  let albumCover = localStorage.getItem('albumCover')
-  if (!albumCover) {
-    albumCover = successGif
-  }
-  console.log({albumCover})
-  console.log({id})
+
+  const [id, setId] = useState(() => {
+    const savedItem = localStorage.getItem("albumID");
+    return savedItem || "";
+  });
+
+  const [albumCover, setAlbumCover] = useState(() => {
+    const savedItem = localStorage.getItem("albumCover");
+    return savedItem || "";
+  });
+
 
 
   const goToAlbum = () => {

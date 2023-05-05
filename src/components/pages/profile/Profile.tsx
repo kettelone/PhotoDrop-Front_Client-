@@ -48,7 +48,15 @@ const Profile = () => {
         const data = await albumsService.getAlbums()
         if (data) {
           const { user } = data.data
-          const { selfieUrl } = user
+          localStorage.setItem('phone', user.phone)
+          localStorage.setItem('phone', user.email)
+          const { selfieUrl, name } = user
+          if (name ) {
+            setUserName(name)
+          } else {
+            setUserName('Guest')
+
+          }
           dispatch(update({ selfieUrl }))
           setSelfie(selfieUrl)
         }

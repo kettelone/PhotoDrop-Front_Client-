@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Header,
   Wrapper,
+  SubWrapper,
   Options,
   Option,
   OptionContainer,
   Title,
   Img,
   Description,
+  Green,
   TextContainer,
   ArrowWrapper,
   ArrowContainer
@@ -20,6 +22,11 @@ import phoneIcon from './phoneIcon.svg'
 
 
 const AccountSettings = () => {
+  const [phone, setPhone] = useState(() => {
+    const savedItem = localStorage.getItem("phone");
+    return savedItem || "";
+  });
+
   const navigate = useNavigate()
   return (
     <div>
@@ -27,7 +34,7 @@ const AccountSettings = () => {
         <GoBack />
       </span>
       <Wrapper>
-        <div>
+        <SubWrapper>
       <Header>Account settings</Header>
       <Options>
             <Option>
@@ -35,10 +42,10 @@ const AccountSettings = () => {
                 <Img src={phoneIcon} alt="phoneIcon" />
                 <TextContainer>
                   <Title>
-                    Phone
+                    Phone • <Green>Verified</Green>
                   </Title>
                   <Description>
-                    Tell us your name to personalize communications.
+                    +{phone}
                   </Description>
                 </TextContainer>
               </OptionContainer>
@@ -70,7 +77,7 @@ const AccountSettings = () => {
           </ArrowWrapper>
         </Option>
           </Options>
-        </div>
+        </SubWrapper>
         </Wrapper>
     </div>
   );
