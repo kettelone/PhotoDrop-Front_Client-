@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+const Wrapper = styled.div``
 
 const Container = styled.div`
 	@media only screen and (min-width: 1200px) {
@@ -126,5 +127,6 @@ export {
 	AlbumName,
 	GridWrapper,
 	GridContainer,
-	Blur
+	Blur,
+	Wrapper
 }

@@ -19,6 +19,8 @@ import { uploadToS3 } from './uploadToS3'
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { change } from '../../../app/selfieSlice/selfieSlice';
+import { useAppDispatch } from '../../../app/hooks';
 
 
 const CropSelfie = (props: { selfie: File |null , page:string}) => {
@@ -29,6 +31,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   const [croppedImage, setCroppedImage] = useState<Blob | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   let objectUrl = ''
 
@@ -79,6 +82,9 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
     try {
       if (croppedImage) {
         await uploadToS3(croppedImage, presignedPostUrl)
+        setTimeout(() => {
+          dispatch(change())
+        },2000)
         navigate(props.page)
         setIsLoading(false)
         closeModal()

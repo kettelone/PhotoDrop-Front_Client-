@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { ALBUMS_DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
-import { Wrapper,Container, TitleWrapper, Title, Input, StyledButton, Line, TermsNConditions } from './components'
+import {LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { Wrapper, Container,Title, Input, StyledButton,} from './components'
 import accountService from '../../../service/accountService';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import hey from './hey.svg'
-import checkToken from '../../../utils/checkJWT';
+import checkToken from '../../../utils/checkJWT'
+import GoBack from '../../common/goBack/GoBack';
 
 
-const ProvideEmail = () => {
-  
+const EditEmail = () => {
+
   useEffect(() => {
     const isLoggedIn = checkToken()
     if (!isLoggedIn) {
@@ -32,7 +32,7 @@ const ProvideEmail = () => {
     if (email) {
       const response = await accountService.editEmail(email)
       if (response) {
-        navigate(ALBUMS_DASHBOARD_ROUTE)
+        navigate(PROFILE_ROUTE)
         setIsLoading(false)
       }
     }
@@ -40,16 +40,13 @@ const ProvideEmail = () => {
 
   return (
     <Wrapper>
+      <span onClick={() => navigate(-1)}>
+        <GoBack />
+      </span>
       <Container>
-        <TitleWrapper>
-        <Title>
-          <Line>Hey there,</Line>
-          <Line>Guest</Line>
-          </Title>
-          <img src={hey} alt="hey" />
-        </TitleWrapper>
+          <Title>Your email</Title>
         <Input
-          placeholder='What’s your email?'
+          placeholder='example@gmail.com'
           onChange={handleChange}
         />
         <StyledButton
@@ -58,16 +55,13 @@ const ProvideEmail = () => {
           onClick={saveEmail}
         >{
             isLoading
-          ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
-          : 'See your photos!'
+              ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
+              : 'Save'
           }
         </StyledButton>
       </Container>
-      <TermsNConditions>
-        By continuing, you indicate that you have read and agree to our <u>Terms of Use</u> & <u>Privacy Policy</u>
-      </TermsNConditions>
     </Wrapper>
   );
 };
 
-export default ProvideEmail;
+export default EditEmail;

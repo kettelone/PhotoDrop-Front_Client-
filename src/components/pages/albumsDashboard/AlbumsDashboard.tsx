@@ -18,16 +18,28 @@ import {
   AlbumName,
   GridWrapper,
   GridContainer,
-  Blur
+  Blur,
+  Wrapper
 } from './components'
 import Footer from '../../common/footer/Footer';
 import { LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import photoService from '../../../service/photoService';
+import PhotoModal from '../../modals/photo/Photo';
 
 const AlbumsDashboard = () => {
   const [selfie, setSelfie] = useState()
   const [albums, setAlbums] = useState<Array<any>>()
   const [photos, setPhotos] = useState<Array<any>>()
   const [isLoading, setIsLoading] = useState(false)
+  const [url, setUrl] = useState('')
+  const [photoId, setPhotoId] = useState('')
+  const [photoLoading, setPhotoLoading] = useState(false)
+  const [albumId, setAlbumId] = useState('')
+  const [isPaid,setIsPaid] = useState(false)
+  const [albumCover, setAlbumCover]= useState('')
+  const [albumName, setAlbumName] = useState('')
+
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -38,7 +50,6 @@ const AlbumsDashboard = () => {
         const data = await albumService.getAlbums()
         if (data) {
           const { user, albums, allPhotos } = data.data
-          console.log({user})
           const { selfieUrl } = user
           setSelfie(selfieUrl)
           setAlbums(albums)
@@ -58,21 +69,52 @@ const AlbumsDashboard = () => {
   const goToProfile = () => {
     navigate(PROFILE_ROUTE)
   }
+
+  const handlePhoto = async (id: string, albumID:string) => {
+    setPhotoLoading(true)
+    const album = albums?.filter(album => album.albumID === albumID)
+    if (!album) {
+      return
+    }
+    setPhotoId(id)
+    setAlbumId(albumID)
+    setIsPaid(album[0].isPaid)
+    setAlbumCover(album[0].url)
+    setAlbumName(album[0].name)
+    const data = await photoService.getOriginalPhoto(id)
+    if (data) {
+      setUrl(data?.data)
+      document.body.classList.add('noScroll')
+      document.getElementById('singlePhoto')?.classList.add('show')
+      setTimeout(() => {
+        setPhotoLoading(false)
+      }, 2000)
+    }
+  }
+
   return (
-    <div>
-           {
-        isLoading
+    <Wrapper>
+      {
+        isLoading || photoLoading
           ? <div><Loader /><Blur /></div>
           : ''
       }
-    <Container>
+      <Container>
+        <PhotoModal
+        url={url}
+        photoId={photoId}
+        isPaid={isPaid}
+        albumId={albumId}
+        photoCover={albumCover}
+        albumName={albumName}
+      />
       <div>
-          <PhotoIcon
+        <PhotoIcon
           onClick={goToProfile}
           >
         <Img src={selfie} alt="selfie" />
       </PhotoIcon>
-      <AlbumsContainer>
+          <AlbumsContainer>
         <Title>Albums</Title>
         <Albums>
             {albums?.map(album => 
@@ -86,7 +128,7 @@ const AlbumsDashboard = () => {
         </Albums>
       </AlbumsContainer>
       <TitlePhotos>All photos</TitlePhotos> 
-        <GridWrapper>
+          <GridWrapper>
           <GridContainer id="grid">
             {
               photos && photos.length > 0
@@ -97,7 +139,7 @@ const AlbumsDashboard = () => {
                       className='photos'
                       data-name={photo.photoID}
                       key={photo.url}
-                    // onClick={handlePhoto}
+                    onClick={() => handlePhoto(photo.photoID, photo.albumID)}
                     />
                 )
                 : ''
@@ -107,7 +149,7 @@ const AlbumsDashboard = () => {
       </div>
       </Container>
       <Footer/>
-    </div>
+    </Wrapper>
   );
 };
 

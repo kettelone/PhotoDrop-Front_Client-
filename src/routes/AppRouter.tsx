@@ -14,6 +14,7 @@ import AccountSettings from '../components/pages/accountSettings/AccountSettings
 import EditPhone from '../components/pages/editMobile/EditModile';
 import NewCodeConfirmation from '../components/pages/newPhoneConfirmation/NewPhoneConfirmation';
 import PaymentFailed from '../components/pages/paymentFailed/PaymentFailed';
+EditEmail
 import {
   LOGIN_ROUTE,
   CODE_CONFIRMATION_ROUTE,
@@ -27,9 +28,10 @@ import {
   SUCCESS_ROUTE,
   ACCOUNT_SETTINGS, EDIT_PHONE_ROUTE,
   CONFIRM_EDIT_PHONE_ROUTE,
-  FAILED_ROUTE
-
+  FAILED_ROUTE,
+  EDIT_EMAIL
 } from '../utils/consts';
+import EditEmail from '../components/pages/editEmail/EditEmail';
 
 
 const AppRouter = () => {
@@ -42,6 +44,7 @@ const AppRouter = () => {
       <Route path={PROFILE_ROUTE} element={<Profile />} />
       <Route path={EDIT_NAME_ROUTE} element={<EditName />} />
       <Route path={EDIT_PHONE_ROUTE} element={<EditPhone />} />
+      <Route path={EDIT_EMAIL} element={<EditEmail/>} />
       <Route path={CONFIRM_EDIT_PHONE_ROUTE} element={<NewCodeConfirmation />} />
       <Route path={PROVIDE_EMAIL_ROUTE} element={<ProvideEmail />} />
       <Route path={ACCOUNT_SETTINGS} element={<AccountSettings />} />

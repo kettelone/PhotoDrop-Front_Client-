@@ -39,12 +39,19 @@ const Mission = styled.div`
 `
 const Questions = styled.div`
 	margin-bottom: 30px;
+	cursor: pointer;
+	&:hover {
+		text-decoration: underline;
+	}
 	@media only screen and (min-width: 734px) {
 		margin-bottom: 25px;
 	}
 `
 
-const Img = styled.img`max-width: 150px;`
+const Img = styled.img`
+	max-width: 150px;
+	cursor: pointer;
+`
 const FakeButton = styled(Button)`
   background-color:#262626;
   color:white;
@@ -55,6 +62,10 @@ const FakeButton = styled(Button)`
   font-weight:500;
   width: 19em!important;
   max-width: 345px!important;
+		cursor:pointer;
+	&:hover{
+		opacity:0.6
+	}
 		@media only screen and (min-width: 375px) {
 		max-width:300px!important;
 	}
@@ -77,9 +88,20 @@ const Copyright1 = styled.div`
 `
 
 const LinksContainer = styled.div``
-const Link1 = styled.div`margin-bottom: 20px;`
+const Link1 = styled.div`
+	cursor: pointer;
+	margin-bottom: 20px;
+	&:hover {
+		text-decoration: underline;
+	}
+`
 
-const Link2 = styled.div``
+const Link2 = styled.div`
+	cursor: pointer;
+	&:hover {
+		text-decoration: underline;
+	}
+`
 const SecondContainer = styled.div`
 	padding-bottom: 134px;
 	@media only screen and (min-width: 734px) {

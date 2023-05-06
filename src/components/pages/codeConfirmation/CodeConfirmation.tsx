@@ -39,6 +39,7 @@ const CodeConfirmation = () => {
             const data = await albumService.getAlbums()
             if (data) {
               const { allPhotos, user } = data.data
+              
               const { selfieUrl } = user
               if (!selfieUrl) {
                 navigate(UPLOAD_SELFIE_ROUTE)

@@ -31,14 +31,6 @@ import test3 from './test3.jpg'
 
 
 const Dashboard = () => {
-
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE)
-    }
-  }, [])
-
   const navigate = useNavigate()
   const[isLoading, setIsLoading] = useState(true)
   const dispatch = useAppDispatch()
@@ -64,11 +56,9 @@ const Dashboard = () => {
           }
           setIsLoading(false)
           document.body.classList.remove('no-scroll')
-        },4000)
+        },1000)
       }
       fetchData()
-
-
     } else {
       navigate(LOGIN_ROUTE);
     }

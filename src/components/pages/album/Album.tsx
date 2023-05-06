@@ -64,7 +64,8 @@ const Album = () => {
       const fetchData = async () => {
         const data = await albumService.getAlbums()
         if (data) {
-          const { allPhotos,albums } = data.data
+          const { allPhotos, albums }= data.data
+   
           //@ts-ignore
           const albumPhotos = allPhotos.filter(photo => photo.albumID === id)
           setQuantity(albumPhotos.length)

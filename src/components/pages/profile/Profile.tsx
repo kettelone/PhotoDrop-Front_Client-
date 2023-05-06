@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch , useAppSelector} from '../../../app/hooks';
 import { update } from '../../../app/selfieSlice/selfieSlice';
 import pen from './pen.svg'
-import { ACCOUNT_SETTINGS, DASHBOARD_ROUTE, EDIT_NAME_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { ACCOUNT_SETTINGS, EDIT_NAME_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import checkToken from '../../../utils/checkJWT';
 import albumsService from '../../../service/albumService';
@@ -38,8 +38,8 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-
-
+  const changedSelfie = useAppSelector(state => state.selfieUpdate.selfieChanged)
+  console.log({ changedSelfie })
   useEffect(() => {
     setIsLoading(true)
     const loggedIn = checkToken()
@@ -49,7 +49,7 @@ const Profile = () => {
         if (data) {
           const { user } = data.data
           localStorage.setItem('phone', user.phone)
-          localStorage.setItem('email', user.email)
+          localStorage.setItem('email', user.email ? user.email : 'test@gmail.com')
           const { selfieUrl, name } = user
           if (name ) {
             setUserName(name)
@@ -60,14 +60,16 @@ const Profile = () => {
           dispatch(update({ selfieUrl }))
           setSelfie(selfieUrl)
         }
-        setIsLoading(false)
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 1000)
       }
       fetchData()
 
     } else {
       navigate(LOGIN_ROUTE);
     }
-  }, [])
+  }, [changedSelfie])
 
   const selectPhoto = (event: any) => {
     if (event.target.files) {

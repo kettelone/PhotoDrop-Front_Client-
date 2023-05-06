@@ -36,6 +36,7 @@ const PhotoModal = (props:
   
   const closeModal = () => {
     document.getElementById('singlePhoto')?.classList.remove('show')
+    document.body.classList.remove('noScroll')
   }
 
   return (

@@ -20,7 +20,7 @@ import arrowRight from '../../../assets/arrowRight.svg'
 import GoBack from '../../common/goBack/GoBack';
 import mailIcon from './mailIcon.svg'
 import phoneIcon from './phoneIcon.svg'
-import { DASHBOARD_ROUTE, EDIT_PHONE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
+import { DASHBOARD_ROUTE, EDIT_EMAIL, EDIT_PHONE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 
 
 const AccountSettings = () => {
@@ -35,6 +35,10 @@ const AccountSettings = () => {
     return savedItem || "";
   });
 
+  const [email, setEmail] = useState(() => {
+    const savedItem = localStorage.getItem("email");
+    return savedItem || "no email";
+  });
   const navigate = useNavigate()
   return (
     <div>
@@ -74,11 +78,13 @@ const AccountSettings = () => {
                     Email
                   </Title>
                   <Description>
-                    Update your phone and email
+                    {email}
                   </Description>
                 </TextContainer>
               </OptionContainer>
-          <ArrowWrapper>
+              <ArrowWrapper
+                onClick={() => navigate(EDIT_EMAIL)}
+              >
             <ArrowContainer>
               <img src={arrowRight} alt="arrow-right" />
             </ArrowContainer>
