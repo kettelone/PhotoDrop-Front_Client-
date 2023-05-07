@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import albumsService from '../../../service/albumService'
 import checkToken from '../../../utils/checkJWT';
-import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { ALBUMS_DASHBOARD_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import { update } from '../../../app/selfieSlice/selfieSlice';
 import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
 import { updatePhoto } from '../../../app/photosSlice/photosSlice';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch } from '../../../app/hooks';
 import {
   Container,
   PhotoIcon,
@@ -28,6 +28,7 @@ import graphics from './combo.png'
 import test1 from './test1.jpg'
 import test2 from './test2.jpg'
 import test3 from './test3.jpg'
+import PhotoModal from '../../modals/photo/Photo';
 
 
 const Dashboard = () => {
@@ -35,6 +36,8 @@ const Dashboard = () => {
   const[isLoading, setIsLoading] = useState(true)
   const dispatch = useAppDispatch()
   const [selfie, setSelfie] = useState<string | undefined>()
+  const [url, setUrl] = useState(test1)
+
 
   useEffect(() => {
     document.body.classList.add('no-scroll')
@@ -56,7 +59,7 @@ const Dashboard = () => {
           }
           setIsLoading(false)
           document.body.classList.remove('no-scroll')
-        },1000)
+        },3000)
       }
       fetchData()
     } else {
@@ -64,9 +67,22 @@ const Dashboard = () => {
     }
   }, [])
   
+  const handlePhoto = (url: string) => {
+    document.body.classList.add('noScroll')
+    document.getElementById('singlePhoto')?.classList.add('show')
+    setUrl(url)
+  }
 
   return (
     <div>
+      <PhotoModal
+        url={url}
+        photoId={"#"}
+        isPaid={true}
+        albumId={"test"}
+        photoCover={""}
+        albumName={""}
+      />
       {
         isLoading
         ? <div><Loader /><Blur /></div>
@@ -92,11 +108,23 @@ const Dashboard = () => {
           <Separator />
               <BrowseTitle>Browse Art Prints  </BrowseTitle>
               <PreviewContainer>
-                <PreviewImg src={test1} alt="test" />
+            <PreviewImg
+              src={test1}
+              alt="test"
+              onClick={()=>handlePhoto(test1)}
+            />
                 <VerticalSeparator />
-                <PreviewImg src={test2} alt="test" />
+            <PreviewImg
+              src={test2}
+              alt="test"
+              onClick={() => handlePhoto(test2)}
+            />
                 <VerticalSeparator></VerticalSeparator>
-                <PreviewImg src={test3} alt="test" />
+            <PreviewImg
+              src={test3}
+              alt="test"
+              onClick={() => handlePhoto(test3)}
+            />
               </PreviewContainer>
         </Wrapper>
         <Footer />

@@ -39,7 +39,6 @@ const Profile = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const changedSelfie = useAppSelector(state => state.selfieUpdate.selfieChanged)
-  console.log({ changedSelfie })
   useEffect(() => {
     setIsLoading(true)
     const loggedIn = checkToken()
@@ -48,6 +47,7 @@ const Profile = () => {
         const data = await albumsService.getAlbums()
         if (data) {
           const { user } = data.data
+          console.log(user)
           localStorage.setItem('phone', user.phone)
           localStorage.setItem('email', user.email ? user.email : 'test@gmail.com')
           const { selfieUrl, name } = user
