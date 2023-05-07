@@ -59,7 +59,7 @@ const Dashboard = () => {
           }
           setIsLoading(false)
           document.body.classList.remove('no-scroll')
-        },3000)
+        },1000)
       }
       fetchData()
     } else {

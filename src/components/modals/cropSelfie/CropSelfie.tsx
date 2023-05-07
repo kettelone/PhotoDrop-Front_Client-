@@ -82,12 +82,23 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
     try {
       if (croppedImage) {
         await uploadToS3(croppedImage, presignedPostUrl)
+        //time out for page reload when selfie changed user profile
         setTimeout(() => {
           dispatch(change())
-        },3000)
-        navigate(props.page)  
-        setIsLoading(false)
-        closeModal()
+        }, 3000)
+
+        if (props.page === '/user-dashboard') {
+          setTimeout(() => {
+            navigate(props.page)
+            setIsLoading(false)
+            closeModal()
+          }, 3000)
+
+        } else {
+          navigate(props.page)
+          setIsLoading(false)
+          closeModal()
+        }
       }
     } catch (e) {
       console.log(e)

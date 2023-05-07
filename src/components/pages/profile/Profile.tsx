@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch , useAppSelector} from '../../../app/hooks';
 import { update } from '../../../app/selfieSlice/selfieSlice';
 import pen from './pen.svg'
-import { ACCOUNT_SETTINGS, EDIT_NAME_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { ACCOUNT_SETTINGS, ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, EDIT_NAME_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import checkToken from '../../../utils/checkJWT';
 import albumsService from '../../../service/albumService';
@@ -36,9 +36,15 @@ const Profile = () => {
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
   const [selfie, setSelfie] = useState()
   const [isLoading, setIsLoading] = useState(false)
+  const [albumsExist, setAlbumExist] = useState(() => {
+    const value = localStorage.getItem('albumsExist')
+    return value|| ''
+  })
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  //once selfie updated sahnge state for the page to reload after timeOut
   const changedSelfie = useAppSelector(state => state.selfieUpdate.selfieChanged)
+
   useEffect(() => {
     setIsLoading(true)
     const loggedIn = checkToken()
@@ -47,7 +53,7 @@ const Profile = () => {
         const data = await albumsService.getAlbums()
         if (data) {
           const { user } = data.data
-          console.log(user)
+          // console.log(user)
           localStorage.setItem('phone', user.phone)
           localStorage.setItem('email', user.email ? user.email : 'test@gmail.com')
           const { selfieUrl, name } = user
@@ -77,6 +83,15 @@ const Profile = () => {
       setSelectedFile(event.target.files[0])
     }
   }
+
+  const goBack = () => {
+    if (albumsExist) {
+      navigate(ALBUMS_DASHBOARD_ROUTE)
+    } else {
+      navigate(DASHBOARD_ROUTE)
+    }
+
+  }
   return (
     <Wrapper>
       {
@@ -84,7 +99,7 @@ const Profile = () => {
           ? <LoaderWrapper><Loader /><Blur /></LoaderWrapper>
           : ''
       }
-      <span onClick={()=>navigate(-1)}>
+      <span onClick={goBack}>
         <GoBack />
       </span>
       <Container>

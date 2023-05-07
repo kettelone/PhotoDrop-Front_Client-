@@ -39,7 +39,6 @@ const AlbumsDashboard = () => {
   const [albumCover, setAlbumCover]= useState('')
   const [albumName, setAlbumName] = useState('')
 
-
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -50,6 +49,9 @@ const AlbumsDashboard = () => {
         const data = await albumService.getAlbums()
         if (data) {
           const { user, albums, allPhotos } = data.data
+          if (albums.length > 0) {
+            localStorage.setItem('albumsExist', "true")
+          }
           const { selfieUrl } = user
           setSelfie(selfieUrl)
           setAlbums(albums)
