@@ -70,7 +70,8 @@ const AlbumsDashboard = () => {
     navigate(PROFILE_ROUTE)
   }
 
-  const handlePhoto = async (id: string, albumID:string) => {
+  const handlePhoto = async (id: string, albumID: string) => {
+    document.body.classList.add('noScroll')
     setPhotoLoading(true)
     const album = albums?.filter(album => album.albumID === albumID)
     if (!album) {
@@ -84,7 +85,6 @@ const AlbumsDashboard = () => {
     const data = await photoService.getOriginalPhoto(id)
     if (data) {
       setUrl(data?.data)
-      document.body.classList.add('noScroll')
       document.getElementById('singlePhoto')?.classList.add('show')
       setTimeout(() => {
         setPhotoLoading(false)

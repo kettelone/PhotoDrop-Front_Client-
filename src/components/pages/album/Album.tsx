@@ -101,12 +101,12 @@ const Album = () => {
   }
 
   const handlePhoto = async (id: string) => {
+    document.body.classList.add('noScroll')
     setPhotoLoading(true)
     const data = await photoService.getOriginalPhoto(id)
     if (data) {
       setUrl(data?.data)
       setPhotoId(id)
-      document.body.classList.add('noScroll')
       document.getElementById('singlePhoto')?.classList.add('show')
       setTimeout(() => {
         setPhotoLoading(false)
