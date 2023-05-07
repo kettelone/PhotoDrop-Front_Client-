@@ -51,9 +51,10 @@ const Profile = () => {
     if (loggedIn) {
       const fetchData = async () => {
         const data = await albumsService.getAlbums()
+        console
         if (data) {
           const { user } = data.data
-          // console.log(user)
+          console.log(user)
           localStorage.setItem('phone', user.phone)
           localStorage.setItem('email', user.email ? user.email : 'test@gmail.com')
           const { selfieUrl, name } = user

@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import checkToken from '../../../utils/checkJWT';
 import GoBack from '../../common/goBack/GoBack';
+import accountService from '../../../service/accountService';
 
 import {
   ButtonContainer,
@@ -61,7 +62,8 @@ const EditPhone = () => {
       const fullNumber = `${dial_code.substring(1)}${digits}`
       dispatch(updateFullNumber({ fullNumber }))
       localStorage.setItem('phoneNumber', fullNumber)
-      await loginService.requestOtp(fullNumber)
+      const response = await accountService.editPhone(fullNumber)
+      // await loginService.requestOtp(fullNumber)
       setIsLoading(false)
       navigate(CONFIRM_EDIT_PHONE_ROUTE)
     }

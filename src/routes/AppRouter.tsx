@@ -14,7 +14,7 @@ import AccountSettings from '../components/pages/accountSettings/AccountSettings
 import EditPhone from '../components/pages/editMobile/EditModile';
 import NewCodeConfirmation from '../components/pages/newPhoneConfirmation/NewPhoneConfirmation';
 import PaymentFailed from '../components/pages/paymentFailed/PaymentFailed';
-EditEmail
+import PrivacyPolicy from '../components/pages/privacyPolicy/PrivacyPolicy';
 import {
   LOGIN_ROUTE,
   CODE_CONFIRMATION_ROUTE,
@@ -29,9 +29,12 @@ import {
   ACCOUNT_SETTINGS, EDIT_PHONE_ROUTE,
   CONFIRM_EDIT_PHONE_ROUTE,
   FAILED_ROUTE,
-  EDIT_EMAIL
+  EDIT_EMAIL,
+  PRIVACY_POLICY_ROUTE,
+  TERMS_ROUTE
 } from '../utils/consts';
 import EditEmail from '../components/pages/editEmail/EditEmail';
+import Terms from '../components/pages/terms/Terms';
 
 
 const AppRouter = () => {
@@ -52,6 +55,8 @@ const AppRouter = () => {
       <Route path={ALBUM_ROUTE} element={<Album />} />
       <Route path={SUCCESS_ROUTE} element={<PaymentSuccess />} />
       <Route path={FAILED_ROUTE} element={<PaymentFailed />} />
+      <Route path={PRIVACY_POLICY_ROUTE} element={<PrivacyPolicy />} />
+      <Route path={TERMS_ROUTE} element={<Terms />} />
       <Route path="*" element={<Login />} />
     </Routes>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import frameoLogy from './frameologyLogo.png'
 import climateLogo from './climateLogo.svg'
+import { Link } from 'react-router-dom';
 import {
   Container,
   FirstContainer,
@@ -17,6 +18,7 @@ import {
   Link2,
   SecondContainer
 } from './components'
+import { PRIVACY_POLICY_ROUTE, TERMS_ROUTE } from '../../../utils/consts';
 
 const Footer = () => {
   return (
@@ -37,8 +39,12 @@ const Footer = () => {
         <Img src={climateLogo} alt="climateLogo" style={{ marginBottom: '30px' }} />
         <Copyright>© 2022 FOM Online Inc</Copyright>
         <LinksContainer>
-          <Link1>Terms of services</Link1>
-          <Link2>Privacy Party</Link2>
+          <Link to={TERMS_ROUTE} target="_blank">
+            <Link1>Terms of services</Link1>
+          </Link>
+          <Link to={PRIVACY_POLICY_ROUTE} target="_blank">
+            <Link2>Privacy Party</Link2>
+          </Link>
         </LinksContainer>
       </SecondContainer>
     </Container>

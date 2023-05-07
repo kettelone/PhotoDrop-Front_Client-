@@ -35,6 +35,8 @@ const NewCodeConfirmation = () => {
 
     setIsLoading(true)
     const response = await accountService.phoneVerify(phoneNumber, otp)
+    console.log({ response })
+
     if (response) {
       console.log(response)
 
