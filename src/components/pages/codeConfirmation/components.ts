@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.div`/* display: flex;
-	justify-content: center; */`
+const Wrapper = styled.div`overflow-x: hidden;`
 
 const Container = styled.div`
+	max-width: 100vw;
 	position: absolute;
 	top: 50%;
 	left: 50%;
