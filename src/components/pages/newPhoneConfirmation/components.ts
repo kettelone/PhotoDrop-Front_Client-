@@ -1,10 +1,15 @@
 import styled from 'styled-components'
 
+const Wrapper = styled.div`overflow-x: hidden;`
+
 const Container = styled.div`
+	max-width: 100vw;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
 `
 
 const Title = styled.div`
@@ -31,11 +36,6 @@ const ResendButton = styled.button`
 `
 
 const ButtonContainer = styled.div`
-	display: flex;
-	justify-content: center;
-`
-
-const Wrapper = styled.div`
 	display: flex;
 	justify-content: center;
 `
