@@ -84,8 +84,8 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
         await uploadToS3(croppedImage, presignedPostUrl)
         setTimeout(() => {
           dispatch(change())
-        },2000)
-        navigate(props.page)
+        },3000)
+        navigate(props.page)  
         setIsLoading(false)
         closeModal()
       }

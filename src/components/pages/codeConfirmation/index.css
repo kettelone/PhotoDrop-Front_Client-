@@ -5,14 +5,14 @@
   font-size: 1.5em;
   border-radius: 10px;
   border: 1px solid #EEEEEE;
-  margin-left: 0.5em;
+  /* margin-left: 0.5em; */
   background-color: #F4F4F4;
   padding: 0px;
 }
 
 @media only screen and (max-width: 350px) {
 .inputStyle {
-    margin-left: 0.35em;
+    /* margin-left: 0.35em; */
   }
 }
 
@@ -24,7 +24,7 @@
 
 .containerStyle{
   justify-content: center;
-  margin-right: 0.6em;
+  /* margin-right: 0.6em; */
   margin-top: 15px;
   margin-bottom: 15px;
   padding: 0px 0.5em;
