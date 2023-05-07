@@ -107,9 +107,9 @@ const Album = () => {
     if (data) {
       setUrl(data?.data)
       setPhotoId(id)
-      document.getElementById('singlePhoto')?.classList.add('show')
       setTimeout(() => {
         setPhotoLoading(false)
+        document.getElementById('singlePhoto')?.classList.add('show')
       }, 2000)
     }
   }

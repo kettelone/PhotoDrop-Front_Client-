@@ -85,9 +85,9 @@ const AlbumsDashboard = () => {
     const data = await photoService.getOriginalPhoto(id)
     if (data) {
       setUrl(data?.data)
-      document.getElementById('singlePhoto')?.classList.add('show')
       setTimeout(() => {
         setPhotoLoading(false)
+        document.getElementById('singlePhoto')?.classList.add('show')
       }, 2000)
     }
   }
