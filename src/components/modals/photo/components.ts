@@ -8,7 +8,7 @@ const Img = styled.img`
 	max-width: 90%;
 	@media only screen and (max-height: 647px) {
 		max-width: 100%;
-		max-height: 90%;
+		max-height: 65%;
 	}
 `
 const Wrapper = styled.div`
