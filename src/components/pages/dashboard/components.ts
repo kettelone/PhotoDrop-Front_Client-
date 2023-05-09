@@ -81,7 +81,7 @@ const BrowseTitle = styled.div`
 
 const PreviewContainer = styled.div`
 	display: flex;
-	margin-left: 15px;
+	margin-left: 10px;
 	overflow-x: scroll;
 	@media only screen and (min-width: 734px) {
 		margin-left: 120px;
@@ -98,16 +98,11 @@ const PreviewImg = styled.img`
 	border-radius: 20px;
 	object-fit: cover;
 	cursor: pointer;
+	margin-left: 5px;
 	@media only screen and (min-width: 375px) {
 		min-width: 200px;
 		height: 255px;
 	}
-`
-
-const VerticalSeparator = styled.div`
-	min-width: 5px;
-	background-color: #5200ff;
-	opacity: 66%;
 `
 const Blur = styled.div`
 	position: fixed;
@@ -133,6 +128,5 @@ export {
 	BrowseTitle,
 	PreviewContainer,
 	PreviewImg,
-	VerticalSeparator,
 	Blur
 }

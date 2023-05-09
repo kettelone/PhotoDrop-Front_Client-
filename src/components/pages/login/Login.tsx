@@ -44,6 +44,7 @@ const navigate = useNavigate()
   const { country, dial_code } = useAppSelector(state => state.countryUpdate)
   const [digits, setDigits] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
+  const[ disabled, setDisabled] = useState(false)
   const dispatch = useAppDispatch()
 
   const handlePhoneNumber = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +60,7 @@ const navigate = useNavigate()
 
   const handleCreate = async () => {
     if (dial_code && digits.length <= 10 && digits.length >= 9) {
+      setDisabled(true)
       setIsLoading(true)
       const fullNumber = `${dial_code.substring(1)}${digits}`
       dispatch(updateFullNumber({ fullNumber }))
@@ -102,6 +104,7 @@ const navigate = useNavigate()
         </InputContainer>
         <ButtonContainer>
           <StyledButton
+            disabled={disabled}
             onClick={handleCreate}
           >{isLoading
               ? <FontAwesomeIcon icon={faSpinner} className="spinner" />

@@ -25,6 +25,8 @@ import Footer from '../../common/footer/Footer';
 import { LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import photoService from '../../../service/photoService';
 import PhotoModal from '../../modals/photo/Photo';
+import defaultImage from '../../../assets/defaultImage.svg';
+
 
 const AlbumsDashboard = () => {
   const [selfie, setSelfie] = useState()
@@ -114,7 +116,7 @@ const AlbumsDashboard = () => {
         <PhotoIcon
           onClick={goToProfile}
           >
-        <Img src={selfie} alt="selfie" />
+        <Img src={selfie || defaultImage} alt="selfie" />
       </PhotoIcon>
           <AlbumsContainer>
         <Title>Albums</Title>

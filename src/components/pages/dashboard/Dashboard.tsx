@@ -20,14 +20,15 @@ import {
   BrowseTitle,
   PreviewContainer,
   PreviewImg,
-  VerticalSeparator,Blur
+  Blur
 } from './components'
 import Footer from '../../common/footer/Footer';
 import Loader from '../../modals/loader/Loader';
-import graphics from './combo.png'
-import test1 from './test1.jpg'
-import test2 from './test2.jpg'
-import test3 from './test3.jpg'
+import graphics from './combo.png';
+import test1 from './test1.jpg';
+import test2 from './test2.jpg';
+import test3 from './test3.jpg';
+import defaultImage from '../../../assets/defaultImage.svg';
 import PhotoModal from '../../modals/photo/Photo';
 
 
@@ -92,7 +93,7 @@ const Dashboard = () => {
         <PhotoIcon
           onClick={() => navigate(PROFILE_ROUTE)}
         >
-          <Img src={selfie} alt="selfie" />
+          <Img src={selfie || defaultImage} alt="selfie" />
             </PhotoIcon>
             <Wrapper>
               <GraphicsContainer>
@@ -106,20 +107,18 @@ const Dashboard = () => {
                 You will get a text message when they are ready. It can take up to 48 hours.
               </SubTitle>
           <Separator />
-              <BrowseTitle>Browse Art Prints  </BrowseTitle>
+              <BrowseTitle>Browse Art Prints</BrowseTitle>
               <PreviewContainer>
             <PreviewImg
               src={test1}
               alt="test"
               onClick={()=>handlePhoto(test1)}
             />
-                <VerticalSeparator />
             <PreviewImg
               src={test2}
               alt="test"
               onClick={() => handlePhoto(test2)}
             />
-                <VerticalSeparator></VerticalSeparator>
             <PreviewImg
               src={test3}
               alt="test"

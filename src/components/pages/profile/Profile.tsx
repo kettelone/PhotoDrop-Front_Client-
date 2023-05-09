@@ -11,6 +11,8 @@ import { LOGIN_ROUTE } from '../../../utils/consts';
 import Loader from '../../modals/loader/Loader';
 import arrowRight from '../../../assets/arrowRight.svg'
 import GoBack from '../../common/goBack/GoBack';
+import defaultImage from '../../../assets/defaultImage.svg';
+
 import {
   Wrapper,
   Container,
@@ -54,7 +56,6 @@ const Profile = () => {
         console
         if (data) {
           const { user } = data.data
-          console.log(user)
           localStorage.setItem('phone', user.phone)
           localStorage.setItem('email', user.email ? user.email : 'test@gmail.com')
           const { selfieUrl, name } = user
@@ -108,7 +109,7 @@ const Profile = () => {
       <Welcome>Welcome, {userName}.</Welcome>
       <YourSelfie>Your selfie</YourSelfie>
       <SelfieContainer>
-        <Img src={selfie} alt="selfie" />
+        <Img src={selfie || defaultImage} alt="selfie" />
         <IconContainer htmlFor='imageOnly'>
           <Pen src={pen} alt="pen" />
           <Input

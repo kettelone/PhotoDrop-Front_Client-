@@ -78,7 +78,7 @@ const Separator = styled.div`
 
 const Wrapper = styled.div`
 	height: 90vh;
-	overflow: scroll;
+	overflow-y: scroll;
 `
 export {
 	Container,

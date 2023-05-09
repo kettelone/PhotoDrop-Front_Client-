@@ -30,6 +30,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   const [zoom, setZoom] = useState(1)
   const [croppedImage, setCroppedImage] = useState<Blob | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [disabled, setDisabled] =useState(false)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
@@ -77,6 +78,9 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   }
 
   const saveSelfie = async () => {
+
+    setDisabled(true)
+    if (!disabled){
     setIsLoading(true)
     const presignedPostUrl = await selfieService.signSelfie()
     try {
@@ -102,6 +106,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
       }
     } catch (e) {
       console.log(e)
+    }
     }
   }
 

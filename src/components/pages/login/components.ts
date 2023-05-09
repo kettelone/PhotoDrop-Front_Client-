@@ -52,10 +52,7 @@ const StrokeContainer = styled.span`display: flex;`
 
 const FlagSpan = styled.span`display: flex;`
 
-const FlagImg = styled.img`
-	width: 2em;
-	height: 2em;
-`
+const FlagImg = styled.img`width: 2em;`
 
 const StrokeImg = styled.img``
 
@@ -102,7 +99,7 @@ const StyledButton = styled(Button)`
 const ConsentConatainer = styled.div`
 	color: #6d6d6d;
 	font-size: 14px;
-	max-width: 600px;
+	max-width: 420px;
 `
 const ConsentP1 = styled.div`margin: 0px 1.35em 2.7em 1.15em;`
 const ConsentP2 = styled.div`margin: 0px 15px;`

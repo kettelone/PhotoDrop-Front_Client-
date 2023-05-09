@@ -25,12 +25,14 @@ const CodeConfirmation = () => {
   const [resendPressed, setResendPressed] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
+  const [disabled, setDisabled] = useState(false)
   const navigate = useNavigate()
   const  phoneNumber = localStorage.getItem('phoneNumber')
   const handleNext = async () => {
     if (!phoneNumber) {
       return 
     }
+    setDisabled(true)
     setIsLoading(true)
     const response = await loginService.login(phoneNumber, otp)
     if (response) {
@@ -43,17 +45,19 @@ const CodeConfirmation = () => {
               const { selfieUrl } = user
               if (!selfieUrl) {
                 navigate(UPLOAD_SELFIE_ROUTE)
+                setIsLoading(false)
               }else if (selfieUrl && allPhotos.length > 0) {
                 navigate(ALBUMS_DASHBOARD_ROUTE)
+                setIsLoading(false)
               } else if (selfieUrl) {
                 navigate(DASHBOARD_ROUTE)
+                setIsLoading(false)
               }
             }
             document.body.classList.remove('no-scroll')
           }, 1000)
         }
         fetchData()
-      setIsLoading(false)
     } else {
       setIsError(true)
       setIsLoading(false)
@@ -66,6 +70,7 @@ const CodeConfirmation = () => {
 
   const handleReset = async () => {
     if (!resendPressed && phoneNumber) {
+      setDisabled(true)
       setOtp('')
       await loginService.requestOtp(phoneNumber)
     }
@@ -97,8 +102,8 @@ const CodeConfirmation = () => {
       <ButtonContainer>
       <Button 
             style={{
-              opacity: otp.length === 6 ? 1 : 0.5, cursor: "pointer"}}
-        disabled={otp.length === 6 ? false : true}
+            opacity: otp.length === 6 ? 1 : 0.5, cursor: "pointer"}}
+            disabled={otp.length !== 6 || disabled ? true : false}
         onClick={handleNext}
           >{
               isLoading
