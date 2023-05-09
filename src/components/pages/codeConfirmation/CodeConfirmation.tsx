@@ -32,7 +32,7 @@ const CodeConfirmation = () => {
     if (!phoneNumber) {
       return 
     }
-    setDisabled(true)
+    
     setIsLoading(true)
     const response = await loginService.login(phoneNumber, otp)
     if (response) {
@@ -103,7 +103,7 @@ const CodeConfirmation = () => {
       <Button 
             style={{
             opacity: otp.length === 6 ? 1 : 0.5, cursor: "pointer"}}
-            disabled={otp.length !== 6 || disabled ? true : false}
+            disabled={otp.length === 6 ? false : true}
         onClick={handleNext}
           >{
               isLoading
