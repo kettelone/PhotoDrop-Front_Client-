@@ -60,8 +60,10 @@ const ResendButton = styled.button`
 const ButtonContainer = styled.div`
 	display: flex;
 	justify-content: center;
-	&:hover {
-		opacity: 0.5;
+	@media only screen and (min-width: 740px) {
+		&:hover {
+			opacity: 0.5;
+		}
 	}
 `
 

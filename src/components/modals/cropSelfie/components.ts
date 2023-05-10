@@ -76,6 +76,15 @@ const Instruction = styled.div`
 	margin-top: 130px;
 	width: 100%;
 	text-align: center;
+	@media only screen and (max-height: 650px) {
+		margin-top: 22vh;
+	}
+	@media only screen and (max-height: 545px) {
+		margin-top: 20vh;
+	}
+	@media only screen and (max-height: 500px) {
+		margin-top: 18vh;
+	}
 `
 
 const ButtonsContainer = styled.div`
@@ -86,9 +95,6 @@ const ButtonsContainer = styled.div`
 	transform: translate(50%);
 	margin-bottom: 40px;
 	justify-content: space-between;
-	@media only screen and (max-width: 350px) {
-		bottom: 2%;
-	}
 `
 
 const StyledButton =
@@ -113,17 +119,21 @@ const StyledButton =
       width:8.5em;
    }
 
-	 &:hover{
+	 	@media only screen and (min-width: 740px) {
+		&:hover{
 		background-color:white;
 		color:#262626;
 	 }
+	}
   `
 
 const StyledButton1 = styled(StyledButton)`
+	 	@media only screen and (min-width: 740px) {
 	 &:hover{
 		background-color:#262626;
 		color:white;
 	 }
+	}
 	`
 
 const Span = styled.span`

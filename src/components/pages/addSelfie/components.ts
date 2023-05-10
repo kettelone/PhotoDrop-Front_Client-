@@ -42,8 +42,10 @@ const AddSign = styled.label`
 	border-radius: 50%;
 	margin-left: -3em;
 	cursor: pointer;
-	&:hover {
-		background-color: grey;
+	@media only screen and (min-height: 740px) {
+		&:hover {
+			background-color: grey;
+		}
 	}
 
 	&::before {
