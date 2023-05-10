@@ -33,7 +33,7 @@ const Wrapper = styled.div`
 		height: 100vh;
 		max-width: 379px;
 		max-height: 653px;
-		overflow: hidden;
+		/* overflow: hidden; */
 	}
 `
 const Img = styled.img`
