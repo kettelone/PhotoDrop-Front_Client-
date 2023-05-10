@@ -9,11 +9,12 @@
   border-radius: 20px;
 }
 
-	@media only screen and (max-width: 500px) {
+	@media only screen and (max-width: 400px) {
     .reactEasyCrop_Container{
       border-radius: 0px;
       width:100vw;
-      height: 100vh; 
+      height: 100vh;
+      overflow:initial;
     }
 	}
 
@@ -24,6 +25,12 @@
   max-width: 379px;
   max-height: 653px;
 }
+
+	@media only screen and (max-width: 400px) {
+    .containerClassName{
+      width:100vw;
+    }
+	}
 
 .containerClassName img{
   max-width: 248px;
