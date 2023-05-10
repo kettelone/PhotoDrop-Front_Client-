@@ -34,6 +34,12 @@ const Wrapper = styled.div`
 		max-width: 379px;
 		max-height: 653px;
 	}
+	@media only screen and (max-height: 653px) {
+		width: 100vw !important;
+		height: 100vh !important;
+		max-width: 379px;
+		max-height: 100vh;
+	}
 `
 const Img = styled.img`
 	max-width: 248px;
