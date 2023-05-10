@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {
+  MainContainer,
+  Background,
   Container,
   Wrapper,
   Title,
@@ -7,6 +9,7 @@ import {
   Instruction,
   ButtonsContainer,
   StyledButton,
+  StyledButton1,
   Span,
   Input  
   } from './components'
@@ -53,6 +56,8 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   const closeModal = () => {
     URL.revokeObjectURL(objectUrl)
     document.getElementById('initialSelfie')?.classList.remove('show')
+    document.getElementById('background')?.classList.remove('show')
+
     setPreview(undefined)
   }
 
@@ -112,6 +117,8 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
 
 
   return (
+    <MainContainer id='main'>
+    <Background id='background'/>
     <Container id="initialSelfie">
       <Wrapper id='wrapper'>
       <CloseButton
@@ -155,7 +162,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
           accept="image/*"
         />
         <Span></Span>
-        <StyledButton
+        <StyledButton1
           color="none"
           backgroundColor="white"
           onClick={saveSelfie}
@@ -164,11 +171,11 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
               ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
               : 'Save'
             }
-          </StyledButton >
+          </StyledButton1 >
         </ButtonsContainer>
       </Wrapper>
       </Container>
-
+</MainContainer>
   );
 };
 

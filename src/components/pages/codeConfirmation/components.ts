@@ -11,6 +11,9 @@ const Container = styled.div`
 	transform: translate(-50%, -50%);
 	display: flex;
 	flex-direction: column;
+	@media only screen and (min-width: 740px) {
+		max-width: 420px;
+	}
 `
 
 const Title = styled.div`

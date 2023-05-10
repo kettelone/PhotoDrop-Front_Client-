@@ -1,9 +1,44 @@
 import styled from 'styled-components'
+const MainContainer = styled.div``
 
-const Container = styled.div`display: none;`
+const Background = styled.div`
+	display: none;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.5;
+`
 
-const Wrapper = styled.div``
+const Container = styled.div`
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+`
+
+const Wrapper = styled.div`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100vw;
+	height: 100vh;
+	width: 379px;
+	height: 653px;
+	@media only screen and (max-width: 350px) {
+		width: 100vw;
+		height: 100vh;
+		max-width: 379px;
+		max-height: 653px;
+		overflow: hidden;
+	}
+`
 const Img = styled.img`
+	max-width: 248px;
+	max-height: 248px;
 	width: 100%;
 	height: 100%;
 `
@@ -11,64 +46,48 @@ const Img = styled.img`
 const TopContainer = styled.div``
 const Title = styled.div`
 	color: white;
-	position: absolute;
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%);
 	margin-top: 1.5em;
-	top: 0;
-	right: 50%;
-	transform: translate(50%);
 	z-index: 2;
 	font-size: 18px;
 	font-weight: 500;
-	@media only screen and (min-height: 600px) {
-		top: 22.5%;
-	}
 `
 
 const CloseButton = styled.button`
-	position: absolute;
-	top: 0;
+	position: fixed;
 	z-index: 2;
 	background: none;
 	border: none;
+	left: 0;
 	margin-top: 1.5em;
 	margin-left: 1em;
 	cursor: pointer;
-
-	@media only screen and (min-height: 900px) {
-		top: 22.5%;
-		left: 40%;
-	}
 `
 const Instruction = styled.div`
 	font-size: 16px;
-	position: absolute;
+	position: fixed;
 	z-index: 2;
 	color: white;
-	right: 50%;
-	transform: translate(50%);
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%);
+	margin-top: 130px;
 	width: 100%;
 	text-align: center;
-	@media only screen and (max-height: 570px) {
-		top: 6em;
-	}
-	@media only screen and (max-height: 490px) {
-		top: 5em;
-	}
-	@media only screen and (min-height: 900px) {
-		top: 34%;
-	}
 `
 
 const ButtonsContainer = styled.div`
 	display: flex;
-	position: absolute;
-	bottom: 0%;
+	position: fixed;
+	bottom: 0;
 	right: 50%;
 	transform: translate(50%);
-	margin-bottom: 2.5em;
+	margin-bottom: 40px;
 	justify-content: space-between;
-	@media only screen and (min-height: 900px) {
-		bottom: 20%;
+	@media only screen and (max-width: 350px) {
+		bottom: 2%;
 	}
 `
 
@@ -93,7 +112,19 @@ const StyledButton =
    @media only screen and (max-width: 355px) {
       width:8.5em;
    }
+
+	 &:hover{
+		background-color:white;
+		color:#262626;
+	 }
   `
+
+const StyledButton1 = styled(StyledButton)`
+	 &:hover{
+		background-color:#262626;
+		color:white;
+	 }
+	`
 
 const Span = styled.span`
 	max-width: 9.7px;
@@ -101,6 +132,8 @@ const Span = styled.span`
 `
 const Input = styled.input`display: none;`
 export {
+	MainContainer,
+	Background,
 	Container,
 	Wrapper,
 	Img,
@@ -110,6 +143,7 @@ export {
 	Instruction,
 	ButtonsContainer,
 	StyledButton,
+	StyledButton1,
 	Span,
 	Input
 }

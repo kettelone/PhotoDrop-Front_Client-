@@ -20,6 +20,8 @@ const navigate = useNavigate()
   const selectPhoto = (event: any) => {
     if (event.target.files) { 
       document.getElementById('initialSelfie')?.classList.add('show')
+      document.getElementById('background')?.classList.add('show')
+
       setSelectedFile(event.target.files[0])
     }
   }

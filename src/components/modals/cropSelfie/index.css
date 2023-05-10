@@ -1,14 +1,32 @@
+.reactEasyCrop_Container{
+  width:100%;
+  height: 100%;
+  max-width: 379px;
+  max-height: 653px;
+  top: 50%!important;
+  left: 50%!important;
+  transform: translate(-50%,-50%)!important;
+  border-radius: 20px;
+}
+
+	@media only screen and (max-width: 375px) {
+    .reactEasyCrop_Container{
+      border-radius: 0px;
+    }
+	}
+
 .containerClassName{
   background-color: #262626;
+  width:100%;
+  height: 100%;
+  max-width: 379px;
+  max-height: 653px;
 }
 
 .containerClassName img{
-  max-width: 400px;
+  max-width: 248px;
 }
 
-.mediaClassName{
-    
-}
 
 .cropAreaClassName{
   box-shadow: 0 0 0 9999em #262626!important;

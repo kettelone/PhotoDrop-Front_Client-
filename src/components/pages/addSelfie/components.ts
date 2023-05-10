@@ -3,12 +3,14 @@ import styled from 'styled-components'
 const Wrapper = styled.div``
 
 const Container = styled.div`
-	height: calc(100vh - (55px));
+	margin-top: 72px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding-bottom: 38px;
+	@media only screen and (min-height: 740px) {
+		margin-top: 171px;
+	}
 `
 
 const Title = styled.div`
@@ -39,6 +41,10 @@ const AddSign = styled.label`
 	height: 42px;
 	border-radius: 50%;
 	margin-left: -3em;
+	cursor: pointer;
+	&:hover {
+		background-color: grey;
+	}
 
 	&::before {
 		display: flex;
