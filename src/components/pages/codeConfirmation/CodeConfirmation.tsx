@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import OtpInput from 'react-otp-input';
-import Button from '../../common/button/Button';
 import { useNavigate } from 'react-router-dom';
 import './index.css'
 import loginService from '../../../service/loginService';
-import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer, Wrapper, ErrorMessage } from './components'
+import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer, StyledButton,Wrapper, ErrorMessage } from './components'
 import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
@@ -100,7 +99,7 @@ const CodeConfirmation = () => {
         >Resend code</ResendButton>
       </div>
       <ButtonContainer>
-      <Button 
+      <StyledButton 
             style={{
             opacity: otp.length === 6 ? 1 : 0.5, cursor: "pointer"}}
             disabled={otp.length === 6 ? false : true}
@@ -110,7 +109,7 @@ const CodeConfirmation = () => {
                 ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
                 :"Next"
             }
-          </Button>
+          </StyledButton>
         </ButtonContainer>
         {isError
           ? <ErrorMessage id="error-message">The code in not matching</ErrorMessage>

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Button from '../../common/button/Button'
 
 const Wrapper = styled.div`overflow-x: hidden;`
 
@@ -19,10 +20,23 @@ const Title = styled.div`
 	font-size: 22px;
 	font-weight: 700;
 	color: #262626;
+	line-height: 26.4px;
+	@media only screen and (min-width: 740px) {
+		font-size: 30px;
+		line-height: 36px;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
 `
 const SubTitle = styled.div`
-	padding: 14px 15px 4px;
+	padding: 12px 15px 4px;
 	font-size: 16px;
+	line-height: 20.51px;
+	@media only screen and (min-width: 740px) {
+		font-size: 18px;
+		line-height: 23.08px;
+		padding: 12px 0px 4px;
+	}
 `
 const Phone = styled.span`font-weight: 500;`
 
@@ -31,13 +45,33 @@ const ResendButton = styled.button`
 	background: none;
 	color: #3300cc;
 	font-size: 16px;
-	padding: 4px 15px 0px;
+	padding: 5px 15px 0px;
 	cursor: pointer;
+	@media only screen and (min-width: 740px) {
+		font-size: 18px;
+		line-height: 23.08px;
+		padding: 5px 0px 0px;
+	}
 `
 
 const ButtonContainer = styled.div`
 	display: flex;
 	justify-content: center;
+	&:hover {
+		opacity: 0.5;
+	}
+`
+
+const StyledButton = styled(Button)`
+	font-size:18px;
+	font-weight:500;
+	margin: 1.25em 15px;
+
+		@media only screen and (min-width: 740px) {
+		margin: 1.25em 0px;	
+		font-size:22px;
+		line-height:28.2px;
+	}
 `
 const ErrorMessage = styled.div`
 	display: flex;
@@ -69,6 +103,7 @@ export {
 	Phone,
 	ResendButton,
 	ButtonContainer,
+	StyledButton,
 	Wrapper,
 	ErrorMessage
 }

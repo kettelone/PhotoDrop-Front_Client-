@@ -1,3 +1,21 @@
+.containerStyle{
+  display: flex;
+  justify-content: space-between!important;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  padding: 0px!important;
+  max-width:100%;
+}
+
+
+@media only screen and (min-width: 740px) {
+  .containerStyle {
+    margin-left: 0px;
+    margin-right: 0px!important;
+  }
+}
+
 .inputStyle {
   width: 1.875em!important;
   height: 40px;
@@ -5,27 +23,12 @@
   font-size: 1.5em;
   border-radius: 10px;
   border: 1px solid #EEEEEE;
-  /* margin-left: 0.5em; */
   background-color: #F4F4F4;
   padding: 0px;
+  margin-left: 0px!important
 }
 
-@media only screen and (max-width: 350px) {
-.inputStyle {
-    /* margin-left: 0.35em; */
-  }
+::selection {
+display: block;
 }
 
-@media only screen and (max-width: 350px) {
-  .inputStyle {
-      width: 1.775em !important;
-  }
-}
-
-.containerStyle{
-  justify-content: center;
-  /* margin-right: 0.6em; */
-  margin-top: 15px;
-  margin-bottom: 15px;
-  padding: 0px 0.5em;
-}
