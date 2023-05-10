@@ -28,7 +28,7 @@ const Wrapper = styled.div`
 	height: 100vh;
 	width: 379px;
 	height: 653px;
-	@media only screen and (max-width: 374px) {
+	@media only screen and (max-width: 400px) {
 		width: 100vw !important;
 		height: 100vh !important;
 		max-width: 379px;
