@@ -64,6 +64,7 @@ const CloseButton = styled.button`
 	border: none;
 	margin-top: 22px;
 	margin-left: 15px;
+	padding: 0px;
 	cursor: pointer;
 `
 const Instruction = styled.div`
