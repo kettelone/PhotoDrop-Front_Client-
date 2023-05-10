@@ -28,12 +28,11 @@ const Wrapper = styled.div`
 	height: 100vh;
 	width: 379px;
 	height: 653px;
-	@media only screen and (min-width: 350px) {
-		width: 100vw;
-		height: 100vh;
+	@media only screen and (max-width: 374px) {
+		width: 100vw !important;
+		height: 100vh !important;
 		max-width: 379px;
 		max-height: 653px;
-		overflow: hidden;
 	}
 `
 const Img = styled.img`
@@ -53,6 +52,9 @@ const Title = styled.div`
 	z-index: 2;
 	font-size: 18px;
 	font-weight: 500;
+	@media only screen and (max-width: 374px) {
+		display: flex;
+	}
 `
 
 const CloseButton = styled.button`
@@ -60,7 +62,7 @@ const CloseButton = styled.button`
 	z-index: 2;
 	background: none;
 	border: none;
-	left: 0;
+	left: 15px;
 	margin-top: 1.5em;
 	margin-left: 1em;
 	cursor: pointer;
