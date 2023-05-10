@@ -96,6 +96,8 @@ const ButtonsContainer = styled.div`
 	transform: translate(50%);
 	margin-bottom: 40px;
 	justify-content: space-between;
+	max-width: 100%;
+	padding: 0px 15px;
 `
 
 const StyledButton =
@@ -117,6 +119,7 @@ const StyledButton =
     font-size: 18px;
 		cursor:pointer;
    @media only screen and (max-width: 355px) {
+		max-width: 169.64px;
       width:8.5em;
    }
 
