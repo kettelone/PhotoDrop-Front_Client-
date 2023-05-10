@@ -25,6 +25,7 @@ import {
   InputContainer,
   InputLabel,
   Title,
+  BodyWrapper,
   Body,
   Container,
   StyledButton,
@@ -74,6 +75,7 @@ const navigate = useNavigate()
   return (
     <Container>
       <CountrySelect />
+    <BodyWrapper>
     <Body>
       <Title>Let`s get started</Title>
       <InputLabel>Enter your phone number</InputLabel>
@@ -119,7 +121,8 @@ const navigate = useNavigate()
           By continuing, you indicate that you have read and agree to our <u><a href="/">Terms of Use</a></u> & <u><a href="/">Privacy Policy</a></u>
         </ConsentP2>
       </ConsentConatainer>
-      </Body>
+        </Body>
+        </BodyWrapper>
     </Container>
   );
 };

@@ -3,11 +3,15 @@ import Button from '../../common/button/Button'
 
 const Container = styled.div``
 
+const BodyWrapper = styled.div`
+	display: flex;
+	height: calc(100vh - 55px);
+	width: 100vw;
+	align-items: center;
+	justify-content: center;
+`
+
 const Body = styled.div`
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -153,6 +157,7 @@ export {
 	InputContainer,
 	InputLabel,
 	Title,
+	BodyWrapper,
 	Body,
 	Container,
 	StyledButton
