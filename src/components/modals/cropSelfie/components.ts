@@ -28,12 +28,12 @@ const Wrapper = styled.div`
 	height: 100vh;
 	width: 379px;
 	height: 653px;
-	@media only screen and (max-width: 350px) {
+	@media only screen and (min-width: 350px) {
 		width: 100vw;
 		height: 100vh;
 		max-width: 379px;
 		max-height: 653px;
-		/* overflow: hidden; */
+		overflow: hidden;
 	}
 `
 const Img = styled.img`
