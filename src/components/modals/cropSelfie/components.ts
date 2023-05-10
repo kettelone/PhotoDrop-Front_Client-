@@ -48,7 +48,7 @@ const Title = styled.div`
 	position: fixed;
 	left: 50%;
 	transform: translate(-50%);
-	margin-top: 1.5em;
+	margin-top: 22px;
 	z-index: 2;
 	font-size: 18px;
 	font-weight: 500;
@@ -62,9 +62,8 @@ const CloseButton = styled.button`
 	z-index: 2;
 	background: none;
 	border: none;
-	left: 15px;
-	margin-top: 1.5em;
-	margin-left: 1em;
+	margin-top: 22px;
+	margin-left: 15px;
 	cursor: pointer;
 `
 const Instruction = styled.div`
