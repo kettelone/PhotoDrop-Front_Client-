@@ -57,7 +57,7 @@ const Title = styled.div`
 	font-size: 18px;
 	font-weight: 500;
 
-	@media (max-width: 400px) and (min-height: 500px) {
+	@media (max-width: 400px) and (max-height: 550px) {
 		margin-top: 4rem;
 	}
 `
@@ -71,7 +71,7 @@ const CloseButton = styled.button`
 	margin-left: 15px;
 	padding: 0px;
 	cursor: pointer;
-	@media (max-width: 400px) and (min-height: 500px) {
+	@media (max-width: 400px) and (max-height: 550px) {
 		margin-top: 4rem;
 	}
 `
