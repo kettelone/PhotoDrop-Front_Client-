@@ -95,8 +95,8 @@ const Album = () => {
     if (id) {
     const paymentLink = await paymentService.requestPayment(id)
       window.location.replace(paymentLink);
-      setPaymentLoading(false)
     }
+    setPaymentLoading(false)
   }
 
   const handlePhoto = async (id: string) => {

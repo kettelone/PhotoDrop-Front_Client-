@@ -21,10 +21,6 @@ const PaymentSuccess = () => {
     return savedItem || "";
   });
 
-  console.log(albumCover)
-  console.log(id)
-  console.log(albumName)
-
   const goToAlbum = () => {
     navigate(`/album/${id}`)
   }
