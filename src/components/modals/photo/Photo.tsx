@@ -38,7 +38,9 @@ const PhotoModal = (props:
     const paymentLink = await paymentService.requestPayment(props.albumId)
     window.location.replace(paymentLink);
     }
-    setIsLoading(false)
+    setTimeout(() => {
+      setIsLoading(false)
+    },1000)
   }
   
   const closeModal = () => {
