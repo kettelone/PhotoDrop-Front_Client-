@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import paymentService from '../../../service/paymentService';
+import { saveAs } from 'file-saver';
 import {
   Img, Wrapper, Container, CloseButton, DownloadContainer,
   Arrow,
@@ -51,6 +52,10 @@ const PhotoModal = (props:
     document.body.classList.remove('noScroll')
   }
 
+  const saveImage = (url:string) => {
+    saveAs(url, 'image.jpg') // Put your image url here.
+  }
+
   return (
     <Wrapper id='singlePhoto'>
       <CloseButton
@@ -64,8 +69,10 @@ const PhotoModal = (props:
       </Container>
       {
         props.isPaid
-        ? <DownloadContainer
-          href={props.url} download >
+          ? <DownloadContainer
+            onClick={()=>saveImage(props.url)}
+            // href={props.url} download
+          >
           <Arrow src={arrowDown} alt="arrowDown" />
           <Line />
           <Text>Download</Text>
