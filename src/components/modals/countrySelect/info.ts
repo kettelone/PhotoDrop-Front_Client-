@@ -1256,6 +1256,11 @@ const commonCountries = [
 		name: 'United States',
 		dial_code: '+1',
 		code: 'US'
+	},
+	{
+		name: 'Ukraine',
+		dial_code: '+380',
+		code: 'UA'
 	}
 ]
 

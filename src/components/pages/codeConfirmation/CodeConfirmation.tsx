@@ -17,8 +17,6 @@ const CodeConfirmation = () => {
     const isLoggedIn = checkToken()
     if (isLoggedIn) {
       navigate(DASHBOARD_ROUTE)
-    } else {
-      navigate(LOGIN_ROUTE)
     }
   }, [])
   
