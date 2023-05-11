@@ -53,7 +53,8 @@ const Album = () => {
   const [albumCover, setAlbumCover] = useState('')
   const [url, setUrl] = useState('')
   const [photoId, setPhotoId] = useState('')
-  const[isPaid, setIsPaid] = useState(false)
+  const [isPaid, setIsPaid] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(false)
   const navigate = useNavigate()
 
 
@@ -92,12 +93,14 @@ const Album = () => {
 
   const handlePayment = async () => {
     setPaymentLoading(true)
+    setIsDisabled(true)
     if (id) {
     const paymentLink = await paymentService.requestPayment(id)
       window.location.replace(paymentLink);
     }
     setTimeout(() => {
       setPaymentLoading(false)
+      setIsDisabled(false)
     },1000)
   }
 
@@ -172,6 +175,7 @@ const Album = () => {
           : <ButtonContainer>
             <StyledButton
               onClick={handlePayment}
+              disabled={isDisabled}
             >
             {
                 paymentLoading

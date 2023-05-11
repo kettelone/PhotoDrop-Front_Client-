@@ -25,6 +25,7 @@ const PhotoModal = (props:
   }) => {
   
   const [isLoading, setIsLoading] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(false)
     if (props.albumId) {
     localStorage.setItem('albumID', props.albumId)
     localStorage.setItem('albumCover', props.photoCover)
@@ -34,12 +35,14 @@ const PhotoModal = (props:
 
   const handlePayment = async () => {
     setIsLoading(true)
+    setIsDisabled(true)
     if (props.albumId) {
     const paymentLink = await paymentService.requestPayment(props.albumId)
     window.location.replace(paymentLink);
     }
     setTimeout(() => {
       setIsLoading(false)
+      setIsDisabled(false)
     },1000)
   }
   
@@ -70,6 +73,7 @@ const PhotoModal = (props:
           :<ButtonContainer>
             <StyledButton
               onClick={handlePayment}
+              disabled={isDisabled}
             >
               {
                 isLoading 
