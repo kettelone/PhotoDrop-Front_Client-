@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './index.css'
 import loginService from '../../../service/loginService';
 import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer, StyledButton,Wrapper, ErrorMessage } from './components'
-import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
+import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, LOGIN_ROUTE, UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import checkToken from '../../../utils/checkJWT';
@@ -17,6 +17,8 @@ const CodeConfirmation = () => {
     const isLoggedIn = checkToken()
     if (isLoggedIn) {
       navigate(DASHBOARD_ROUTE)
+    } else {
+      navigate(LOGIN_ROUTE)
     }
   }, [])
   
