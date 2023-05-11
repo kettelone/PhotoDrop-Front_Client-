@@ -42,9 +42,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     document.body.classList.add('no-scroll')
-    const loggedIn = true
-    // const loggedIn = checkToken()
-
+    const loggedIn = checkToken()
     if (loggedIn) {
       const fetchData =  async() => {
         setTimeout(async() => {

@@ -51,7 +51,7 @@ const AlbumsDashboard = () => {
       const fetchData = async () => {
         const data = await albumService.getAlbums()
         if (data) {
-          const { user, albums, allPhotos } = data.data
+          let { user, albums, allPhotos } = data.data
           if (albums.length > 0) {
             localStorage.setItem('albumsExist', "true")
           }

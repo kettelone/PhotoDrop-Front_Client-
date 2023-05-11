@@ -65,7 +65,6 @@ const Album = () => {
         const data = await albumService.getAlbums()
         if (data) {
           const { allPhotos, albums }= data.data
-   
           //@ts-ignore
           const albumPhotos = allPhotos.filter(photo => photo.albumID === id)
           setQuantity(albumPhotos.length)
@@ -75,6 +74,11 @@ const Album = () => {
           setAlbumCover(album[0].url)
           setAlbumName(album[0].name)
           setIsPaid(album[0].isPaid)
+          if (id) {
+          localStorage.setItem('albumID', id)
+          localStorage.setItem('albumCover', album[0].url)
+          localStorage.setItem('albumName', album[0].name)
+          }
         }
         setTimeout(() => {
           setIsLoading(false)
@@ -88,16 +92,11 @@ const Album = () => {
 
   const handlePayment = async () => {
     setPaymentLoading(true)
-    if (!id) {
-      return
-    }
-    localStorage.setItem('albumID', id)
-    localStorage.setItem('albumCover', albumCover)
-    localStorage.setItem('albumName', albumName)
-
+    if (id) {
     const paymentLink = await paymentService.requestPayment(id)
       window.location.replace(paymentLink);
       setPaymentLoading(false)
+    }
   }
 
   const handlePhoto = async (id: string) => {

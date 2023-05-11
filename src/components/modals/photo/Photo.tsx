@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import paymentService from '../../../service/paymentService';
 import {
   Img, Wrapper, Container, CloseButton, DownloadContainer,
@@ -15,23 +15,30 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
 const PhotoModal = (props:
-  { url: string, photoId: string, isPaid: boolean, albumId: string | undefined, photoCover: string, albumName:string }) => {
+  {
+    url: string,
+    photoId: string,
+    isPaid: boolean,
+    albumId: string | undefined,
+    photoCover: string,
+    albumName: string
+  }) => {
   
   const [isLoading, setIsLoading] = useState(false)
-
-  const handlePayment = async () => {
-    setIsLoading(true)
-    if (!props.albumId) {
-      return
-    }
-
+    if (props.albumId) {
     localStorage.setItem('albumID', props.albumId)
     localStorage.setItem('albumCover', props.photoCover)
     localStorage.setItem('albumName', props.albumName)
+    }
 
+
+  const handlePayment = async () => {
+    setIsLoading(true)
+    if (props.albumId) {
     const paymentLink = await paymentService.requestPayment(props.albumId)
     window.location.replace(paymentLink);
-    setIsLoading(false)
+      setIsLoading(false)
+  }
   }
   
   const closeModal = () => {
