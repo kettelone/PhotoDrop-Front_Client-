@@ -57,8 +57,8 @@ const Title = styled.div`
 	font-size: 18px;
 	font-weight: 500;
 
-	@media screen and (max-width: 400px), screen and (min-height: 500px) {
-		margin-top: 4em;
+	@media (max-width: 400px) and (min-height: 500px) {
+		margin-top: 4rem;
 	}
 `
 
@@ -71,8 +71,8 @@ const CloseButton = styled.button`
 	margin-left: 15px;
 	padding: 0px;
 	cursor: pointer;
-	@media screen and (max-width: 400px), screen and (min-height: 500px) {
-		margin-top: 4em;
+	@media (max-width: 400px) and (min-height: 500px) {
+		margin-top: 4rem;
 	}
 `
 const Instruction = styled.div`
