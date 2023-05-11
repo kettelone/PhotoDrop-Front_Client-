@@ -52,7 +52,7 @@ const Title = styled.div`
 	position: fixed;
 	left: 50%;
 	transform: translate(-50%);
-	margin-top: 22px;
+	margin-top: 2em;
 	z-index: 2;
 	font-size: 18px;
 	font-weight: 500;
@@ -65,7 +65,7 @@ const CloseButton = styled.button`
 	z-index: 2;
 	background: none;
 	border: none;
-	margin-top: 22px;
+	margin-top: 2em;
 	margin-left: 15px;
 	padding: 0px;
 	cursor: pointer;
