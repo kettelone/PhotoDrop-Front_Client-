@@ -71,7 +71,6 @@ const PhotoModal = (props:
         props.isPaid
           ? <DownloadContainer
             onClick={()=>saveImage(props.url)}
-            // href={props.url} download
           >
           <Arrow src={arrowDown} alt="arrowDown" />
           <Line />

@@ -29,8 +29,8 @@ const Wrapper = styled.div`
 	@media only screen and (max-width: 400px) {
 		width: 100vw;
 		height: 100vh;
-		/* max-width: 379px;
-		max-height: 653px; */
+		max-width: 100%;
+		max-height: 100vh;
 	}
 	@media only screen and (max-height: 653px) {
 		width: 100vw !important;
@@ -56,8 +56,7 @@ const Title = styled.div`
 	z-index: 2;
 	font-size: 18px;
 	font-weight: 500;
-	@media only screen and (max-width: 374px) {
-		display: flex;
+	@media only screen and (max-width: 400px) {
 	}
 `
 

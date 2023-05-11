@@ -13,6 +13,9 @@ const navigate = useNavigate()
     if (!isLoggedIn) {
       navigate(LOGIN_ROUTE) 
     }
+    // else {
+    //   navigate(DASHBOARD_ROUTE)
+    // }
 
   }, [])
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
