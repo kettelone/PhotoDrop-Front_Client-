@@ -43,7 +43,7 @@ const PhotoModal = (props:
     setTimeout(() => {
       setIsLoading(false)
       setIsDisabled(false)
-    },1000)
+    },2000)
   }
   
   const closeModal = () => {
