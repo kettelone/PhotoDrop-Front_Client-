@@ -118,8 +118,8 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
 
   return (
     <MainContainer id='main'>
-    <Background id='background' className='show'/>
-    <Container id="initialSelfie" className='show'>
+    <Background id='background' />
+    <Container id="initialSelfie">
       <Wrapper id='wrapper'>
       <CloseButton
         onClick={closeModal}

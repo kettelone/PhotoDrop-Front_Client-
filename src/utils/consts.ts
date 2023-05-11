@@ -1,7 +1,7 @@
 export const LOGIN_ROUTE = '/login'
 export const CODE_CONFIRMATION_ROUTE = '/code-confirmation'
 export const UPLOAD_SELFIE_ROUTE = '/add-selfie'
-export const DASHBOARD_ROUTE = '/user-dashboard'
+export const DASHBOARD_ROUTE = '/no-photos-dashboard'
 export const PROFILE_ROUTE = '/profile'
 export const EDIT_NAME_ROUTE = '/edit-name'
 export const EDIT_EMAIL = '/edit-email'

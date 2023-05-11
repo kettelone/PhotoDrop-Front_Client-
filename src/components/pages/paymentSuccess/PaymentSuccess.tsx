@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 const PaymentSuccess = () => {
   const navigate = useNavigate()
-
   const [id, setId] = useState(() => {
     const savedItem = localStorage.getItem("albumID");
     return savedItem || "";
@@ -22,12 +21,11 @@ const PaymentSuccess = () => {
     return savedItem || "";
   });
 
-
-
+  console.log(albumCover)
+  console.log(id)
+  console.log(albumName)
 
   const goToAlbum = () => {
-    console.log(albumCover)
-    console.log(id)
     navigate(`/album/${id}`)
   }
   return (

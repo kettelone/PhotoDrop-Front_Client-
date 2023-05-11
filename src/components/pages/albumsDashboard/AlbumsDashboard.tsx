@@ -46,6 +46,7 @@ const AlbumsDashboard = () => {
   useEffect(() => {
     setIsLoading(true)
     const loggedIn = checkToken()
+    
     if (loggedIn) {
       const fetchData = async () => {
         const data = await albumService.getAlbums()
