@@ -52,11 +52,13 @@ const Title = styled.div`
 	position: fixed;
 	left: 50%;
 	transform: translate(-50%);
-	margin-top: 3em;
+	margin-top: 22px;
 	z-index: 2;
 	font-size: 18px;
 	font-weight: 500;
-	@media only screen and (max-width: 400px) {
+
+	@media screen and (max-width: 400px), screen and (min-height: 500px) {
+		margin-top: 4em;
 	}
 `
 
@@ -65,10 +67,13 @@ const CloseButton = styled.button`
 	z-index: 2;
 	background: none;
 	border: none;
-	margin-top: 3em;
+	margin-top: 22px;
 	margin-left: 15px;
 	padding: 0px;
 	cursor: pointer;
+	@media screen and (max-width: 400px), screen and (min-height: 500px) {
+		margin-top: 4em;
+	}
 `
 const Instruction = styled.div`
 	font-size: 16px;
