@@ -82,6 +82,7 @@ const Profile = () => {
   const selectPhoto = (event: any) => {
     if (event.target.files) {
       document.getElementById('initialSelfie')?.classList.add('show')
+      document.getElementById('background')?.classList.add('show')
       setSelectedFile(event.target.files[0])
     }
   }
@@ -121,7 +122,9 @@ const Profile = () => {
         </IconContainer>
         </SelfieContainer>
         <Options>
-          <Option>
+          <Option
+            onClick={() => navigate(EDIT_NAME_ROUTE)}
+          >
             <div>
               <Title>
                 Your name
@@ -131,14 +134,15 @@ const Profile = () => {
               </Description>
             </div>
             <ArrowWrapper
-              onClick={()=>navigate(EDIT_NAME_ROUTE)}
             >
               <ArrowContainer>
                 <img src={arrowRight} alt="arrow-right" />
               </ArrowContainer>
               </ArrowWrapper>
           </Option>
-          <Option>
+          <Option
+            onClick={() => navigate(ACCOUNT_SETTINGS)}
+          >
             <div>
             <Title>
               Account settings
@@ -148,7 +152,6 @@ const Profile = () => {
               </Description>
             </div>
             <ArrowWrapper
-              onClick={() => navigate(ACCOUNT_SETTINGS)}
             >
               <ArrowContainer>
                 <img src={arrowRight} alt="arrow-right" />

@@ -93,6 +93,7 @@ const Option = styled.div`
 	font-size: 14px;
 	line-height: 17.95px;
 	margin-bottom: 5px;
+	cursor: pointer;
 
 	@media only screen and (max-width: 340px) {
 		font-size: 12px;
@@ -105,6 +106,9 @@ const Option = styled.div`
 const Title = styled.div`
 	font-weight: 500;
 	margin-bottom: 2px;
+	@media only screen and (min-width: 740px) {
+		margin-bottom: 8px;
+	}
 `
 
 const Description = styled.div`height: 11px;`
@@ -112,7 +116,6 @@ const Description = styled.div`height: 11px;`
 const ArrowWrapper = styled.div`
 	display: flex;
 	align-items: center;
-	cursor: pointer;
 `
 const ArrowContainer = styled.div`
 	width: 30px;

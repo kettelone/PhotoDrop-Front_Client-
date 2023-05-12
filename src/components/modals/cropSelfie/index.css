@@ -1,47 +1,46 @@
-.reactEasyCrop_Container{
-  width:100%;
-  height: 100%;
-  max-width: 379px;
-  max-height: 653px;
-  top: 50%!important;
-  left: 50%!important;
-  transform: translate(-50%,-50%)!important;
-  border-radius: 20px;
+.reactEasyCrop_Container {
+	width: 100%;
+	height: 100%;
+	max-width: 379px;
+	max-height: 653px;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate(-50%, -50%) !important;
+	border-radius: 20px;
 }
 
-	@media only screen and (max-width: 400px) {
-    .reactEasyCrop_Container{
-      border-radius: 0px;
-      width:100vw;
-      height: 100vh;
-    }
+@media only screen and (max-width: 400px) {
+	.reactEasyCrop_Container {
+		border-radius: 0px;
+		width: 100vw;
+		height: 100vh;
 	}
-
-.containerClassName{
-  background-color: #262626;
-  width:100%;
-  height: 100%;
-  max-width: 379px;
-  max-height: 653px;
 }
 
-	@media only screen and (max-width: 400px) {
-    .containerClassName{
-      width:100vw;
-      max-width:100vw;
-      max-height: 100%;
-    }
+.containerClassName {
+	background-color: #262626;
+	width: 100%;
+	height: 100%;
+	max-width: 379px;
+	max-height: 653px;
+}
+
+@media only screen and (max-width: 400px) {
+	.containerClassName {
+		width: 100vw;
+		max-width: 100vw;
+		max-height: 100%;
 	}
-
-.containerClassName img{
-  max-width: 248px;
 }
 
+.containerClassName img {
+	max-width: 248px;
+}
 
-.cropAreaClassName{
-  box-shadow: 0 0 0 9999em #262626!important;
-  max-width: 15.5em;
-  max-height: 15.5em;
-  min-height: 15.5em;
-  min-width: 15.5em;
+.cropAreaClassName {
+	box-shadow: 0 0 0 9999em #262626 !important;
+	max-width: 15.5em;
+	max-height: 15.5em;
+	min-height: 15.5em;
+	min-width: 15.5em;
 }

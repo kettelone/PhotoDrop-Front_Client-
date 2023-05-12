@@ -94,7 +94,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
         //time out for page reload when selfie changed user profile
         setTimeout(() => {
           dispatch(change())
-        }, 3000)
+        }, 4000)
 
         if (props.page === '/user-dashboard') {
           setTimeout(() => {
