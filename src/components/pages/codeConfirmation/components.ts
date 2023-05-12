@@ -50,6 +50,10 @@ const ResendButton = styled.button`
 	font-size: 16px;
 	padding: 5px 15px 0px;
 	cursor: pointer;
+
+	&[disabled] {
+		cursor: none;
+	}
 	@media only screen and (min-width: 740px) {
 		font-size: 18px;
 		line-height: 23.08px;
@@ -71,7 +75,9 @@ const StyledButton = styled(Button)`
 	font-size:18px;
 	font-weight:500;
 	margin: 1.25em 15px;
-
+	&[disabled] {
+		cursor: none;
+	}
 		@media only screen and (min-width: 740px) {
 		margin: 1.25em 0px;	
 		font-size:22px;

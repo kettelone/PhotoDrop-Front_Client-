@@ -99,19 +99,19 @@ const Option = styled.div`
 		font-size: 12px;
 	}
 	@media only screen and (min-width: 740px) {
-		height: 60px;
-		font-size: 18px;
+		height: 53px;
+		font-size: 16px;
+		line-height: 20.51px;
 	}
 `
 const Title = styled.div`
 	font-weight: 500;
 	margin-bottom: 2px;
-	@media only screen and (min-width: 740px) {
-		margin-bottom: 8px;
-	}
+	height: 10px;
+	margin-bottom: 10px;
 `
 
-const Description = styled.div`height: 11px;`
+const Description = styled.div`height: 10px;`
 
 const ArrowWrapper = styled.div`
 	display: flex;

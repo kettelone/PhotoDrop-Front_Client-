@@ -12,13 +12,13 @@ const PhotoIcon = styled.div`
 	position: absolute;
 	top: 0;
 	right: 0;
-	padding: 8px;
 	cursor: pointer;
-	@media only screen and (min-width: 450px) {
-		padding-right: 33px;
-	}
+	margin-right: 15px;
+	margin-top: 10px;
+
 	@media only screen and (min-width: 740px) {
-		padding: 12.5px 33px 12.5px 12.5px;
+		margin-right: 33px;
+		margin-top: 12.5px;
 	}
 `
 const Img = styled.img`

@@ -43,8 +43,12 @@ const P2 = styled.div`
 		line-height: 28.2px;
 	}
 `
+
+const ImageContainer = styled.div`max-width: 420px;`
 const Img = styled.img`
+	object-fit: cover;
 	width: 100%;
+	max-height: 250px;
 	border-radius: 20px;
 `
 
@@ -66,4 +70,14 @@ const P3 = styled.div`
 	font-size: 18px;
 `
 
-export { Wrapper, Container, Title, P1, P2, P3, Img, StyledButton }
+export {
+	Wrapper,
+	Container,
+	Title,
+	P1,
+	P2,
+	P3,
+	ImageContainer,
+	Img,
+	StyledButton
+}

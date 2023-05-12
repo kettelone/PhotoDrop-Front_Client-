@@ -10,6 +10,9 @@ const StyledHeader = styled.header`
   border-top: 1px solid #F1F0EC;
   border-bottom: 1px solid #F1F0EC;
   padding: 1.15em 0em;
+  @media only screen and (min-width: 740px) {
+  height:60px;
+}
 `
 
 const Img = styled.img`

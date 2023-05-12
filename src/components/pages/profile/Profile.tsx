@@ -78,7 +78,7 @@ const Profile = () => {
       navigate(LOGIN_ROUTE);
     }
   }, [changedSelfie])
-
+  
   const selectPhoto = (event: any) => {
     if (event.target.files) {
       document.getElementById('initialSelfie')?.classList.add('show')

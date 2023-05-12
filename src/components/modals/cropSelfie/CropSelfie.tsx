@@ -25,13 +25,12 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { change } from '../../../app/selfieSlice/selfieSlice';
 import { useAppDispatch } from '../../../app/hooks';
 
-
 const CropSelfie = (props: { selfie: File |null , page:string}) => {
 
   const [preview, setPreview] = useState<undefined | string>()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
-  const [croppedImage, setCroppedImage] = useState<Blob | null>(null)
+  const [croppedImage, setCroppedImage] = useState<Blob | null>()
   const [isLoading, setIsLoading] = useState(false)
   const [disabled, setDisabled] =useState(false)
   const navigate = useNavigate()

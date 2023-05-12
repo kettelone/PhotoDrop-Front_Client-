@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Wrapper,Container, Title, P1, P2, P3,Img, StyledButton } from './components'
+import { Wrapper, Container, Title, P1, P2, P3,ImageContainer,Img, StyledButton } from './components'
 import successGif from './successGif.gif'
 import { useNavigate } from 'react-router-dom';
 
@@ -29,8 +29,11 @@ const PaymentSuccess = () => {
     <Container>
       <Title>Thank you!</Title>
         <P1>The album <b>{albumName ? albumName: 'Your album'}</b> is now unlocked.</P1>
-      <P2>You can now download, share, post, and print your hi-res, watermark-free, glorious memories.</P2>
-        <Img src={albumCover ? albumCover : successGif} alt="congrats_unlocked"/>
+        <P2>You can now download, share, post, and print your hi-res, watermark-free, glorious memories.</P2>
+        <ImageContainer>
+          <Img src={albumCover ? albumCover : successGif} alt="congrats_unlocked" />
+
+        </ImageContainer>
         <StyledButton
           onClick={goToAlbum}
         >See Photos

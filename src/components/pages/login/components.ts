@@ -104,10 +104,11 @@ const ButtonContainer = styled.div`
 const StyledButton = styled(Button)`
 	font-size:18px;
 	font-weight:500;
-	cursor:pointer;
 	&:hover{
+		cursor:pointer;
 		opacity:0.7;
 	}
+
 	@media only screen and (min-width: 740px) {
 		max-width:420px;
 		font-size:22px;
