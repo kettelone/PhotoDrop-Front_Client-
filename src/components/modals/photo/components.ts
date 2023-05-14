@@ -50,7 +50,7 @@ const CloseButton = styled.button`
 	height: 27px;
 `
 
-const DownloadContainer = styled.div`
+const DownloadContainer = styled.a`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
