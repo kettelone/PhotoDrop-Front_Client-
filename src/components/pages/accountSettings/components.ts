@@ -31,6 +31,7 @@ const Options = styled.div`
 `
 const Option = styled.div`
 	display: flex;
+	justify-content: space-between;
 	border: 1px solid #ceccb5;
 	border-radius: 10px;
 	height: 50px;
@@ -38,14 +39,15 @@ const Option = styled.div`
 	font-size: 14px;
 	line-height: 17.95px;
 	margin-bottom: 5px;
-	justify-content: space-between;
+	cursor: pointer;
 
 	@media only screen and (max-width: 340px) {
 		font-size: 12px;
 	}
 	@media only screen and (min-width: 740px) {
-		height: 60px;
-		font-size: 18px;
+		height: 53px;
+		font-size: 16px;
+		line-height: 20.51px;
 	}
 `
 const Img = styled.img`width: 25px;`
@@ -58,12 +60,11 @@ const TextContainer = styled.div`
 const Title = styled.div`
 	font-weight: 500;
 	margin-bottom: 2px;
-	@media only screen and (min-width: 740px) {
-		margin-bottom: 5px;
-	}
+	height: 10px;
+	margin-bottom: 10px;
 `
 
-const Description = styled.div`height: 11px;`
+const Description = styled.div`height: 10px;`
 
 const Green = styled.span`color: green;`
 
