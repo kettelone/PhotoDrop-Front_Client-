@@ -9,6 +9,9 @@ const BodyWrapper = styled.div`
 	width: 100vw;
 	align-items: center;
 	justify-content: center;
+	@media only screen and (min-width: 740px) {
+		height: calc(100vh - 60px);
+	}
 `
 
 const Body = styled.div`
