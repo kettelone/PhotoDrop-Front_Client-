@@ -72,6 +72,7 @@ const PhotoModal = (props:
           ? <DownloadContainer
             onClick={()=>saveImage(props.url)}
           >
+            <a href={props.url} download>Download</a>
           <Arrow src={arrowDown} alt="arrowDown" />
           <Line />
           <Text>Download</Text>
