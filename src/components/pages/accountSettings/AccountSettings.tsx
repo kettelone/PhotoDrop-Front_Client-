@@ -20,7 +20,7 @@ import arrowRight from '../../../assets/arrowRight.svg'
 import GoBack from '../../common/goBack/GoBack';
 import mailIcon from './mailIcon.svg'
 import phoneIcon from './phoneIcon.svg'
-import { DASHBOARD_ROUTE, EDIT_EMAIL, EDIT_PHONE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
+import { DASHBOARD_ROUTE, EDIT_EMAIL, EDIT_PHONE_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 
 
 const AccountSettings = () => {
@@ -42,14 +42,16 @@ const AccountSettings = () => {
   const navigate = useNavigate()
   return (
     <div>
-      <span onClick={() => navigate(DASHBOARD_ROUTE)}>
+      <span onClick={() => navigate(PROFILE_ROUTE)}>
         <GoBack />
       </span>
       <Wrapper>
         <SubWrapper>
       <Header>Account settings</Header>
       <Options>
-            <Option>
+            <Option
+              onClick={() => navigate(EDIT_PHONE_ROUTE)}
+            >
               <OptionContainer>
                 <Img src={phoneIcon} alt="phoneIcon" />
                 <TextContainer>
@@ -61,16 +63,15 @@ const AccountSettings = () => {
                   </Description>
                 </TextContainer>
               </OptionContainer>
-          <ArrowWrapper
-            onClick={() => navigate(EDIT_PHONE_ROUTE)}
-          >
+          <ArrowWrapper>
             <ArrowContainer>
               <img src={arrowRight} alt="arrow-right" />
             </ArrowContainer>
           </ArrowWrapper>
         </Option>
-        
-            <Option>
+            <Option
+              onClick={() => navigate(EDIT_EMAIL)}
+            >
               <OptionContainer>
                 <Img src={mailIcon} alt="mailIcon" />
                 <TextContainer>
@@ -82,9 +83,7 @@ const AccountSettings = () => {
                   </Description>
                 </TextContainer>
               </OptionContainer>
-              <ArrowWrapper
-                onClick={() => navigate(EDIT_EMAIL)}
-              >
+              <ArrowWrapper>
             <ArrowContainer>
               <img src={arrowRight} alt="arrow-right" />
             </ArrowContainer>
