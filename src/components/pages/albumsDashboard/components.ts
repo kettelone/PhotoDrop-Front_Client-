@@ -71,6 +71,10 @@ const Title = styled.div`
 const Albums = styled.div`
 	display: flex;
 	overflow-y: scroll;
+	height: 144px;
+	@media only screen and (min-width: 740px) {
+		height: 258px;
+	}
 `
 const Album = styled.div`margin-right: 5px;`
 
