@@ -1,10 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Wrapper, Container, Title, P1, P2, P3,ImageContainer,Img, StyledButton } from './components'
 import successGif from './successGif.gif'
 import { useNavigate } from 'react-router-dom';
-
+import checkToken from '../../../utils/checkJWT';
+import { LOGIN_ROUTE } from '../../../utils/consts';
 
 const PaymentSuccess = () => {
+
+  useEffect(() => {
+    const isLoggedIn = checkToken()
+    if (!isLoggedIn) {
+      navigate(LOGIN_ROUTE)
+    }
+  }, [])
+
   const navigate = useNavigate()
   const [id, setId] = useState(() => {
     const savedItem = localStorage.getItem("albumID");
