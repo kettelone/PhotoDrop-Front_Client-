@@ -43,3 +43,15 @@ a{
 .no-scroll{
   overflow: hidden
 }
+
+
+.albums-cover::-webkit-scrollbar {
+  display: none;
+}
+
+.albums-cover {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}

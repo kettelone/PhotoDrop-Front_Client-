@@ -121,7 +121,7 @@ const AlbumsDashboard = () => {
       </PhotoIcon>
           <AlbumsContainer>
         <Title>Albums</Title>
-        <Albums>
+        <Albums className='albums-cover'>
             {albums?.map(album => 
               <Link to={`/album/${album.albumID}`} key={album.albumID}>
                 <Album>

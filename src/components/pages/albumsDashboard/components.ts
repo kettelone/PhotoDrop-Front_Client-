@@ -68,17 +68,22 @@ const Title = styled.div`
 		font-size: 16px;
 	}
 `
-const Albums = styled.div`display: flex;`
+const Albums = styled.div`
+	display: flex;
+	overflow-y: scroll;
+`
 const Album = styled.div`margin-right: 5px;`
 
 const AlbumCover = styled.img`
-	max-width: 200px;
-	max-height: 255px;
-	aspect-ratio: 78.6/100;
-	width: 95.75%;
+	width: 110px;
+	height: 140px;
 	border-radius: 10px;
 	object-fit: cover;
 	cursor: pointer;
+	@media only screen and (min-width: 740px) {
+		width: 200px;
+		height: 255px;
+	}
 `
 
 const Photo = styled.img`
