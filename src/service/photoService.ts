@@ -15,6 +15,7 @@ class PhotoService {
 					photoID: id
 				}
 			})
+			console.log(data)
 			return data
 		} catch (e) {
 			return false

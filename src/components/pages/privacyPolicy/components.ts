@@ -15,9 +15,9 @@ const Title = styled.div`
 	font-family: 'Termina Test', sans-serif;
 	text-align: center;
 	line-height: 21.6px;
-
 	@media only screen and (min-width: 740px) {
-		font-size: 22px;
+		font-size: 30px;
+		margin-bottom: 10px;
 	}
 `
 const P = styled.p`
@@ -26,6 +26,7 @@ const P = styled.p`
 	margin-top: 5px;
 	@media only screen and (min-width: 740px) {
 		font-size: 18px;
+		line-height: 23.08px;
 	}
 `
 const SubTitle = styled.p`
@@ -33,6 +34,7 @@ const SubTitle = styled.p`
 	margin: 0px;
 	@media only screen and (min-width: 740px) {
 		font-size: 18px;
+		line-height: 23.08px;
 	}
 `
 export { Container, SubContainer, Title, SubTitle, P }
