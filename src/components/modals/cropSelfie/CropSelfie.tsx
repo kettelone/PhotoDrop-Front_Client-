@@ -132,7 +132,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
         crop={crop}
         zoom={zoom}
         zoomWithScroll={true}
-        aspect={4/3}
+        aspect={4/5}
         maxZoom={3}
         onCropChange={setCrop}
         onCropComplete={onCropComplete}
