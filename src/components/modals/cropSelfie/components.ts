@@ -40,10 +40,8 @@ const Wrapper = styled.div`
 		max-height: 100vh;
 	}
 `
-const Img = styled.img`
-	width: 100%;
-	height: 100%;
-`
+const Img = styled.img`/* width: 100%;
+	height: 100%; */`
 
 const TopContainer = styled.div``
 const Title = styled.div`
