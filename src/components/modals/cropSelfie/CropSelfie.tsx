@@ -140,7 +140,6 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
         showGrid={false}
         cropShape={'round'}
         objectFit="vertical-cover"
-        initialCroppedAreaPercentages={{ width: 200, height: 200, x: 15, y: 25   }}
         classes={
           {
           containerClassName: 'containerClassName',
