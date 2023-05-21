@@ -18,11 +18,12 @@
 	}
 }
 
-/* .containerClassName img {
+.containerClassName img {
 		min-height: 248px;
+		min-width: 248px;
 		width: auto;
 		height: auto;
-	} */
+	}
 
 .cropAreaClassName {
 	box-shadow: 0 0 0 9999em #262626 !important;
