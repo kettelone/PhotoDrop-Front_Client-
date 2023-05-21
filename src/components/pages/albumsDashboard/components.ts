@@ -68,8 +68,6 @@ const Title = styled.div`
 		font-size: 16px;
 	}
 `
-const Hello = styled.div``
-
 const Albums = styled.div`
 	display: flex;
 	overflow-y: scroll;
