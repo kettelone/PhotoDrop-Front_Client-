@@ -4,13 +4,15 @@ import Button from '../../common/button/Button'
 const Container = styled.div`overflow: hidden;`
 
 const BodyWrapper = styled.div`
+	max-width: 100vw;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	display: flex;
-	height: calc(100vh - 55px);
-	width: 100vw;
-	align-items: center;
-	justify-content: center;
+	flex-direction: column;
 	@media only screen and (min-width: 740px) {
-		height: calc(100vh - 60px);
+		max-width: 420px;
 	}
 `
 
