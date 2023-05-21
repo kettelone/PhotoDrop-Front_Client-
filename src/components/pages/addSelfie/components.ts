@@ -67,20 +67,20 @@ const Blur = styled.div`
 const InputWrapper = styled.div``
 const Input = styled.input`display: none;`
 
-const PlusContainer = styled.div``
+const PlusContainer = styled.div`margin-bottom: -10px;`
 
 const Horizontal = styled.div`
 	background-color: white;
 	width: 18px;
 	height: 2px;
+	margin-bottom: -10px;
 `
 
 const Vertical = styled.div`
 	background-color: white;
-	width: 18px;
-	height: 2px;
-	transform: rotate(90deg);
-	margin-top: -2px;
+	width: 2px;
+	height: 18px;
+	margin-left: 8px;
 `
 
 export {
