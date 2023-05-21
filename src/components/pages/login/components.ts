@@ -5,7 +5,6 @@ const Container = styled.div`overflow: hidden;`
 
 const BodyWrapper = styled.div`
 	max-width: 100vw;
-	/* height: calc(100vh - 55px); */
 	position: absolute;
 	top: calc(50% + 55px);
 	left: 50%;

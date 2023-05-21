@@ -45,7 +45,8 @@ const navigate = useNavigate()
   const { country, dial_code } = useAppSelector(state => state.countryUpdate)
   const [digits, setDigits] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
-  const[ disabled, setDisabled] = useState(false)
+  const [disabled, setDisabled] = useState(false)
+  const [isDisabledCountryInput, setIsDisabledCountryInput] = useState(false)
   const dispatch = useAppDispatch()
 
   const handlePhoneNumber = (event: ChangeEvent<HTMLInputElement>) => {
@@ -56,13 +57,16 @@ const navigate = useNavigate()
   }
 
   const hanleCountry = () => {
-    document.getElementById('countryModal')?.classList.add('show')
+    if (!isDisabledCountryInput) {
+      document.getElementById('countryModal')?.classList.add('show')
+    }
   }
 
   const handleCreate = async () => {
     if (dial_code && digits.length <= 10 && digits.length >= 9) {
       setDisabled(true)
       setIsLoading(true)
+      setIsDisabledCountryInput(true)
       const fullNumber = `${dial_code.substring(1)}${digits}`
       dispatch(updateFullNumber({ fullNumber }))
       localStorage.setItem('phoneNumber', fullNumber)
