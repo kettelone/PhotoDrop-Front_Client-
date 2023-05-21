@@ -21,10 +21,8 @@
 }
 
 .containerClassName img {
-	width: 100%;
-	height: 100%;
-	/* height: 248px;
-	min-width: 248px; */
+		width: 100%;
+		min-height: 248px;
 	}
 
 .cropAreaClassName {
