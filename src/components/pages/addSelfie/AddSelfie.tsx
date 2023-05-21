@@ -1,6 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import personIcon from './personIcon.svg'
-import { Wrapper,Container,Title, SubTitle, IconContainer, AddSign, Input, Blur } from './components'
+import {
+  Wrapper,
+  Container,
+  Title,
+  SubTitle,
+  IconContainer,
+  Circle,
+  Input,
+  Blur,
+  InputWrapper,
+  PlusContainer,
+  Horizontal,
+  Vertical
+} from './components'
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import {DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 import checkToken from '../../../utils/checkJWT';
@@ -8,13 +21,13 @@ import { useNavigate } from 'react-router-dom';
 
 const AddSelfie = () => {
 const navigate = useNavigate()
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE) 
-    }
+  // useEffect(() => {
+  //   const isLoggedIn = checkToken()
+  //   if (!isLoggedIn) {
+  //     navigate(LOGIN_ROUTE) 
+  //   }
 
-  }, [])
+  // }, [])
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
 
   const selectPhoto = (event: any) => {
@@ -34,13 +47,20 @@ const navigate = useNavigate()
       <SubTitle>A selfie allows your photos to be synced with your account.</SubTitle>
       <IconContainer>
         <img src={personIcon} alt='icon' />
-        <AddSign htmlFor="imageOnly"/>
-        <Input
-          type="file"
-          id="imageOnly"
-          onChange={selectPhoto}
-          accept="image/*"
-        />
+          <Circle htmlFor="imageOnly"> 
+          <InputWrapper>
+            <Input
+              type="file"
+              id="imageOnly"
+              onChange={selectPhoto}
+              accept="image/*"
+            />
+            <PlusContainer>
+              <Horizontal />
+              <Vertical />
+            </PlusContainer>
+            </InputWrapper>
+          </Circle>
         </IconContainer>
       </Container>
     </Wrapper>

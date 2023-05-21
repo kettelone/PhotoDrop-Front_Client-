@@ -9,6 +9,11 @@ const Container = styled.div`
 	font-size: 16px;
 	z-index: 3;
 `
+
+const Wrapper = styled.div`
+	height: 90vh;
+	overflow-y: scroll;
+`
 const SubContainer = styled.div`
 	@media only screen and (min-width: 450px) {
 		display: flex;
@@ -74,11 +79,6 @@ const SpanCountryName = styled.span`margin-left: 0.75em;`
 const Separator = styled.div`
 	background-color: #f4f4f4;
 	height: 30px;
-`
-
-const Wrapper = styled.div`
-	height: 90vh;
-	overflow-y: scroll;
 `
 export {
 	Container,

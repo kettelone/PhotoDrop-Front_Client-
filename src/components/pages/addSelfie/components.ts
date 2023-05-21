@@ -35,7 +35,10 @@ const IconContainer = styled.div`
 	margin-top: 2em;
 `
 
-const AddSign = styled.label`
+const Circle = styled.label`
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-color: #3300cc;
 	width: 42px;
 	height: 42px;
@@ -46,14 +49,6 @@ const AddSign = styled.label`
 		&:hover {
 			background-color: grey;
 		}
-	}
-
-	&::before {
-		display: flex;
-		content: "+";
-		font-size: 2.5em;
-		color: white;
-		justify-content: center;
 	}
 `
 
@@ -68,7 +63,25 @@ const Blur = styled.div`
 	backdrop-filter: blur(5px); // This be the blur
 	z-index: 2;
 `
+
+const InputWrapper = styled.div``
 const Input = styled.input`display: none;`
+
+const PlusContainer = styled.div``
+
+const Horizontal = styled.div`
+	background-color: white;
+	width: 18px;
+	height: 2px;
+`
+
+const Vertical = styled.div`
+	background-color: white;
+	width: 18px;
+	height: 2px;
+	transform: rotate(90deg);
+	margin-top: -2px;
+`
 
 export {
 	Wrapper,
@@ -76,7 +89,11 @@ export {
 	Title,
 	SubTitle,
 	IconContainer,
-	AddSign,
+	Circle,
+	InputWrapper,
 	Input,
-	Blur
+	Blur,
+	PlusContainer,
+	Horizontal,
+	Vertical
 }
