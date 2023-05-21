@@ -22,6 +22,7 @@
 
 .containerClassName img {
 		min-height: 248px;
+		object-fit: cover;
 	}
 
 .cropAreaClassName {
