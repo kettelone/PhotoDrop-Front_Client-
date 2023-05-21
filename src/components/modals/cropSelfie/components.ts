@@ -41,8 +41,6 @@ const Wrapper = styled.div`
 	}
 `
 const Img = styled.img`
-	/* max-width: 248px;
-	max-height: 248px; */
 	width: 100%;
 	height: 100%;
 `
