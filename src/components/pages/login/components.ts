@@ -5,13 +5,15 @@ const Container = styled.div`overflow: hidden;`
 
 const BodyWrapper = styled.div`
 	max-width: 100vw;
+	/* height: calc(100vh - 55px); */
 	position: absolute;
-	top: 50%;
+	top: calc(50% + 55px);
 	left: 50%;
 	transform: translate(-50%, -50%);
 	display: flex;
 	flex-direction: column;
 	@media only screen and (min-width: 740px) {
+		top: 50%;
 		max-width: 420px;
 	}
 `
