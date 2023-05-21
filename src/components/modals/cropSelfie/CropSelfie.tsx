@@ -29,7 +29,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
 
   const [preview, setPreview] = useState<undefined | string>()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
-  const [zoom, setZoom] = useState(1)
+  const [zoom, setZoom] = useState(-2)
   const [croppedImage, setCroppedImage] = useState<Blob | null>()
   const [isLoading, setIsLoading] = useState(false)
   const [disabled, setDisabled] =useState(false)
