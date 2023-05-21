@@ -132,14 +132,14 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
         crop={crop}
         zoom={zoom}
         zoomWithScroll={true}
-        aspect={4/5}
+        aspect={1}
         maxZoom={3}
         onCropChange={setCrop}
         onCropComplete={onCropComplete}
         onZoomChange={setZoom}
         showGrid={false}
         cropShape={'round'}
-        objectFit="auto-cover"
+        objectFit="vertical-cover"
         initialCroppedAreaPercentages={{ width: 200, height: 200, x: 15, y: 25   }}
         classes={
           {
