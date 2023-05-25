@@ -21,13 +21,13 @@ import { useNavigate } from 'react-router-dom';
 
 const AddSelfie = () => {
 const navigate = useNavigate()
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE) 
-    }
+  // useEffect(() => {
+  //   const isLoggedIn = checkToken()
+  //   if (!isLoggedIn) {
+  //     navigate(LOGIN_ROUTE) 
+  //   }
 
-  }, [])
+  // }, [])
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
 
   const selectPhoto = (event: any) => {
