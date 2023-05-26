@@ -28,6 +28,14 @@ import defaultImage from '../../../assets/defaultImage.svg';
 
 
 const AlbumsDashboard = () => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const loggedIn = checkToken()
+    if (!loggedIn) {
+      navigate(LOGIN_ROUTE)
+    }
+  }, [])
   const [albums, setAlbums] = useState(() => {
     let temp = localStorage.getItem("albums")
     const albums:Array<any> = temp ? JSON.parse(temp) : []
@@ -51,16 +59,8 @@ const AlbumsDashboard = () => {
   const [albumCover, setAlbumCover]= useState('')
   const [albumName, setAlbumName] = useState('')
 
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    const loggedIn = checkToken()
-    if (!loggedIn) {
-      navigate(LOGIN_ROUTE)
-    }
-  }, [])
-
   const goToProfile = () => {
+    
     navigate(PROFILE_ROUTE)
   }
 
