@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import checkToken from '../../../utils/checkJWT';
-import albumService from '../../../service/albumService';
 import { Link } from 'react-router-dom';
 import Loader from '../../modals/loader/Loader';
 import { useNavigate } from 'react-router-dom';
@@ -29,9 +28,20 @@ import defaultImage from '../../../assets/defaultImage.svg';
 
 
 const AlbumsDashboard = () => {
-  const [selfie, setSelfie] = useState()
-  const [albums, setAlbums] = useState<Array<any>>()
-  const [photos, setPhotos] = useState<Array<any>>()
+  const [albums, setAlbums] = useState(() => {
+    let temp = localStorage.getItem("albums")
+    const albums:Array<any> = temp ? JSON.parse(temp) : []
+    return albums;
+  });
+  const [photos, setPhotos] = useState(() => {
+    let temp = localStorage.getItem("allPhotos")
+    const photos: Array<any> = temp ? JSON.parse(temp) : []
+    return photos;
+  });
+  const [selfie, setSelfie] = useState(() => {
+    let selfie = localStorage.getItem("selfieUrl")
+    return selfie;
+  });
   const [isLoading, setIsLoading] = useState(false)
   const [url, setUrl] = useState('')
   const [photoId, setPhotoId] = useState('')
@@ -44,29 +54,8 @@ const AlbumsDashboard = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setIsLoading(true)
     const loggedIn = checkToken()
-    
-    if (loggedIn) {
-      const fetchData = async () => {
-        const data = await albumService.getAlbums()
-        if (data) {
-          let { user, albums, allPhotos } = data.data
-          if (albums.length > 0) {
-            localStorage.setItem('albumsExist', "true")
-          }
-          const { selfieUrl } = user
-          setSelfie(selfieUrl)
-          setAlbums(albums)
-          setPhotos(allPhotos)
-        }
-        setTimeout(() => {
-          setIsLoading(false)
-        },500)
-      }
-      fetchData()
-
-    } else {
+    if (!loggedIn) {
       navigate(LOGIN_ROUTE)
     }
   }, [])
@@ -83,17 +72,18 @@ const AlbumsDashboard = () => {
       return
     }
     setPhotoId(id)
-    setAlbumId(albumID)
+    setAlbumId(albumID)  
     setIsPaid(album[0].isPaid)
     setAlbumCover(album[0].url)
     setAlbumName(album[0].name)
     const data = await photoService.getOriginalPhoto(id)
+
     if (data) {
       setUrl(data?.data)
       setTimeout(() => {
         setPhotoLoading(false)
         document.getElementById('singlePhoto')?.classList.add('show')
-      }, 2000)
+      }, 100)
     }
   }
 

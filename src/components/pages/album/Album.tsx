@@ -42,54 +42,47 @@ const Album = () => {
     if (id == 'false' || id == 'null') {
       navigate(DASHBOARD_ROUTE)
     }
-  }, [])
-
-  const [photos, setPhotos] = useState<Array<any>>()
-  const [quantity, setQuantity] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
-  const [photoLoading, setPhotoLoading] = useState(false)
-  const [paymentLoading, setPaymentLoading] =useState(false)
-  const [albumName, setAlbumName] = useState('')
-  const [albumCover, setAlbumCover] = useState('')
-  const [url, setUrl] = useState('')
-  const [photoId, setPhotoId] = useState('')
-  const [isPaid, setIsPaid] = useState(false)
-  const [isDisabled, setIsDisabled] = useState(false)
-  const navigate = useNavigate()
-
-
-  useEffect(() => {
-    setIsLoading(true)
-    const loggedIn = checkToken()
-    if (loggedIn) {
-      const fetchData = async () => {
-        const data = await albumService.getAlbums()
-        if (data) {
-          const { allPhotos, albums }= data.data
-          //@ts-ignore
-          const albumPhotos = allPhotos.filter(photo => photo.albumID === id)
-          setQuantity(albumPhotos.length)
-          setPhotos(albumPhotos)
-          //@ts-ignore
-          const album = albums.filter(album => album.albumID === id)
-          setAlbumCover(album[0].url)
-          setAlbumName(album[0].name)
-          setIsPaid(album[0].isPaid)
-          if (id) {
-          localStorage.setItem('albumID', id)
-          localStorage.setItem('albumCover', album[0].url)
-          localStorage.setItem('albumName', album[0].name)
-          }
-        }
-        setTimeout(() => {
-          setIsLoading(false)
-        }, 500)
-      }
-      fetchData()
-
-    } else {
+    if (id) {
+      localStorage.setItem('albumID', id)
+      localStorage.setItem('albumCover', album[0].url)
+      localStorage.setItem('albumName', album[0].name)
     }
   }, [])
+
+
+  const [photos, setPhotos] = useState(() => {
+    let temp = localStorage.getItem("allPhotos")
+    let allPhotos: Array<any> = temp ? JSON.parse(temp) : []
+    const albumPhotos = allPhotos.filter(photo => photo.albumID === id)
+    return albumPhotos;
+  });
+  const [quantity, setQuantity] = useState(() => {
+    return photos.length
+  })
+  const [album, setAlbum] = useState(() => {
+    const temp = localStorage.getItem('albums')
+    const albums: Array<any> = temp ? JSON.parse(temp) : []
+    const album = albums.filter(album => album.albumID === id)
+    return album
+  })
+  const [albumName, setAlbumName] = useState(() => {
+    return album[0].name
+  })
+  const [albumCover, setAlbumCover] = useState(() => {
+    localStorage.setItem('albumCover', album[0].url)
+    return album[0].url
+  })
+  const [isPaid, setIsPaid] = useState(() => {
+    return album[0].isPaid
+  })
+  const [url, setUrl] = useState('')
+  const [photoId, setPhotoId] = useState('')
+  const [isDisabled, setIsDisabled] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [photoLoading, setPhotoLoading] = useState(false)
+  const [paymentLoading, setPaymentLoading] = useState(false)
+  const navigate = useNavigate()
+
 
   const handlePayment = async () => {
     setPaymentLoading(true)
@@ -114,7 +107,7 @@ const Album = () => {
       setTimeout(() => {
         setPhotoLoading(false)
         document.getElementById('singlePhoto')?.classList.add('show')
-      }, 2000)
+      }, 0)
     }
   }
 

@@ -3,13 +3,26 @@ import OtpInput from 'react-otp-input';
 import { useNavigate } from 'react-router-dom';
 import './index.css'
 import loginService from '../../../service/loginService';
-import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer, StyledButton,Wrapper, ErrorMessage } from './components'
-import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, LOGIN_ROUTE, UPLOAD_SELFIE_ROUTE } from '../../../utils/consts';
+import {
+  Container,
+  Title,
+  SubTitle,
+  Phone,
+  ResendButton,
+  ButtonContainer,
+  StyledButton,
+  Wrapper,
+  ErrorMessage
+} from './components'
+import {
+  ALBUMS_DASHBOARD_ROUTE,
+  DASHBOARD_ROUTE,
+  UPLOAD_SELFIE_ROUTE
+} from '../../../utils/consts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import checkToken from '../../../utils/checkJWT';
 import albumService from '../../../service/albumService';
-
 
 const CodeConfirmation = () => {
 
@@ -24,7 +37,7 @@ const CodeConfirmation = () => {
   const [resendPressed, setResendPressed] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
-  const [disabled, setDisabled] = useState(false)
+  // const [disabled, setDisabled] = useState(false)
   const navigate = useNavigate()
   const  phoneNumber = localStorage.getItem('phoneNumber')
   const handleNext = async () => {
@@ -39,16 +52,23 @@ const CodeConfirmation = () => {
           setTimeout(async () => {
             const data = await albumService.getAlbums()
             if (data) {
-              const { allPhotos, user } = data.data
-              console.log(user)
-              const { selfieUrl } = user
+              const { user, albums, allPhotos } = data.data
+              const { selfieUrl, name } = user
+              localStorage.setItem('phone', user.phone)
+              localStorage.setItem('email', user.email ? user.email : 'test@gmail.com')
+              localStorage.setItem("name", name ? name : 'Guest')
+              localStorage.setItem("albums", JSON.stringify(albums))
+              localStorage.setItem("allPhotos", JSON.stringify(allPhotos))
               if (!selfieUrl) {
                 navigate(UPLOAD_SELFIE_ROUTE)
                 setIsLoading(false)
-              }else if (selfieUrl && allPhotos.length > 0) {
+              } else if (selfieUrl && allPhotos.length > 0) {
+                localStorage.setItem('albumsExist', "true")
+                localStorage.setItem("selfieUrl", selfieUrl)
                 navigate(ALBUMS_DASHBOARD_ROUTE)
                 setIsLoading(false)
               } else if (selfieUrl) {
+                localStorage.setItem("selfieUrl", selfieUrl)
                 navigate(DASHBOARD_ROUTE)
                 setIsLoading(false)
               }
@@ -69,7 +89,7 @@ const CodeConfirmation = () => {
 
   const handleReset = async () => {
     if (!resendPressed && phoneNumber) {
-      setDisabled(true)
+      // setDisabled(true)
       setOtp('')
       await loginService.requestOtp(phoneNumber)
     }

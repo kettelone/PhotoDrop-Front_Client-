@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+
+import React, { useEffect, useState } from 'react';
 import {
   MainContainer,
   Background,
@@ -24,6 +25,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { change } from '../../../app/selfieSlice/selfieSlice';
 import { useAppDispatch } from '../../../app/hooks';
+import albumService from '../../../service/albumService';
 
 const CropSelfie = (props: { selfie: File |null , page:string}) => {
 
@@ -44,7 +46,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
       return
     }
 
-     objectUrl = URL.createObjectURL(props.selfie)
+    objectUrl = URL.createObjectURL(props.selfie)
     setPreview(objectUrl)
 
     // free memory when ever this component is unmounted
@@ -82,7 +84,6 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   }
 
   const saveSelfie = async () => {
-
     setDisabled(true)
     if (!disabled){
     setIsLoading(true)
@@ -90,6 +91,12 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
     try {
       if (croppedImage) {
         await uploadToS3(croppedImage, presignedPostUrl)
+        const response = await albumService.getAlbums()
+        if (response) {
+          let { user } = response.data
+          const { selfieUrl } = user
+          localStorage.setItem("selfieUrl", selfieUrl)
+        }
         //time out for page reload when selfie changed user profile
         setTimeout(() => {
           dispatch(change())
@@ -101,7 +108,6 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
             setIsLoading(false)
             closeModal()
           }, 3000)
-
         } else {
           navigate(props.page)
           setIsLoading(false)

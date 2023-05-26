@@ -50,9 +50,9 @@ const Dashboard = () => {
           if (data) {
             const { albums, allPhotos, user } = data.data
             const { selfieUrl } = user
-            dispatch(update({ selfieUrl }))
-            dispatch(updateAlbum({ albums }))
-            dispatch(updatePhoto({ allPhotos }))
+            // dispatch(update({ selfieUrl }))
+            // dispatch(updateAlbum({ albums }))
+            // dispatch(updatePhoto({ allPhotos }))
             setSelfie(selfieUrl)
             if (allPhotos.length > 0) {
               navigate(ALBUMS_DASHBOARD_ROUTE)
@@ -63,7 +63,8 @@ const Dashboard = () => {
         },1000)
       }
       fetchData()
-    } else {
+    }
+    else {
       navigate(LOGIN_ROUTE);
     }
   }, [])

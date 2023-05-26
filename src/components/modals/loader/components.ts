@@ -22,22 +22,8 @@ const Img = styled.img`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	animation: fadeIn 1.25s linear infinite;
-
-	@keyframes fadeIn {
-		0% {
-			scale: 1;
-		}
-		100% {
-			scale: 0.6;
-		}
-		0% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 0.6;
-		}
-	}
+	width: 75px;
+	height: 75px;
 `
 
 const Text = styled.div`
