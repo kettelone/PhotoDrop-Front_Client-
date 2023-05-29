@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import albumsService from '../../../service/albumService'
 import checkToken from '../../../utils/checkJWT';
 import { ALBUMS_DASHBOARD_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
-import { update } from '../../../app/selfieSlice/selfieSlice';
+import { update } from '../../../app/userSlice/userSlice';
 import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
 import { updatePhoto } from '../../../app/photosSlice/photosSlice';
 import { useAppDispatch } from '../../../app/hooks';

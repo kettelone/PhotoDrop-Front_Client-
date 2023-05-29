@@ -18,7 +18,6 @@ import {
   SelfieContainer,
   Img,
   Pen,
-  Blur,
   IconContainer,
   Input,
   Options,
@@ -27,36 +26,27 @@ import {
   Description,
   ArrowWrapper,
   ArrowContainer,
-  LoaderWrapper
  } from './components'
 
 const Profile = () => {
-  const changedSelfie = useAppSelector(state => state.selfieUpdate.selfieChanged)
-  //once selfie updated sahnge state for the page to reload after timeOut
+  const changedSelfie = useAppSelector(state => state.userUpdate.selfieChanged)
+  //once selfie updated change state for the page to reload after timeOut
+  
   useEffect(() => {
     const loggedIn = checkToken()
     if (!loggedIn) {
       navigate(LOGIN_ROUTE);
     }
-    setSelfie(localStorage.getItem('selfieUrl'))
   }, [changedSelfie])
 
-  const [userName, setUserName] = useState(() => {
-    const name = localStorage.getItem("name");
-    return name ;
-  });
-  const [selfie, setSelfie] = useState(() => {
-    const selfie = localStorage.getItem("selfieUrl");
-    return selfie;
-  });
+  const navigate = useNavigate()
+  const userName = useAppSelector(state => state.userUpdate.name)
+  const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
+  const [selectedFile, setSelectedFile] = useState<null | File>(null)
   const [albumsExist, setAlbumExist] = useState(() => {
     const value = localStorage.getItem('albumsExist')
     return value || ''
   })
-  const [selectedFile, setSelectedFile] = useState<null | File>(null)
-  const [isLoading, setIsLoading] = useState(false)
-
-  const navigate = useNavigate()
   
   const selectPhoto = (event: any) => {
     if (event.target.files) {
@@ -67,12 +57,7 @@ const Profile = () => {
   }
 
   const goBack = () => {
-    if (albumsExist) {
-      navigate(ALBUMS_DASHBOARD_ROUTE)
-    } else {
-      navigate(DASHBOARD_ROUTE)
-    }
-
+      navigate(albumsExist ? ALBUMS_DASHBOARD_ROUTE : DASHBOARD_ROUTE)
   }
   return (
     <Wrapper>

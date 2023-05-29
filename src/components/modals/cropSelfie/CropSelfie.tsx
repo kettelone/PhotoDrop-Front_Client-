@@ -23,7 +23,7 @@ import { uploadToS3 } from './uploadToS3'
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { change } from '../../../app/selfieSlice/selfieSlice';
+import { change } from '../../../app/userSlice/userSlice';
 import { useAppDispatch } from '../../../app/hooks';
 import albumService from '../../../service/albumService';
 

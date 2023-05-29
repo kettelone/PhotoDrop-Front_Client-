@@ -4,6 +4,8 @@ import { RootState } from '../store'
 interface InitiaState {
 	albumID: string
 	url: string
+	name: string
+	isPaid: boolean
 }
 const initialState: Array<InitiaState> = []
 
@@ -12,7 +14,7 @@ export const albumsSlice = createSlice({
 	initialState,
 	reducers: {
 		updateAlbum: (state, { payload: { albums } }) => {
-			state = albums
+			return (state = albums)
 		}
 	}
 })

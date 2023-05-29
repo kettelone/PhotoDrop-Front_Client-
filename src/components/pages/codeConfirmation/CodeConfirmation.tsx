@@ -52,23 +52,23 @@ const CodeConfirmation = () => {
           setTimeout(async () => {
             const data = await albumService.getAlbums()
             if (data) {
-              const { user, albums, allPhotos } = data.data
-              const { selfieUrl, name } = user
-              localStorage.setItem('phone', user.phone)
-              localStorage.setItem('email', user.email ? user.email : 'test@gmail.com')
-              localStorage.setItem("name", name ? name : 'Guest')
-              localStorage.setItem("albums", JSON.stringify(albums))
-              localStorage.setItem("allPhotos", JSON.stringify(allPhotos))
+              const { user, allPhotos } = data.data
+              const { selfieUrl, } = user
+              // localStorage.setItem('phone', user.phone)
+              // localStorage.setItem('email', user.email ? user.email : 'test@gmail.com')
+              // localStorage.setItem("name", name ? name : 'Guest')
+              // localStorage.setItem("albums", JSON.stringify(albums))
+              // localStorage.setItem("allPhotos", JSON.stringify(allPhotos))
               if (!selfieUrl) {
                 navigate(UPLOAD_SELFIE_ROUTE)
                 setIsLoading(false)
               } else if (selfieUrl && allPhotos.length > 0) {
                 localStorage.setItem('albumsExist', "true")
-                localStorage.setItem("selfieUrl", selfieUrl)
+                // localStorage.setItem("selfieUrl", selfieUrl)
                 navigate(ALBUMS_DASHBOARD_ROUTE)
                 setIsLoading(false)
               } else if (selfieUrl) {
-                localStorage.setItem("selfieUrl", selfieUrl)
+                // localStorage.setItem("selfieUrl", selfieUrl)
                 navigate(DASHBOARD_ROUTE)
                 setIsLoading(false)
               }

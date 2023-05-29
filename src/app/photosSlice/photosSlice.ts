@@ -14,7 +14,7 @@ export const photosSlice = createSlice({
 	initialState,
 	reducers: {
 		updatePhoto: (state, { payload: { allPhotos } }) => {
-			state = allPhotos
+			return (state = allPhotos)
 		}
 	}
 })

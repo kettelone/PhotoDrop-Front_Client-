@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import checkToken from '../../../utils/checkJWT';
-import albumService from '../../../service/albumService';
 import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 import { useParams } from 'react-router-dom';
 import Loader from '../../modals/loader/Loader';
@@ -12,6 +11,8 @@ import PhotoModal from '../../modals/photo/Photo';
 import photoService from '../../../service/photoService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { useAppDispatch } from '../../../app/hooks';
+import { updateOriginalPhotos } from '../../../app/originalPhotosSlice/originalPhotosSlice'
 
 import {
   Wrapper,
@@ -31,9 +32,9 @@ import {
   StyledButton
 } from './components'
 import Footer from '../../common/footer/Footer';
+import { useAppSelector } from '../../../app/hooks';
 
 const Album = () => {
-  let { id } = useParams();
   useEffect(() => {
     const isLoggedIn = checkToken()
     if (!isLoggedIn) {
@@ -48,73 +49,60 @@ const Album = () => {
       localStorage.setItem('albumName', album[0].name)
     }
   }, [])
-
-
-  const [photos, setPhotos] = useState(() => {
-    let temp = localStorage.getItem("allPhotos")
-    let allPhotos: Array<any> = temp ? JSON.parse(temp) : []
-    const albumPhotos = allPhotos.filter(photo => photo.albumID === id)
-    return albumPhotos;
-  });
-  const [quantity, setQuantity] = useState(() => {
-    return photos.length
-  })
-  const [album, setAlbum] = useState(() => {
-    const temp = localStorage.getItem('albums')
-    const albums: Array<any> = temp ? JSON.parse(temp) : []
-    const album = albums.filter(album => album.albumID === id)
-    return album
-  })
-  const [albumName, setAlbumName] = useState(() => {
-    return album[0].name
-  })
-  const [albumCover, setAlbumCover] = useState(() => {
-    localStorage.setItem('albumCover', album[0].url)
-    return album[0].url
-  })
-  const [isPaid, setIsPaid] = useState(() => {
-    return album[0].isPaid
-  })
-  const [url, setUrl] = useState('')
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const { id } = useParams();
+  const originalPhotos = useAppSelector(state => state.originalPhotosUpdate)
+  const photos = useAppSelector(state => state.photosUpdate)
+  const albums = useAppSelector(state => state.albumsUpdate)
+  const quantity = photos.length
+  const album = albums.filter(album => album.albumID === id)
+  console.log({ albums })
+  console.log({album})
+  const albumName= album[0].name
+  const albumCover = album[0].url
+  const isPaid= album[0].isPaid
+  const [originalPhotoUrl, setOriginalPhotoUrl] = useState('')
   const [photoId, setPhotoId] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [photoLoading, setPhotoLoading] = useState(false)
-  const [paymentLoading, setPaymentLoading] = useState(false)
-  const navigate = useNavigate()
-
+  const [isPhotoLoading, setIsPhotoLoading] = useState(false)
+  const [isPaymentLoading, setIsPaymentLoading] = useState(false)
 
   const handlePayment = async () => {
-    setPaymentLoading(true)
+    setIsPaymentLoading(true)
     setIsDisabled(true)
     if (id) {
     const paymentLink = await paymentService.requestPayment(id)
       window.location.replace(paymentLink);
     }
     setTimeout(() => {
-      setPaymentLoading(false)
+      setIsPaymentLoading(false)
       setIsDisabled(false)
     },1000)
   }
 
   const handlePhoto = async (id: string) => {
     document.body.classList.add('noScroll')
-    setPhotoLoading(true)
-    const data = await photoService.getOriginalPhoto(id)
-    if (data) {
-      setUrl(data?.data)
-      setPhotoId(id)
-      setTimeout(() => {
-        setPhotoLoading(false)
-        document.getElementById('singlePhoto')?.classList.add('show')
-      }, 0)
+    setOriginalPhotoUrl('')
+    if (originalPhotos[id]) {
+      setOriginalPhotoUrl(originalPhotos[id])
+    } else {
+      setIsPhotoLoading(true)
+      const data = await photoService.getOriginalPhoto(id)
+      if (!data) {
+        return
+      }
+      dispatch(updateOriginalPhotos({ [id]: data?.data }))
+      setOriginalPhotoUrl(data?.data)
+      setIsPhotoLoading(false)
     }
+    document.getElementById('singlePhoto')?.classList.add('show')
   }
 
   return (
     <Wrapper>
       <PhotoModal
-        url={url}
+        url={originalPhotoUrl}
         photoId={photoId}
         isPaid={isPaid}
         albumId={id}
@@ -122,7 +110,7 @@ const Album = () => {
         albumName={albumName}
       />
       {
-        isLoading || photoLoading
+        isPhotoLoading
           ? <div><Loader /><Blur /></div>
           : ''
       }
@@ -171,7 +159,7 @@ const Album = () => {
               disabled={isDisabled}
             >
             {
-                paymentLoading
+                isPaymentLoading
                   ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
                   : "Unlock your photos"
             }
