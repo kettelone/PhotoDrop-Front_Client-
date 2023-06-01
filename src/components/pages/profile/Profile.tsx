@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector} from '../../../app/hooks';
 import pen from './pen.svg'
-import { ACCOUNT_SETTINGS, ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, EDIT_NAME_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import {
+  LOGIN_ROUTE,
+  ACCOUNT_SETTINGS,
+  ALBUMS_DASHBOARD_ROUTE,
+  DASHBOARD_ROUTE,
+  EDIT_NAME_ROUTE,
+  PROFILE_ROUTE
+} from '../../../utils/consts';
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import checkToken from '../../../utils/checkJWT';
-import { LOGIN_ROUTE } from '../../../utils/consts';
 import arrowRight from '../../../assets/arrowRight.svg'
 import GoBack from '../../common/goBack/GoBack';
 import defaultImage from '../../../assets/defaultImage.svg';
-
 import {
   Wrapper,
   Container,
@@ -29,24 +34,23 @@ import {
  } from './components'
 
 const Profile = () => {
-  const changedSelfie = useAppSelector(state => state.userUpdate.selfieChanged)
-  //once selfie updated change state for the page to reload after timeOut
-  
+  const navigate = useNavigate()
   useEffect(() => {
     const loggedIn = checkToken()
     if (!loggedIn) {
       navigate(LOGIN_ROUTE);
     }
-  }, [changedSelfie])
+  }, [])
 
-  const navigate = useNavigate()
   const userName = useAppSelector(state => state.userUpdate.name)
   const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
+
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
   const [albumsExist, setAlbumExist] = useState(() => {
     const value = localStorage.getItem('albumsExist')
     return value || ''
   })
+  // once selfie updated change state for the page to reload after timeOut
   
   const selectPhoto = (event: any) => {
     if (event.target.files) {
@@ -66,7 +70,7 @@ const Profile = () => {
       </span>
       <Container>
       <CropSelfie selfie={selectedFile} page={PROFILE_ROUTE} />
-      <Welcome>Welcome, {userName}.</Welcome>
+      <Welcome>Welcome, {userName || "Guest"}.</Welcome>
       <YourSelfie>Your selfie</YourSelfie>
       <SelfieContainer>
         <Img src={selfie || defaultImage} alt="selfie" />

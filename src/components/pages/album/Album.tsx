@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import checkToken from '../../../utils/checkJWT';
 import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
-import { useParams } from 'react-router-dom';
 import Loader from '../../modals/loader/Loader';
-import { Link } from 'react-router-dom';
 import arrowLeft from '../../../assets/arrowLeft.svg'
 import paymentService from '../../../service/paymentService';
 import PhotoModal from '../../modals/photo/Photo';
 import photoService from '../../../service/photoService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { updateOriginalPhotos } from '../../../app/originalPhotosSlice/originalPhotosSlice'
 
 import {
@@ -32,7 +30,6 @@ import {
   StyledButton
 } from './components'
 import Footer from '../../common/footer/Footer';
-import { useAppSelector } from '../../../app/hooks';
 
 const Album = () => {
   useEffect(() => {
@@ -53,12 +50,10 @@ const Album = () => {
   const navigate = useNavigate()
   const { id } = useParams();
   const originalPhotos = useAppSelector(state => state.originalPhotosUpdate)
-  const photos = useAppSelector(state => state.photosUpdate)
+  const photos = useAppSelector(state => state.photosUpdate.filter(photo => photo.albumID === id))
   const albums = useAppSelector(state => state.albumsUpdate)
   const quantity = photos.length
   const album = albums.filter(album => album.albumID === id)
-  console.log({ albums })
-  console.log({album})
   const albumName= album[0].name
   const albumCover = album[0].url
   const isPaid= album[0].isPaid
@@ -136,15 +131,15 @@ const Album = () => {
         <GridContainer id="grid">
           {
             photos && photos.length > 0
-              ? photos.map(photo =>
-                <Photo
-                  onClick={() => handlePhoto(photo.photoID)}
-                  src={photo.url}
-                  alt="photo"
-                  className='photos'
-                  data-name={photo.photoID}
-                  key={photo.url}
-                />
+              ? photos.map(photo => 
+                   <Photo
+                    onClick={() => handlePhoto(photo.photoID)}
+                    src={photo.url}
+                    alt="photo"
+                    className='photos'
+                    data-name={photo.photoID}
+                    key={photo.url}
+                  />
               )
               : ''
           }

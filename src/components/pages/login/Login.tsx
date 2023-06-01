@@ -2,11 +2,10 @@ import React, { useState, ChangeEvent ,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import stroke from '../../../assets/stroke.svg'
 import CountrySelect from '../../modals/countrySelect/CountrySelect';
-import { useAppSelector } from '../../../app/hooks'
+import { useAppSelector, useAppDispatch } from '../../../app/hooks'
 import loginService from '../../../service/loginService';
 import { CODE_CONFIRMATION_ROUTE, DASHBOARD_ROUTE } from '../../../utils/consts'
 import { updateFullNumber } from '../../../app/countrySlice/countrySlice'
-import { useAppDispatch } from '../../../app/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import checkToken from '../../../utils/checkJWT';

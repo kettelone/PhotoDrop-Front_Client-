@@ -23,7 +23,7 @@ import { uploadToS3 } from './uploadToS3'
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { change } from '../../../app/userSlice/userSlice';
+import { updateSelfie } from '../../../app/userSlice/userSlice';
 import { useAppDispatch } from '../../../app/hooks';
 import albumService from '../../../service/albumService';
 
@@ -58,7 +58,6 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
     URL.revokeObjectURL(objectUrl)
     document.getElementById('initialSelfie')?.classList.remove('show')
     document.getElementById('background')?.classList.remove('show')
-
     setPreview(undefined)
   }
 
@@ -91,26 +90,21 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
     try {
       if (croppedImage) {
         await uploadToS3(croppedImage, presignedPostUrl)
-        const response = await albumService.getAlbums()
-        if (response) {
-          let { user } = response.data
-          const { selfieUrl } = user
-          localStorage.setItem("selfieUrl", selfieUrl)
-        }
-        //time out for page reload when selfie changed user profile
-        setTimeout(() => {
-          dispatch(change())
-        }, 4000)
+        setTimeout(async () => {
+          const response = await albumService.getAlbums()
+          if (response) {
+            const { user } = response.data
+            const { selfieUrl } = user
+            dispatch(updateSelfie({ selfieUrl }))
+            localStorage.setItem("data", response.data)
+          }
+        },3000)
 
         if (props.page === '/user-dashboard') {
-          setTimeout(() => {
             navigate(props.page)
-            setIsLoading(false)
             closeModal()
-          }, 3000)
         } else {
           navigate(props.page)
-          setIsLoading(false)
           closeModal()
         }
       }

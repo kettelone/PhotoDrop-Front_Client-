@@ -16,13 +16,19 @@ export const userSlice = createSlice({
 		update: (state, { payload: { selfieUrl, phone, email, name } }) => {
 			return { ...state, ...{ selfieUrl, phone, email, name } }
 		},
-		change: (state) => {
-			state.selfieChanged = state.selfieChanged === true ? false : true
+		updateSelfie: (state, { payload: { selfieUrl } }) => {
+			return {
+				...state,
+				...{
+					selfieUrl,
+					selfieChanged: state.selfieChanged === false ? true : false
+				}
+			}
 		}
 	}
 })
 
-export const { update, change } = userSlice.actions
+export const { update, updateSelfie } = userSlice.actions
 
 export const selectSelfie = (state: RootState) => state.userUpdate
 

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import checkToken from '../../../utils/checkJWT';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../../modals/loader/Loader';
-import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../../app/hooks';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 import { update } from '../../../app/userSlice/userSlice'
 import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
 import { updatePhoto } from '../../../app/photosSlice/photosSlice';
@@ -44,17 +42,38 @@ const AlbumsDashboard = () => {
       navigate(LOGIN_ROUTE)
     } else {
       const fetchData = async () => {
-        setIsPageLoading(true)
+        // setIsPageLoading(true)
         const data = await albumService.getAlbums()
         if (!data) {
           return 
         }
-        const { user, albums, allPhotos } = data.data
-        const { selfieUrl, name, phone, email } = user
-        dispatch(update({ selfieUrl, name, phone, email }))
-        dispatch(updateAlbum( {albums} ))
-        dispatch(updatePhoto({ allPhotos }))
-        setIsPageLoading(false)
+        const localData = localStorage.getItem('data')
+        if (!localData) {
+          const { user, albums, allPhotos } = data.data
+          const { selfieUrl, name, phone, email } = user
+          localStorage.setItem('data', JSON.stringify(data.data))
+          dispatch(update({ selfieUrl, name, phone, email }))
+          dispatch(updateAlbum({ albums }))
+          dispatch(updatePhoto({ allPhotos }))
+          // setIsPageLoading(false)
+        } else if (localData.length !== JSON.stringify(data.data).length) {
+          const { user, albums, allPhotos } = data.data
+          const { selfieUrl, name, phone, email } = user
+            localStorage.setItem('data', JSON.stringify(data.data))
+            dispatch(update({ selfieUrl, name, phone, email }))
+            dispatch(updateAlbum({ albums }))
+            dispatch(updatePhoto({ allPhotos }))
+            // setIsPageLoading(false)
+        } else if (localData.length === JSON.stringify(data.data).length) {
+          const data = JSON.parse(localData)
+          const { user, albums, allPhotos } = data
+          const { selfieUrl, name, phone, email } = user
+          dispatch(update({ selfieUrl, name, phone, email }))
+          dispatch(updateAlbum({ albums }))
+          dispatch(updatePhoto({ allPhotos }))
+          setIsPageLoading(false)
+        }
+        
       }
       fetchData()
     }
