@@ -41,7 +41,7 @@ const navigate = useNavigate()
     }
   },[])
 
-  const { country, dial_code } = useAppSelector(state => state.countryUpdate)
+  const { country, dialCode } = useAppSelector(state => state.countryUpdate)
   const [digits, setDigits] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
   const [disabled, setDisabled] = useState(false)
@@ -62,11 +62,11 @@ const navigate = useNavigate()
   }
 
   const handleCreate = async () => {
-    if (dial_code && digits.length <= 10 && digits.length >= 9) {
+    if (dialCode && digits.length <= 10 && digits.length >= 9) {
       setDisabled(true)
       setIsLoading(true)
       setIsDisabledCountryInput(true)
-      const fullNumber = `${dial_code.substring(1)}${digits}`
+      const fullNumber = `${dialCode.substring(1)}${digits}`
       dispatch(updateFullNumber({ fullNumber }))
       localStorage.setItem('phoneNumber', fullNumber)
       await loginService.requestOtp(fullNumber)
@@ -98,7 +98,7 @@ const navigate = useNavigate()
             </StrokeContainer>
           </CountryInput>
           <NumberContainer>
-            <span>{dial_code}</span>
+              <span>{dialCode}</span>
             <Numberinput
               placeholder='(555) 555-5555'
               maxLength={10}

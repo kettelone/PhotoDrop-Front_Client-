@@ -8,6 +8,7 @@ import albumsReducer from './albumsSlice/albumsSlice'
 import userReducer from './userSlice/userSlice'
 import photosReducer from './photosSlice/photosSlice'
 import originalPhotosReducer from './originalPhotosSlice/originalPhotosSlice'
+import paidAlbumsReducer from './paidAlbumSlice/PaidAlbumSlice'
 
 const persistConfig = {
 	key: 'root',
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
 	albumsUpdate: albumsReducer,
 	userUpdate: userReducer,
 	photosUpdate: photosReducer,
-	originalPhotosUpdate: originalPhotosReducer
+	originalPhotosUpdate: originalPhotosReducer,
+	paidAlbumsUpdate: paidAlbumsReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

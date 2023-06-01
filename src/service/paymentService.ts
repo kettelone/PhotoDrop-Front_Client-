@@ -1,6 +1,6 @@
 import React from 'react'
 import Cookies from 'universal-cookie'
-import jwt_decode from 'jwt-decode'
+import jwtDecode from 'jwt-decode'
 import { $host } from '.'
 
 export const cookies = new Cookies()
@@ -9,7 +9,7 @@ class Payment {
 	public async requestPayment(albumID: string) {
 		try {
 			const token = cookies.get('jwt_auth')
-			const decoded: { phone: string } = jwt_decode(token)
+			const decoded: { phone: string } = jwtDecode(token)
 
 			const response = await $host.post(
 				'/stripe/payment',

@@ -5,8 +5,6 @@ import pen from './pen.svg'
 import {
   LOGIN_ROUTE,
   ACCOUNT_SETTINGS,
-  // ALBUMS_DASHBOARD_ROUTE,
-  // DASHBOARD_ROUTE,
   EDIT_NAME_ROUTE,
   PROFILE_ROUTE,
   MAIN_DASHBOARD_ROUTE
@@ -35,23 +33,11 @@ import {
  } from './components'
 
 const Profile = () => {
-  const navigate = useNavigate()
-  useEffect(() => {
-    const loggedIn = checkToken()
-    if (!loggedIn) {
-      navigate(LOGIN_ROUTE);
-    }
-  }, [])
-
   const userName = useAppSelector(state => state.userUpdate.name)
   const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
-
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
-  const [albumsExist, setAlbumExist] = useState(() => {
-    const value = localStorage.getItem('albumsExist')
-    return value || ''
-  })
-  // once selfie updated change state for the page to reload after timeOut
+  const navigate = useNavigate()
+
   
   const selectPhoto = (event: any) => {
     if (event.target.files) {
@@ -62,9 +48,15 @@ const Profile = () => {
   }
 
   const goBack = () => {
-      // navigate(albumsExist ? ALBUMS_DASHBOARD_ROUTE : DASHBOARD_ROUTE)
      navigate(MAIN_DASHBOARD_ROUTE)
   }
+
+  useEffect(() => {
+    const loggedIn = checkToken()
+    if (!loggedIn) {
+      navigate(LOGIN_ROUTE);
+    }
+  }, [selfie])
   return (
     <Wrapper>
       <span onClick={goBack}>

@@ -41,8 +41,6 @@ const Dashboard = () => {
         photoId={"#"}
         isPaid={true}
         albumId={"test"}
-        photoCover={""}
-        albumName={""}
       />
       <Container>
         <PhotoIcon

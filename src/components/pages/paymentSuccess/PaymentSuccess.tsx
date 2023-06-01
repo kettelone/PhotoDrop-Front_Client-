@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { Wrapper, Container, Title, P1, P2, P3,ImageContainer,Img, StyledButton } from './components'
 import successGif from './successGif.gif'
 import { useNavigate } from 'react-router-dom';
 import checkToken from '../../../utils/checkJWT';
 import { LOGIN_ROUTE } from '../../../utils/consts';
+import { useAppSelector } from '../../../app/hooks';
 
 const PaymentSuccess = () => {
-
+  
   useEffect(() => {
     const isLoggedIn = checkToken()
     if (!isLoggedIn) {
@@ -15,20 +16,9 @@ const PaymentSuccess = () => {
   }, [])
 
   const navigate = useNavigate()
-  const [id, setId] = useState(() => {
-    const savedItem = localStorage.getItem("albumID");
-    return savedItem || "";
-  });
-
-  const [albumCover, setAlbumCover] = useState(() => {
-    const savedItem = localStorage.getItem("albumCover");
-    return savedItem || "";
-  });
-
-  const [albumName, setAlbumName] = useState(() => {
-    const savedItem = localStorage.getItem("albumName");
-    return savedItem || "";
-  });
+  const id = useAppSelector(state => state.paidAlbumsUpdate.albumID) 
+  const albumCover = useAppSelector(state =>state.paidAlbumsUpdate.albumCover)
+  const albumName = useAppSelector(state => state.paidAlbumsUpdate.albumName)
 
   const goToAlbum = () => {
     navigate(`/album/${id}`)

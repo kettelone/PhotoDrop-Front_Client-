@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { updateOriginalPhotos } from '../../../app/originalPhotosSlice/originalPhotosSlice'
-
 import {
   Wrapper,
   TopContainer,
@@ -32,20 +31,6 @@ import {
 import Footer from '../../common/footer/Footer';
 
 const Album = () => {
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE)
-    }
-    if (id == 'false' || id == 'null') {
-      navigate(MAIN_DASHBOARD_ROUTE)
-    }
-    if (id) {
-      localStorage.setItem('albumID', id)
-      localStorage.setItem('albumCover', album[0].url)
-      localStorage.setItem('albumName', album[0].name)
-    }
-  }, [])
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { id } = useParams();
@@ -54,14 +39,22 @@ const Album = () => {
   const albums = useAppSelector(state => state.albumsUpdate)
   const quantity = photos.length
   const album = albums.filter(album => album.albumID === id)
-  const albumName= album[0].name
-  const albumCover = album[0].url
   const isPaid= album[0].isPaid
   const [originalPhotoUrl, setOriginalPhotoUrl] = useState('')
   const [photoId, setPhotoId] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
   const [isPhotoLoading, setIsPhotoLoading] = useState(false)
   const [isPaymentLoading, setIsPaymentLoading] = useState(false)
+
+  useEffect(() => {
+    const isLoggedIn = checkToken()
+    if (!isLoggedIn) {
+      navigate(LOGIN_ROUTE)
+    }
+    if (id == 'false' || id == 'null') {
+      navigate(MAIN_DASHBOARD_ROUTE)
+    }
+  }, [])
 
   const handlePayment = async () => {
     setIsPaymentLoading(true)
@@ -101,8 +94,6 @@ const Album = () => {
         photoId={photoId}
         isPaid={isPaid}
         albumId={id}
-        photoCover={albumCover}
-        albumName={albumName}
       />
       {
         isPhotoLoading
@@ -119,7 +110,7 @@ const Album = () => {
         </GoBack>
         <TextWrapper>
           <TextContainer>
-            <Name>{albumName}</Name>
+            <Name>{album[0].name}</Name>
           <DateAmount>
               <Date>Jan 10, 2022 •</Date>
               <Amount>{quantity} { quantity === 1 ? 'photo' :'photos'}</Amount>

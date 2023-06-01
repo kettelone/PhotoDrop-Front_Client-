@@ -40,10 +40,9 @@ const Wrapper = styled.div`
 		max-height: 100vh;
 	}
 `
-const Img = styled.img`/* width: 100%;
-	height: 100%; */`
-
+const Img = styled.img``
 const TopContainer = styled.div``
+
 const Title = styled.div`
 	color: white;
 	position: fixed;
@@ -106,7 +105,7 @@ const ButtonsContainer = styled.div`
 	padding: 0px 15px;
 `
 
-const StyledButton =
+const Label =
 	styled.label <
 	{ color: string, backgroundColor: string } >
 	`
@@ -137,7 +136,7 @@ const StyledButton =
 	}
   `
 
-const StyledButton1 = styled(StyledButton)`
+const Label2 = styled(Label)`
 	 	@media only screen and (min-width: 740px) {
 	 &:hover{
 		background-color:#262626;
@@ -162,8 +161,8 @@ export {
 	CloseButton,
 	Instruction,
 	ButtonsContainer,
-	StyledButton,
-	StyledButton1,
+	Label,
+	Label2,
 	Span,
 	Input
 }

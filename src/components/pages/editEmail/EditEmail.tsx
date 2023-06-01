@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import checkToken from '../../../utils/checkJWT'
 import GoBack from '../../common/goBack/GoBack';
+import { useAppSelector,useAppDispatch } from '../../../app/hooks';
+import { update } from '../../../app/userSlice/userSlice';
 
 
 const EditEmail = () => {
@@ -18,6 +20,7 @@ const EditEmail = () => {
     }
   }, [])
 
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -32,6 +35,7 @@ const EditEmail = () => {
     if (email) {
       const response = await accountService.editEmail(email)
       if (response) {
+        dispatch(update({ email }))
         navigate(PROFILE_ROUTE)
         setIsLoading(false)
       }

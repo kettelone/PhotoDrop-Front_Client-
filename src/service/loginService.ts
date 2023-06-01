@@ -24,7 +24,7 @@ class Login {
 
 			const { accessToken } = response.data
 
-			//Set cookie
+			// Set cookie
 			cookies.set('jwt_auth', accessToken)
 			return true
 		} catch (e) {

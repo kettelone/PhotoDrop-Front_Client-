@@ -2,6 +2,7 @@ import React, {useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../../modals/loader/Loader';
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
+import { update } from '../../../app/paidAlbumSlice/PaidAlbumSlice'
 import {updateOriginalPhotos} from '../../../app/originalPhotosSlice/originalPhotosSlice'
 import {
   Container,
@@ -37,10 +38,20 @@ const AlbumsDashboard = () => {
   const [originalPhotoUrl, setOriginalPhotoUrl] = useState('')
   const [photoId, setPhotoId] = useState('')
   const [albumId, setAlbumId] = useState('')
-  const [isPaid,setIsPaid] = useState(false)
-  const [albumCover, setAlbumCover]= useState('')
-  const [albumName, setAlbumName] = useState('')  
+  const [isPaid, setIsPaid] = useState(false)
+  
+  // handle open album
+  const handleAlbum = (albumID:string) => {
+    const album = albums?.filter(album => album.albumID === albumID)
+    if (!album) {
+      return
+    }
+    if (!album[0].isPaid) {
+      dispatch(update({ albumName: album[0].name, albumCover: album[0].url, albumID: albumID }))
+    }
+  }
 
+  // handle open photo
   const handlePhoto = async (id: string, albumID: string) => {
     document.body.classList.add('noScroll')
     setOriginalPhotoUrl('')
@@ -48,11 +59,12 @@ const AlbumsDashboard = () => {
     if (!album) {
       return
     }
+    if (!album[0].isPaid) {
+      dispatch(update({ albumName: album[0].name, albumCover: album[0].url, albumID: albumID }))
+    }
+    setAlbumId(albumID)
     setPhotoId(id)
-    setAlbumId(albumID)  
     setIsPaid(album[0].isPaid)
-    setAlbumCover(album[0].url)
-    setAlbumName(album[0].name)
 
     if (originalPhotos[id]) {
       setOriginalPhotoUrl(originalPhotos[id])
@@ -66,14 +78,13 @@ const AlbumsDashboard = () => {
       setOriginalPhotoUrl(data?.data) 
       setIsPhotoLoading(false)
     }
-
     document.getElementById('singlePhoto')?.classList.add('show')
   }
 
   return (
     <Wrapper>
       {
-           isPhotoLoading
+        isPhotoLoading
           ? <div><Loader /><Blur /></div>
           : ''
       }
@@ -83,8 +94,6 @@ const AlbumsDashboard = () => {
         photoId={photoId}
         isPaid={isPaid}
         albumId={albumId}
-        photoCover={albumCover}
-        albumName={albumName}
       />
       <div>
         <PhotoIcon
@@ -96,7 +105,10 @@ const AlbumsDashboard = () => {
         <Title>Albums</Title>
         <Albums className='albums-cover'>
             {albums?.map(album => 
-              <Link to={`/album/${album.albumID}`} key={album.albumID}>
+              <Link
+                onClick={()=>handleAlbum(album.albumID)}
+                to={`/album/${album.albumID}`} key={album.albumID}
+              >
                 <Album>
                   <AlbumCover src={album.url} alt="cover" />
                   <AlbumName>{album.name}</AlbumName>

@@ -38,8 +38,6 @@ const NewCodeConfirmation = () => {
     console.log({ response })
 
     if (response) {
-      console.log(response)
-
       navigate(ACCOUNT_SETTINGS)
       setIsLoading(false)
     } else {

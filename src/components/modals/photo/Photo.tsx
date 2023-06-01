@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import paymentService from '../../../service/paymentService';
 import { saveAs } from 'file-saver';
 import {
@@ -15,25 +15,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 
-const PhotoModal = (props:
-  {
+const PhotoModal = (props:{
     url: string,
     photoId: string,
     isPaid: boolean,
     albumId: string | undefined,
-    photoCover: string,
-    albumName: string
-  }) => {
+}) => {
   
   const [isLoading, setIsLoading] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
-    if (props.albumId) {
-    localStorage.setItem('albumID', props.albumId)
-    localStorage.setItem('albumCover', props.photoCover)
-    localStorage.setItem('albumName', props.albumName)
-    }
-
-
   const handlePayment = async () => {
     setIsLoading(true)
     setIsDisabled(true)

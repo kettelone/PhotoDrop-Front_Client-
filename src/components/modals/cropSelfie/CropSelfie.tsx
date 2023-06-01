@@ -9,8 +9,8 @@ import {
   CloseButton,
   Instruction,
   ButtonsContainer,
-  StyledButton,
-  StyledButton1,
+  Label,
+  Label2,
   Span,
   Input  
   } from './components'
@@ -23,7 +23,7 @@ import { uploadToS3 } from './uploadToS3'
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { updateSelfie } from '../../../app/userSlice/userSlice';
+import { update } from '../../../app/userSlice/userSlice';
 import { useAppDispatch } from '../../../app/hooks';
 import albumService from '../../../service/albumService';
 
@@ -34,7 +34,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   const [zoom, setZoom] = useState(-2)
   const [croppedImage, setCroppedImage] = useState<Blob | null>()
   const [isLoading, setIsLoading] = useState(false)
-  const [disabled, setDisabled] =useState(false)
+  const [disabled, setDisabled] = useState(false)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
@@ -55,16 +55,20 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
 
 
   const closeModal = () => {
-    URL.revokeObjectURL(objectUrl)
-    document.getElementById('initialSelfie')?.classList.remove('show')
-    document.getElementById('background')?.classList.remove('show')
-    setPreview(undefined)
+    if (!disabled) {
+      URL.revokeObjectURL(objectUrl)
+      document.getElementById('initialSelfie')?.classList.remove('show')
+      document.getElementById('background')?.classList.remove('show')
+      setPreview(undefined)
+    }
   }
 
   const handleRetake = (event: any) => {
-    URL.revokeObjectURL(objectUrl)
-    objectUrl = URL.createObjectURL(event.target.files[0])
-    setPreview(objectUrl)
+    if (!disabled) {
+      URL.revokeObjectURL(objectUrl)
+      objectUrl = URL.createObjectURL(event.target.files[0])
+      setPreview(objectUrl)
+    }
   }
 
 
@@ -83,34 +87,28 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   }
 
   const saveSelfie = async () => {
-    setDisabled(true)
-    if (!disabled){
-    setIsLoading(true)
-    const presignedPostUrl = await selfieService.signSelfie()
-    try {
-      if (croppedImage) {
-        await uploadToS3(croppedImage, presignedPostUrl)
-        setTimeout(async () => {
-          const response = await albumService.getAlbums()
-          if (response) {
+    if (!disabled && croppedImage) {
+      setDisabled(true)
+      setIsLoading(true)
+      try {
+          const presignedPostUrl = await selfieService.signSelfie()
+          await uploadToS3(croppedImage, presignedPostUrl)
+          setTimeout(async () => {
+            const response = await albumService.getAlbums()
+            if (!response) {
+              return
+            }
             const { user } = response.data
             const { selfieUrl } = user
-            dispatch(updateSelfie({ selfieUrl }))
-            localStorage.setItem("data", response.data)
-          }
-        },3000)
-
-        if (props.page === '/user-dashboard') {
+            dispatch(update({ selfieUrl }))
             navigate(props.page)
             closeModal()
-        } else {
-          navigate(props.page)
-          closeModal()
-        }
+            setDisabled(false) 
+            setIsLoading(false)
+          }, 2000)
+      } catch (e) {
+        console.log(e)
       }
-    } catch (e) {
-      console.log(e)
-    }
     }
   }
 
@@ -121,7 +119,8 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
     <Container id="initialSelfie">
       <Wrapper id='wrapper'>
       <CloseButton
-        onClick={closeModal}
+            onClick={closeModal}
+            disabled={disabled}
       >
         <img src={closeIcon} alt="closeIcon" />
       </CloseButton>
@@ -149,30 +148,30 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
           }
         }
           />
-      <ButtonsContainer>
-        <StyledButton
-          color="white"
-          backgroundColor="#262626"
-          htmlFor='retakePhoto'
-          // onClick={resetURL}
-        > Retake</StyledButton >
-        <Input
-          type="file"
-          id="retakePhoto"
-          onChange={handleRetake}
-          accept="image/*"
-        />
-        <Span></Span>
-        <StyledButton1
-          color="none"
-          backgroundColor="white"
-          onClick={saveSelfie}
-          >
-            {isLoading
-              ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
-              : 'Save'
-            }
-          </StyledButton1 >
+          <ButtonsContainer>
+              <Label
+                color="white"
+                backgroundColor="#262626"
+                htmlFor='retakePhoto'
+              > Retake</Label >
+              <Input
+                type="file"
+                id="retakePhoto"
+                onChange={handleRetake}
+                accept="image/*"
+                disabled={disabled}
+              />
+            <Span />
+              <Label2
+              color="none"
+              backgroundColor="white"
+              onClick={saveSelfie}
+              >
+                {isLoading
+                  ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
+                  : 'Save'
+                }
+                  </Label2 >
         </ButtonsContainer>
       </Wrapper>
       </Container>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import checkToken from '../../../utils/checkJWT';
 import {
@@ -20,26 +20,22 @@ import arrowRight from '../../../assets/arrowRight.svg'
 import GoBack from '../../common/goBack/GoBack';
 import mailIcon from './mailIcon.svg'
 import phoneIcon from './phoneIcon.svg'
-import { DASHBOARD_ROUTE, EDIT_EMAIL, EDIT_PHONE_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { EDIT_EMAIL, EDIT_PHONE_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { useAppSelector } from '../../../app/hooks';
 
 
 const AccountSettings = () => {
+  const navigate = useNavigate()
+  const phone = useAppSelector(state => state.userUpdate.phone)
+  const email = useAppSelector(state => state.userUpdate.email)
+
   useEffect(() => {
     const isLoggedIn = checkToken()
     if (!isLoggedIn) {
       navigate(LOGIN_ROUTE)
     }
   }, [])
-  const [phone, setPhone] = useState(() => {
-    const savedItem = localStorage.getItem("phoneNumber");
-    return savedItem || "";
-  });
 
-  const [email, setEmail] = useState(() => {
-    const savedItem = localStorage.getItem("email");
-    return savedItem || "no email";
-  });
-  const navigate = useNavigate()
   return (
     <div>
       <span onClick={() => navigate(PROFILE_ROUTE)}>

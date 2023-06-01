@@ -5,30 +5,20 @@ const initialState = {
 	selfieUrl: null,
 	phone: null,
 	email: null,
-	name: null,
-	selfieChanged: false
+	name: null
 }
 
 export const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		update: (state, { payload: { selfieUrl, phone, email, name } }) => {
-			return { ...state, ...{ selfieUrl, phone, email, name } }
-		},
-		updateSelfie: (state, { payload: { selfieUrl } }) => {
-			return {
-				...state,
-				...{
-					selfieUrl,
-					selfieChanged: state.selfieChanged === false ? true : false
-				}
-			}
+		update: (state, { payload }) => {
+			return { ...state, ...payload }
 		}
 	}
 })
 
-export const { update, updateSelfie } = userSlice.actions
+export const { update } = userSlice.actions
 
 export const selectSelfie = (state: RootState) => state.userUpdate
 
