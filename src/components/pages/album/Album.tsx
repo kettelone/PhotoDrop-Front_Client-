@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import checkToken from '../../../utils/checkJWT';
-import { ALBUMS_DASHBOARD_ROUTE, DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
+import { MAIN_DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 import Loader from '../../modals/loader/Loader';
 import arrowLeft from '../../../assets/arrowLeft.svg'
 import paymentService from '../../../service/paymentService';
@@ -38,7 +38,7 @@ const Album = () => {
       navigate(LOGIN_ROUTE)
     }
     if (id == 'false' || id == 'null') {
-      navigate(DASHBOARD_ROUTE)
+      navigate(MAIN_DASHBOARD_ROUTE)
     }
     if (id) {
       localStorage.setItem('albumID', id)
@@ -111,7 +111,7 @@ const Album = () => {
       }
       <TopContainer id="top">
         <GoBack>
-        <Link to={ALBUMS_DASHBOARD_ROUTE}>
+          <Link to={MAIN_DASHBOARD_ROUTE}>
           <div>
             <img src={arrowLeft} alt="arrow-let " />
           </div>

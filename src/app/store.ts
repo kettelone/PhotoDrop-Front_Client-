@@ -1,19 +1,35 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import storage from 'redux-persist/lib/storage'
+import { persistReducer, persistStore } from 'redux-persist'
+import thunk from 'redux-thunk'
+
 import countryReducer from './countrySlice/countrySlice'
 import albumsReducer from './albumsSlice/albumsSlice'
 import userReducer from './userSlice/userSlice'
 import photosReducer from './photosSlice/photosSlice'
 import originalPhotosReducer from './originalPhotosSlice/originalPhotosSlice'
 
-export const store = configureStore({
-	reducer: {
-		countryUpdate: countryReducer,
-		albumsUpdate: albumsReducer,
-		userUpdate: userReducer,
-		photosUpdate: photosReducer,
-		originalPhotosUpdate: originalPhotosReducer
-	}
+const persistConfig = {
+	key: 'root',
+	storage
+}
+
+const rootReducer = combineReducers({
+	countryUpdate: countryReducer,
+	albumsUpdate: albumsReducer,
+	userUpdate: userReducer,
+	photosUpdate: photosReducer,
+	originalPhotosUpdate: originalPhotosReducer
 })
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export const store = configureStore({
+	reducer: persistedReducer,
+	middleware: [ thunk ]
+})
+
+export const persistor = persistStore(store)
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

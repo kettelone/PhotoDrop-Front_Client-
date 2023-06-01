@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { ALBUMS_DASHBOARD_ROUTE } from '../../../utils/consts';
+import { MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
 
 const Container =styled.div`
   display:flex;
@@ -48,7 +48,7 @@ color:white;
 const PaymentFailed = () => {
   const navigate = useNavigate()
   const goToDashboard = () => {
-    navigate(ALBUMS_DASHBOARD_ROUTE)
+    navigate(MAIN_DASHBOARD_ROUTE)
   }
   return (
     <Container>

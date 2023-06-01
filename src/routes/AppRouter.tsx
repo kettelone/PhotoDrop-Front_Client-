@@ -15,15 +15,16 @@ import EditPhone from '../components/pages/editMobile/EditModile';
 import NewCodeConfirmation from '../components/pages/newPhoneConfirmation/NewPhoneConfirmation';
 import PaymentFailed from '../components/pages/paymentFailed/PaymentFailed';
 import PrivacyPolicy from '../components/pages/privacyPolicy/PrivacyPolicy';
+import MainDashboard from '../components/pages/mainDashboard/MainDashboard';
 import {
   LOGIN_ROUTE,
   CODE_CONFIRMATION_ROUTE,
   UPLOAD_SELFIE_ROUTE,
-  DASHBOARD_ROUTE,
+  // DASHBOARD_ROUTE,
   PROFILE_ROUTE,
   EDIT_NAME_ROUTE,
   PROVIDE_EMAIL_ROUTE,
-  ALBUMS_DASHBOARD_ROUTE,
+  // ALBUMS_DASHBOARD_ROUTE,
   ALBUM_ROUTE,
   SUCCESS_ROUTE,
   ACCOUNT_SETTINGS, EDIT_PHONE_ROUTE,
@@ -31,7 +32,8 @@ import {
   FAILED_ROUTE,
   EDIT_EMAIL,
   PRIVACY_POLICY_ROUTE,
-  TERMS_ROUTE
+  TERMS_ROUTE,
+  MAIN_DASHBOARD_ROUTE
 } from '../utils/consts';
 import EditEmail from '../components/pages/editEmail/EditEmail';
 import Terms from '../components/pages/terms/Terms';
@@ -43,7 +45,8 @@ const AppRouter = () => {
       <Route path={LOGIN_ROUTE} element={<Login />} />
       <Route path={CODE_CONFIRMATION_ROUTE} element={<CodeConfirmation />} />
       <Route path={UPLOAD_SELFIE_ROUTE} element={<AddSelfie />} />
-      <Route path={DASHBOARD_ROUTE} element={<Dashboard />} />
+      {/* <Route path={DASHBOARD_ROUTE} element={<Dashboard />} /> */}
+      <Route path={MAIN_DASHBOARD_ROUTE} element={<MainDashboard />} />
       <Route path={PROFILE_ROUTE} element={<Profile />} />
       <Route path={EDIT_NAME_ROUTE} element={<EditName />} />
       <Route path={EDIT_PHONE_ROUTE} element={<EditPhone />} />
@@ -51,7 +54,7 @@ const AppRouter = () => {
       <Route path={CONFIRM_EDIT_PHONE_ROUTE} element={<NewCodeConfirmation />} />
       <Route path={PROVIDE_EMAIL_ROUTE} element={<ProvideEmail />} />
       <Route path={ACCOUNT_SETTINGS} element={<AccountSettings />} />
-      <Route path={ALBUMS_DASHBOARD_ROUTE} element={<AlbumsDashboard />} />
+      {/* <Route path={ALBUMS_DASHBOARD_ROUTE} element={<AlbumsDashboard />} /> */}
       <Route path={ALBUM_ROUTE} element={<Album />} />
       <Route path={SUCCESS_ROUTE} element={<PaymentSuccess />} />
       <Route path={FAILED_ROUTE} element={<PaymentFailed />} />

@@ -5,10 +5,11 @@ import pen from './pen.svg'
 import {
   LOGIN_ROUTE,
   ACCOUNT_SETTINGS,
-  ALBUMS_DASHBOARD_ROUTE,
-  DASHBOARD_ROUTE,
+  // ALBUMS_DASHBOARD_ROUTE,
+  // DASHBOARD_ROUTE,
   EDIT_NAME_ROUTE,
-  PROFILE_ROUTE
+  PROFILE_ROUTE,
+  MAIN_DASHBOARD_ROUTE
 } from '../../../utils/consts';
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import checkToken from '../../../utils/checkJWT';
@@ -61,7 +62,8 @@ const Profile = () => {
   }
 
   const goBack = () => {
-      navigate(albumsExist ? ALBUMS_DASHBOARD_ROUTE : DASHBOARD_ROUTE)
+      // navigate(albumsExist ? ALBUMS_DASHBOARD_ROUTE : DASHBOARD_ROUTE)
+     navigate(MAIN_DASHBOARD_ROUTE)
   }
   return (
     <Wrapper>

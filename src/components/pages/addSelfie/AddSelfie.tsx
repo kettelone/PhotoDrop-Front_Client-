@@ -15,7 +15,7 @@ import {
   Vertical
 } from './components'
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
-import {DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
+import {MAIN_DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 import checkToken from '../../../utils/checkJWT';
 import { useNavigate } from 'react-router-dom';
 
@@ -41,7 +41,7 @@ const navigate = useNavigate()
 
   return (
     <Wrapper>
-      <CropSelfie selfie={selectedFile} page={DASHBOARD_ROUTE} />
+      <CropSelfie selfie={selectedFile} page={MAIN_DASHBOARD_ROUTE} />
       <Container>
       <Title> Add a selfie</Title>
       <SubTitle>A selfie allows your photos to be synced with your account.</SubTitle>

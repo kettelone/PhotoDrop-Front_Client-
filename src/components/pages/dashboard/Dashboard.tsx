@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import albumsService from '../../../service/albumService'
-import checkToken from '../../../utils/checkJWT';
-import { ALBUMS_DASHBOARD_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
-import { update } from '../../../app/userSlice/userSlice';
-import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
-import { updatePhoto } from '../../../app/photosSlice/photosSlice';
-import { useAppDispatch } from '../../../app/hooks';
+import { PROFILE_ROUTE } from '../../../utils/consts';
+import { useAppSelector } from '../../../app/hooks';
 import {
   Container,
   PhotoIcon,
   Img,
-  Wrapper,
+  Wrapper,  
   GraphicsContainer,
   Graphics,
   Title,
@@ -20,10 +15,7 @@ import {
   BrowseTitle,
   PreviewContainer,
   PreviewImg,
-  Blur
 } from './components'
-import Footer from '../../common/footer/Footer';
-import Loader from '../../modals/loader/Loader';
 import graphics from './combo.png';
 import test1 from './test1.jpg';
 import test2 from './test2.jpg';
@@ -34,41 +26,8 @@ import PhotoModal from '../../modals/photo/Photo';
 
 const Dashboard = () => {
   const navigate = useNavigate()
-  const[isLoading, setIsLoading] = useState(true)
-  const dispatch = useAppDispatch()
-  const [selfie, setSelfie] = useState<string | undefined>()
+  const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
   const [url, setUrl] = useState(test1)
-
-
-  useEffect(() => {
-    document.body.classList.add('no-scroll')
-    const loggedIn = checkToken()
-    if (loggedIn) {
-      const fetchData =  async() => {
-        setTimeout(async() => {
-          const data = await albumsService.getAlbums()
-          if (data) {
-            const { albums, allPhotos, user } = data.data
-            const { selfieUrl } = user
-            // dispatch(update({ selfieUrl }))
-            // dispatch(updateAlbum({ albums }))
-            // dispatch(updatePhoto({ allPhotos }))
-            setSelfie(selfieUrl)
-            if (allPhotos.length > 0) {
-              navigate(ALBUMS_DASHBOARD_ROUTE)
-            }
-          }
-          setIsLoading(false)
-          document.body.classList.remove('no-scroll')
-        },1000)
-      }
-      fetchData()
-    }
-    else {
-      navigate(LOGIN_ROUTE);
-    }
-  }, [])
-  
   const handlePhoto = (url: string) => {
     document.body.classList.add('noScroll')
     document.getElementById('singlePhoto')?.classList.add('show')
@@ -85,11 +44,6 @@ const Dashboard = () => {
         photoCover={""}
         albumName={""}
       />
-      {
-        isLoading
-        ? <div><Loader /><Blur /></div>
-        : ''
-      }
       <Container>
         <PhotoIcon
           onClick={() => navigate(PROFILE_ROUTE)}
@@ -127,8 +81,7 @@ const Dashboard = () => {
             />
               </PreviewContainer>
         </Wrapper>
-        <Footer />
-          </Container>
+      </Container>
   </div> 
   );
 };
