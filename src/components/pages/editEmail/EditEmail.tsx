@@ -24,6 +24,7 @@ const EditEmail = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [disabled, setDisabled] = useState(false)
 
 
   const handleChange = (e: any) => {
@@ -32,7 +33,8 @@ const EditEmail = () => {
 
   const saveEmail = async () => {
     setIsLoading(true)
-    if (email) {
+    if (email && !disabled) {
+      setDisabled(true)
       const response = await accountService.editEmail(email)
       if (response) {
         dispatch(update({ email }))

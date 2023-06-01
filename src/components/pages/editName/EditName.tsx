@@ -21,6 +21,7 @@ const EditName = () => {
   const dispatch = useAppDispatch()
   const [name, setName] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [disabled, setDisabled] = useState(false)
   const navigate = useNavigate()
 
   const handleChange = (e: any) => {
@@ -29,7 +30,8 @@ const EditName = () => {
 
   const saveName = async () => {
     setIsLoading(true)
-    if (name) {
+    if (name && !disabled) {
+      setDisabled(true)
       const response = await accountService.editName(name)
       if (response) {
         dispatch(update({ name }))

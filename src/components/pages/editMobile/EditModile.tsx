@@ -4,13 +4,13 @@ import stroke from '../../../assets/stroke.svg'
 import CountrySelect from '../../modals/countrySelect/CountrySelect';
 import { useAppSelector,useAppDispatch } from '../../../app/hooks'
 import { CONFIRM_EDIT_PHONE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts'
-import { updateFullNumber } from '../../../app/countrySlice/countrySlice'
+// import { updateFullNumber } from '../../../app/countrySlice/countrySlice'
+import { update } from '../../../app/userSlice/userSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import checkToken from '../../../utils/checkJWT';
 import GoBack from '../../common/goBack/GoBack';
 import accountService from '../../../service/accountService';
-import { update } from '../../../app/userSlice/userSlice';
 import {
   ButtonContainer,
   NumberContainer,
@@ -34,6 +34,7 @@ const EditPhone = () => {
   const { country, dialCode } = useAppSelector(state => state.countryUpdate)
   const [digits, setDigits] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
+  const [disabled, setDisabled] = useState(false)
   const dispatch = useAppDispatch()
 
   const handlePhoneNumber = (event: ChangeEvent<HTMLInputElement>) => {
@@ -48,17 +49,19 @@ const EditPhone = () => {
   }
 
   const handleChange = async () => {
-    if (dialCode && digits.length <= 10 && digits.length >= 9) {
+    if (
+      !disabled
+      && dialCode
+      && digits.length <= 10
+      && digits.length >= 9) {
+      setDisabled(true)
       setIsLoading(true)
       const fullNumber = `${dialCode.substring(1)}${digits}`
-      dispatch(updateFullNumber({ fullNumber }))
-      localStorage.setItem('phoneNumber', fullNumber)
-      const response = await accountService.editPhone(fullNumber)
-      if (response) {
-        dispatch(update({ phone: fullNumber }))
-      }
+      dispatch(update({newPhone:fullNumber}))
+      await accountService.editPhone(fullNumber)
       setIsLoading(false)
       navigate(CONFIRM_EDIT_PHONE_ROUTE)
+      setDisabled(false)
     }
   }
   useEffect(() => {

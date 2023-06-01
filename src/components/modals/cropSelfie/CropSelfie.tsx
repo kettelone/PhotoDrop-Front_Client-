@@ -105,7 +105,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
             closeModal()
             setDisabled(false) 
             setIsLoading(false)
-          }, 2000)
+          }, 3000)
       } catch (e) {
         console.log(e)
       }

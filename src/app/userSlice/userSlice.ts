@@ -5,7 +5,8 @@ const initialState = {
 	selfieUrl: null,
 	phone: null,
 	email: null,
-	name: null
+	name: null,
+	newPhone: 'initial'
 }
 
 export const userSlice = createSlice({
