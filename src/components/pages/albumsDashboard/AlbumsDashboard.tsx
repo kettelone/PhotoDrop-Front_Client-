@@ -1,30 +1,31 @@
 import React, {useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Loader from '../../modals/loader/Loader';
-import { useAppSelector, useAppDispatch } from '../../../app/hooks';
-import { update } from '../../../app/paidAlbumSlice/PaidAlbumSlice'
+
+import { useAppDispatch,useAppSelector } from '../../../app/hooks';
 import {updateOriginalPhotos} from '../../../app/originalPhotosSlice/originalPhotosSlice'
+import { update } from '../../../app/paidAlbumSlice/PaidAlbumSlice'
+import defaultImage from '../../../assets/defaultImage.svg';
+import photoService from '../../../service/photoService';
+import { PROFILE_ROUTE } from '../../../utils/consts';
+import Loader from '../../modals/loader/Loader';
+import PhotoModal from '../../modals/photo/Photo';
 import {
-  Container,
-  PhotoIcon,
-  Img,
-  AlbumsContainer,
-  Title,
-  Albums,
   Album,
   AlbumCover,
-  TitlePhotos,
-  Photo,
   AlbumName,
-  GridWrapper,
-  GridContainer,
+  Albums,
+  AlbumsContainer,
   Blur,
+  Container,
+  GridContainer,
+  GridWrapper,
+  Img,
+  Photo,
+  PhotoIcon,
+  Title,
+  TitlePhotos,
   Wrapper
 } from './components'
-import { PROFILE_ROUTE } from '../../../utils/consts';
-import photoService from '../../../service/photoService';
-import PhotoModal from '../../modals/photo/Photo';
-import defaultImage from '../../../assets/defaultImage.svg';
 
 
 const AlbumsDashboard = () => {

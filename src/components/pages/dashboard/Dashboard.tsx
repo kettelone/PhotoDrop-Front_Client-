@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PROFILE_ROUTE } from '../../../utils/consts';
+
 import { useAppSelector } from '../../../app/hooks';
+import defaultImage from '../../../assets/defaultImage.svg';
+import { PROFILE_ROUTE } from '../../../utils/consts';
+import PhotoModal from '../../modals/photo/Photo';
+import graphics from './combo.png';
 import {
-  Container,
-  PhotoIcon,
-  Img,
-  Wrapper,  
-  GraphicsContainer,
-  Graphics,
-  Title,
-  SubTitle,
-  Separator,
   BrowseTitle,
+  Container,
+  Graphics,
+  GraphicsContainer,
+  Img,
+  PhotoIcon,
   PreviewContainer,
   PreviewImg,
+  Separator,
+  SubTitle,
+  Title,
+  Wrapper,  
 } from './components'
-import graphics from './combo.png';
 import test1 from './test1.jpg';
 import test2 from './test2.jpg';
 import test3 from './test3.jpg';
-import defaultImage from '../../../assets/defaultImage.svg';
-import PhotoModal from '../../modals/photo/Photo';
 
 
 const Dashboard = () => {

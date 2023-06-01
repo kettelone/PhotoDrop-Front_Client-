@@ -6,7 +6,7 @@ const initialState = {
 	phone: null,
 	email: null,
 	name: null,
-	newPhone: 'initial'
+	newPhone: ''
 }
 
 export const userSlice = createSlice({

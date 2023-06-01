@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
-import paymentService from '../../../service/paymentService';
-import { saveAs } from 'file-saver';
-import {
-  Img, Wrapper, Container, CloseButton, DownloadContainer,
-  Arrow,
-  Line,
-  Text,
-  ButtonContainer,
-  StyledButton
-} from './components'
-import closeIcon from '../../../assets/closeIcon.svg'
-import arrowDown from './arrowDown.svg'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { saveAs } from 'file-saver';
+
+import closeIcon from '../../../assets/closeIcon.svg'
+import paymentService from '../../../service/paymentService';
+import arrowDown from './arrowDown.svg'
+import {
+  Arrow,
+  ButtonContainer,
+  CloseButton,
+  Container,
+  DownloadContainer,
+  Img,
+  Line,
+  StyledButton,
+  Text,
+  Wrapper
+} from './components'
 
 
 const PhotoModal = (props:{

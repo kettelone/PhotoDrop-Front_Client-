@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
-import { Wrapper, Container, Title, P1, P2, P3,ImageContainer,Img, StyledButton } from './components'
-import successGif from './successGif.gif'
 import { useNavigate } from 'react-router-dom';
+
+import { useAppSelector } from '../../../app/hooks';
 import checkToken from '../../../utils/checkJWT';
 import { LOGIN_ROUTE } from '../../../utils/consts';
-import { useAppSelector } from '../../../app/hooks';
+import { Container, ImageContainer,Img, P1, P2, P3,StyledButton,Title, Wrapper } from './components'
+import successGif from './successGif.gif'
 
 const PaymentSuccess = () => {
   

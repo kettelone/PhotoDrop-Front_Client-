@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, SubContainer, Title, P, SubTitle } from './components'
+
+import { Container, P, SubContainer, SubTitle,Title } from './components'
 const Terms = () => {
   return (
     <Container>

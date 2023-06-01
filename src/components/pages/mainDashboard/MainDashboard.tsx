@@ -1,17 +1,18 @@
 import React,{useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import checkToken from '../../../utils/checkJWT';
-import { useAppSelector, useAppDispatch } from '../../../app/hooks';
-import { update } from '../../../app/userSlice/userSlice'
+
 import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
+import { useAppDispatch,useAppSelector } from '../../../app/hooks';
 import { updatePhoto } from '../../../app/photosSlice/photosSlice';
-import { LOGIN_ROUTE } from '../../../utils/consts';
+import { update } from '../../../app/userSlice/userSlice'
 import albumService from '../../../service/albumService';
+import checkToken from '../../../utils/checkJWT';
+import { LOGIN_ROUTE } from '../../../utils/consts';
+import Footer from '../../common/footer/Footer';
+import Loader from '../../modals/loader/Loader';
+import { Blur } from '../addSelfie/components';
 import AlbumsDashboard from '../albumsDashboard/AlbumsDashboard';
 import Dashboard from '../dashboard/Dashboard'
-import Footer from '../../common/footer/Footer';
-import { Blur } from '../addSelfie/components';
-import Loader from '../../modals/loader/Loader';
 
 const MainDashboard = () => {
   const dispatch = useAppDispatch()

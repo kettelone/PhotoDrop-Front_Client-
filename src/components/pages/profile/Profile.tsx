@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useAppSelector} from '../../../app/hooks';
-import pen from './pen.svg'
+import arrowRight from '../../../assets/arrowRight.svg'
+import defaultImage from '../../../assets/defaultImage.svg';
+import checkToken from '../../../utils/checkJWT';
 import {
-  LOGIN_ROUTE,
   ACCOUNT_SETTINGS,
   EDIT_NAME_ROUTE,
-  PROFILE_ROUTE,
-  MAIN_DASHBOARD_ROUTE
-} from '../../../utils/consts';
-import CropSelfie from '../../modals/cropSelfie/CropSelfie';
-import checkToken from '../../../utils/checkJWT';
-import arrowRight from '../../../assets/arrowRight.svg'
+  LOGIN_ROUTE,
+  MAIN_DASHBOARD_ROUTE,
+  PROFILE_ROUTE} from '../../../utils/consts';
 import GoBack from '../../common/goBack/GoBack';
-import defaultImage from '../../../assets/defaultImage.svg';
+import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import {
-  Wrapper,
-  Container,
-  Welcome,
-  YourSelfie,
-  SelfieContainer,
-  Img,
-  Pen,
-  IconContainer,
-  Input,
-  Options,
-  Option,
-  Title,
-  Description,
-  ArrowWrapper,
   ArrowContainer,
+  ArrowWrapper,
+  Container,
+  Description,
+  IconContainer,
+  Img,
+  Input,
+  Option,
+  Options,
+  Pen,
+  SelfieContainer,
+  Title,
+  Welcome,
+  Wrapper,
+  YourSelfie,
  } from './components'
+import pen from './pen.svg'
 
 const Profile = () => {
   const userName = useAppSelector(state => state.userUpdate.name)

@@ -1,35 +1,35 @@
-import React, { useState, ChangeEvent ,useEffect} from 'react';
+import React, { ChangeEvent ,useEffect,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import stroke from '../../../assets/stroke.svg'
-import CountrySelect from '../../modals/countrySelect/CountrySelect';
-import { useAppSelector, useAppDispatch } from '../../../app/hooks'
-import loginService from '../../../service/loginService';
-import { CODE_CONFIRMATION_ROUTE, MAIN_DASHBOARD_ROUTE } from '../../../utils/consts'
-import { updateFullNumber } from '../../../app/countrySlice/countrySlice'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import checkToken from '../../../utils/checkJWT';
 
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { updateFullNumber } from '../../../app/countrySlice/countrySlice'
+import { useAppDispatch,useAppSelector } from '../../../app/hooks'
+import stroke from '../../../assets/stroke.svg'
+import loginService from '../../../service/loginService';
+import checkToken from '../../../utils/checkJWT';
+import { CODE_CONFIRMATION_ROUTE, MAIN_DASHBOARD_ROUTE } from '../../../utils/consts'
+import CountrySelect from '../../modals/countrySelect/CountrySelect';
 import {
-  ConsentP2,
-  ConsentP1,
-  ConsentConatainer,
+  Body,
+  BodyWrapper,
   ButtonContainer,
-  NumberContainer,
-  Numberinput,
-  StrokeImg,
-  FlagImg,
-  StrokeContainer,
+  ConsentConatainer,
+  ConsentP1,
+  ConsentP2,
+  Container,
   CountryInput,
+  FlagImg,
+  FlagSpan,
   InputContainer,
   InputLabel,
-  Title,
-  BodyWrapper,
-  Body,
-  Container,
+  NumberContainer,
+  Numberinput,
+  StrokeContainer,
+  StrokeImg,
   StyledButton,
-  FlagSpan
-} from './components'
+  Title} from './components'
 
 
 const Login = () => {

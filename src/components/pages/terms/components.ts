@@ -18,15 +18,15 @@ const Title = styled.div`
 
 	@media only screen and (min-width: 740px) {
 		font-size: 30px;
-		margin-bottom:10px;
+		margin-bottom: 10px;
 	}
 `
 const P = styled.p`
 	font-size: 16px;
 	margin-bottom: 16px;
 	margin-top: 5px;
-	line-height:20.51px;
-		@media only screen and (min-width: 740px) {
+	line-height: 20.51px;
+	@media only screen and (min-width: 740px) {
 		font-size: 18px;
 		line-height: 23.08px;
 	}
@@ -35,7 +35,7 @@ const SubTitle = styled.p`
 	font-size: 16px;
 	font-weight: 700;
 	margin: 0px;
-		@media only screen and (min-width: 740px) {
+	@media only screen and (min-width: 740px) {
 		font-size: 18px;
 	}
 `

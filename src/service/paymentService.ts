@@ -1,6 +1,8 @@
 import React from 'react'
-import Cookies from 'universal-cookie'
+
 import jwtDecode from 'jwt-decode'
+import Cookies from 'universal-cookie'
+
 import { $host } from '.'
 
 export const cookies = new Cookies()

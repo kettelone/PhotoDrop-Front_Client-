@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import {LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
-import { Wrapper, Container,Title, Input, StyledButton,} from './components'
-import accountService from '../../../service/accountService';
+import React, { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import checkToken from '../../../utils/checkJWT'
-import GoBack from '../../common/goBack/GoBack';
-import { useAppSelector,useAppDispatch } from '../../../app/hooks';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import {useAppDispatch } from '../../../app/hooks';
 import { update } from '../../../app/userSlice/userSlice';
+import accountService from '../../../service/accountService';
+import checkToken from '../../../utils/checkJWT'
+import {LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import GoBack from '../../common/goBack/GoBack';
+import { Container,Input, StyledButton,Title, Wrapper, } from './components'
 
 
 const EditEmail = () => {

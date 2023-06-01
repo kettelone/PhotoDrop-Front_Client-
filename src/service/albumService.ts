@@ -1,5 +1,6 @@
-import { $host } from '.'
 import Cookies from 'universal-cookie'
+
+import { $host } from '.'
 const cookies = new Cookies()
 
 class Album {

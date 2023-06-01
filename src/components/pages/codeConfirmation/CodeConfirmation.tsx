@@ -1,26 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import OtpInput from 'react-otp-input';
 import { useNavigate } from 'react-router-dom';
+
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import albumService from '../../../service/albumService';
 import loginService from '../../../service/loginService';
+import checkToken from '../../../utils/checkJWT';
 import {
+  MAIN_DASHBOARD_ROUTE,
+  UPLOAD_SELFIE_ROUTE} from '../../../utils/consts';
+import {
+  ButtonContainer,
   Container,
-  Title,
-  SubTitle,
+  ErrorMessage,
   Phone,
   ResendButton,
-  ButtonContainer,
   StyledButton,
-  Wrapper,
-  ErrorMessage
-} from './components'
-import {
-  UPLOAD_SELFIE_ROUTE,
-  MAIN_DASHBOARD_ROUTE
-} from '../../../utils/consts';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import checkToken from '../../../utils/checkJWT';
-import albumService from '../../../service/albumService';
+  SubTitle,
+  Title,
+  Wrapper} from './components'
+
 import './index.css'
 
 

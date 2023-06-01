@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import styled from 'styled-components';
+
 import { MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
 
 const Container =styled.div`

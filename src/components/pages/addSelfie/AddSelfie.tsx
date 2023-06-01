@@ -1,33 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import personIcon from './personIcon.svg'
+import { useNavigate } from 'react-router-dom';
+
+import checkToken from '../../../utils/checkJWT';
+import {LOGIN_ROUTE,MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
+import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import {
-  Wrapper,
-  Container,
-  Title,
-  SubTitle,
-  IconContainer,
-  Circle,
-  Input,
   Blur,
+  Circle,
+  Container,
+  Horizontal,
+  IconContainer,
+  Input,
   InputWrapper,
   PlusContainer,
-  Horizontal,
-  Vertical
-} from './components'
-import CropSelfie from '../../modals/cropSelfie/CropSelfie';
-import {MAIN_DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
-import checkToken from '../../../utils/checkJWT';
-import { useNavigate } from 'react-router-dom';
+  SubTitle,
+  Title,
+  Vertical,
+  Wrapper} from './components'
+import personIcon from './personIcon.svg'
 
 const AddSelfie = () => {
 const navigate = useNavigate()
-  // useEffect(() => {
-  //   const isLoggedIn = checkToken()
-  //   if (!isLoggedIn) {
-  //     navigate(LOGIN_ROUTE) 
-  //   }
+  useEffect(() => {
+    const isLoggedIn = checkToken()
+    if (!isLoggedIn) {
+      navigate(LOGIN_ROUTE) 
+    }
 
-  // }, [])
+  }, [])
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
 
   const selectPhoto = (event: any) => {

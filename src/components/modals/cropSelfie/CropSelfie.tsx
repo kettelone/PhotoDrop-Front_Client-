@@ -1,31 +1,33 @@
 
 import React, { useEffect, useState } from 'react';
+import Cropper from 'react-easy-crop'
+import { useNavigate } from 'react-router-dom';
+
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { useAppDispatch } from '../../../app/hooks';
+import { update } from '../../../app/userSlice/userSlice';
+import closeIcon from '../../../assets/closeIcon.svg'
+import albumService from '../../../service/albumService';
+import selfieService from '../../../service/selfieService';
 import {
-  MainContainer,
   Background,
-  Container,
-  Wrapper,
-  Title,
-  CloseButton,
-  Instruction,
   ButtonsContainer,
+  CloseButton,
+  Container,
+  Input,  
+  Instruction,
   Label,
   Label2,
+  MainContainer,
   Span,
-  Input  
-  } from './components'
-import Cropper from 'react-easy-crop'
-import closeIcon from '../../../assets/closeIcon.svg'
-import './index.css'
+  Title,
+  Wrapper  } from './components'
 import getCroppedImg from './saveCroppedImage';
-import selfieService from '../../../service/selfieService';
 import { uploadToS3 } from './uploadToS3'
-import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { update } from '../../../app/userSlice/userSlice';
-import { useAppDispatch } from '../../../app/hooks';
-import albumService from '../../../service/albumService';
+
+import './index.css'
 
 const CropSelfie = (props: { selfie: File |null , page:string}) => {
 

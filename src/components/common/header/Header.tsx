@@ -1,5 +1,7 @@
 import React from 'react';
+
 import styled from 'styled-components';
+
 import photoDrop from '../../../assets/photoDrop.svg'
 
 const StyledHeader = styled.header`

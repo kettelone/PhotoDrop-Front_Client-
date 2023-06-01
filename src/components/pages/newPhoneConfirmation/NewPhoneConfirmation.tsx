@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import OtpInput from 'react-otp-input';
-import Button from '../../common/button/Button';
 import { useNavigate } from 'react-router-dom';
-import './index.css'
-import accountService from '../../../service/accountService';
-import { Container, Title, SubTitle, Phone, ResendButton, ButtonContainer, Wrapper, ErrorMessage } from './components'
-import { ACCOUNT_SETTINGS, LOGIN_ROUTE } from '../../../utils/consts';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import checkToken from '../../../utils/checkJWT';
-import GoBack from '../../common/goBack/GoBack';
-import { useAppSelector, useAppDispatch } from '../../../app/hooks';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { useAppDispatch,useAppSelector } from '../../../app/hooks';
 import { update } from '../../../app/userSlice/userSlice'
+import accountService from '../../../service/accountService';
+import checkToken from '../../../utils/checkJWT';
+import { ACCOUNT_SETTINGS, LOGIN_ROUTE } from '../../../utils/consts';
+import Button from '../../common/button/Button';
+import GoBack from '../../common/goBack/GoBack';
+import { ButtonContainer, Container, ErrorMessage,Phone, ResendButton, SubTitle, Title, Wrapper } from './components'
+
+import './index.css'
 
 const NewCodeConfirmation = () => {
 const dispatch = useAppDispatch()

@@ -1,32 +1,32 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import stroke from '../../../assets/stroke.svg'
-import CountrySelect from '../../modals/countrySelect/CountrySelect';
-import { useAppSelector,useAppDispatch } from '../../../app/hooks'
-import { CONFIRM_EDIT_PHONE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts'
-// import { updateFullNumber } from '../../../app/countrySlice/countrySlice'
-import { update } from '../../../app/userSlice/userSlice';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import checkToken from '../../../utils/checkJWT';
-import GoBack from '../../common/goBack/GoBack';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { useAppDispatch,useAppSelector } from '../../../app/hooks'
+import { update } from '../../../app/userSlice/userSlice';
+import stroke from '../../../assets/stroke.svg'
 import accountService from '../../../service/accountService';
+import checkToken from '../../../utils/checkJWT';
+import { CONFIRM_EDIT_PHONE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts'
+import GoBack from '../../common/goBack/GoBack';
+import CountrySelect from '../../modals/countrySelect/CountrySelect';
 import {
+  Body,
   ButtonContainer,
-  NumberContainer,
-  Numberinput,
-  StrokeImg,
-  FlagImg,
-  StrokeContainer,
+  Container,
   CountryInput,
+  FlagImg,
+  FlagSpan,
   InputContainer,
   InputLabel,
-  Title,
-  Body,
-  Container,
+  NumberContainer,
+  Numberinput,
+  StrokeContainer,
+  StrokeImg,
   StyledButton,
-  FlagSpan
-} from './components'
+  Title} from './components'
 
 
 const EditPhone = () => {

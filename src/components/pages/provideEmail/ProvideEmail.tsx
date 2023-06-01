@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { MAIN_DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
-import { Wrapper,Container, TitleWrapper, Title, Input, StyledButton, Line, TermsNConditions } from './components'
-import accountService from '../../../service/accountService';
+import React, { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import hey from './hey.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import accountService from '../../../service/accountService';
 import checkToken from '../../../utils/checkJWT';
+import { LOGIN_ROUTE,MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
+import { Container, Input, Line, StyledButton, TermsNConditions,Title, TitleWrapper, Wrapper } from './components'
+import hey from './hey.svg'
 
 
 const ProvideEmail = () => {

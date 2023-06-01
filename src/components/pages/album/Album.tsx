@@ -1,34 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
-import checkToken from '../../../utils/checkJWT';
-import { MAIN_DASHBOARD_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
-import Loader from '../../modals/loader/Loader';
-import arrowLeft from '../../../assets/arrowLeft.svg'
-import paymentService from '../../../service/paymentService';
-import PhotoModal from '../../modals/photo/Photo';
-import photoService from '../../../service/photoService';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useEffect,useState } from 'react';
+import { Link,useNavigate, useParams } from 'react-router-dom';
+
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { updateOriginalPhotos } from '../../../app/originalPhotosSlice/originalPhotosSlice'
-import {
-  Wrapper,
-  TopContainer,
-  Name,
-  Date,
-  Amount,
-  Photo,
-  TextWrapper,
-  TextContainer,
-  DateAmount,
-  GridWrapper,
-  GridContainer,
-  Blur,
-  GoBack,
-  ButtonContainer,
-  StyledButton
-} from './components'
+import arrowLeft from '../../../assets/arrowLeft.svg'
+import paymentService from '../../../service/paymentService';
+import photoService from '../../../service/photoService';
+import checkToken from '../../../utils/checkJWT';
+import { LOGIN_ROUTE,MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
 import Footer from '../../common/footer/Footer';
+import Loader from '../../modals/loader/Loader';
+import PhotoModal from '../../modals/photo/Photo';
+import {
+  Amount,
+  Blur,
+  ButtonContainer,
+  Date,
+  DateAmount,
+  GoBack,
+  GridContainer,
+  GridWrapper,
+  Name,
+  Photo,
+  StyledButton,
+  TextContainer,
+  TextWrapper,
+  TopContainer,
+  Wrapper} from './components'
 
 const Album = () => {
   const dispatch = useAppDispatch()

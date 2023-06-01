@@ -1,42 +1,39 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom'
-import Login from '../components/pages/login/Login';
-import CodeConfirmation from '../components/pages/codeConfirmation/CodeConfirmation';
-import AddSelfie from '../components/pages/addSelfie/AddSelfie';
-import Dashboard from '../components/pages/dashboard/Dashboard';
-import Profile from '../components/pages/profile/Profile';
-import EditName from '../components/pages/editName/EditName';
-import ProvideEmail from '../components/pages/provideEmail/ProvideEmail';
-import AlbumsDashboard from '../components/pages/albumsDashboard/AlbumsDashboard';
-import Album from '../components/pages/album/Album';
-import PaymentSuccess from '../components/pages/paymentSuccess/PaymentSuccess';
+import { Route,Routes } from 'react-router-dom'
+
 import AccountSettings from '../components/pages/accountSettings/AccountSettings';
+import AddSelfie from '../components/pages/addSelfie/AddSelfie';
+import Album from '../components/pages/album/Album';
+import CodeConfirmation from '../components/pages/codeConfirmation/CodeConfirmation';
+import EditEmail from '../components/pages/editEmail/EditEmail';
 import EditPhone from '../components/pages/editMobile/EditModile';
+import EditName from '../components/pages/editName/EditName';
+import Login from '../components/pages/login/Login';
+import MainDashboard from '../components/pages/mainDashboard/MainDashboard';
 import NewCodeConfirmation from '../components/pages/newPhoneConfirmation/NewPhoneConfirmation';
 import PaymentFailed from '../components/pages/paymentFailed/PaymentFailed';
+import PaymentSuccess from '../components/pages/paymentSuccess/PaymentSuccess';
 import PrivacyPolicy from '../components/pages/privacyPolicy/PrivacyPolicy';
-import MainDashboard from '../components/pages/mainDashboard/MainDashboard';
-import {
-  LOGIN_ROUTE,
-  CODE_CONFIRMATION_ROUTE,
-  UPLOAD_SELFIE_ROUTE,
-  // DASHBOARD_ROUTE,
-  PROFILE_ROUTE,
-  EDIT_NAME_ROUTE,
-  PROVIDE_EMAIL_ROUTE,
-  // ALBUMS_DASHBOARD_ROUTE,
-  ALBUM_ROUTE,
-  SUCCESS_ROUTE,
-  ACCOUNT_SETTINGS, EDIT_PHONE_ROUTE,
-  CONFIRM_EDIT_PHONE_ROUTE,
-  FAILED_ROUTE,
-  EDIT_EMAIL,
-  PRIVACY_POLICY_ROUTE,
-  TERMS_ROUTE,
-  MAIN_DASHBOARD_ROUTE
-} from '../utils/consts';
-import EditEmail from '../components/pages/editEmail/EditEmail';
+import Profile from '../components/pages/profile/Profile';
+import ProvideEmail from '../components/pages/provideEmail/ProvideEmail';
 import Terms from '../components/pages/terms/Terms';
+import {
+  ACCOUNT_SETTINGS, 
+  ALBUM_ROUTE,
+  CODE_CONFIRMATION_ROUTE,
+  CONFIRM_EDIT_PHONE_ROUTE,
+  EDIT_EMAIL,
+  EDIT_NAME_ROUTE,
+EDIT_PHONE_ROUTE,
+  FAILED_ROUTE,
+  LOGIN_ROUTE,
+  MAIN_DASHBOARD_ROUTE,
+  PRIVACY_POLICY_ROUTE,
+  PROFILE_ROUTE,
+  PROVIDE_EMAIL_ROUTE,
+  SUCCESS_ROUTE,
+  TERMS_ROUTE,
+  UPLOAD_SELFIE_ROUTE} from '../utils/consts';
 
 
 const AppRouter = () => {
@@ -45,7 +42,6 @@ const AppRouter = () => {
       <Route path={LOGIN_ROUTE} element={<Login />} />
       <Route path={CODE_CONFIRMATION_ROUTE} element={<CodeConfirmation />} />
       <Route path={UPLOAD_SELFIE_ROUTE} element={<AddSelfie />} />
-      {/* <Route path={DASHBOARD_ROUTE} element={<Dashboard />} /> */}
       <Route path={MAIN_DASHBOARD_ROUTE} element={<MainDashboard />} />
       <Route path={PROFILE_ROUTE} element={<Profile />} />
       <Route path={EDIT_NAME_ROUTE} element={<EditName />} />
@@ -54,7 +50,6 @@ const AppRouter = () => {
       <Route path={CONFIRM_EDIT_PHONE_ROUTE} element={<NewCodeConfirmation />} />
       <Route path={PROVIDE_EMAIL_ROUTE} element={<ProvideEmail />} />
       <Route path={ACCOUNT_SETTINGS} element={<AccountSettings />} />
-      {/* <Route path={ALBUMS_DASHBOARD_ROUTE} element={<AlbumsDashboard />} /> */}
       <Route path={ALBUM_ROUTE} element={<Album />} />
       <Route path={SUCCESS_ROUTE} element={<PaymentSuccess />} />
       <Route path={FAILED_ROUTE} element={<PaymentFailed />} />

@@ -1,27 +1,27 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { useAppSelector } from '../../../app/hooks';
+import arrowRight from '../../../assets/arrowRight.svg'
 import checkToken from '../../../utils/checkJWT';
+import { EDIT_EMAIL, EDIT_PHONE_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import GoBack from '../../common/goBack/GoBack';
 import {
-  Header,
-  Wrapper,
-  SubWrapper,
-  Options,
-  Option,
-  OptionContainer,
-  Title,
-  Img,
+  ArrowContainer,
+  ArrowWrapper,
   Description,
   Green,
+  Header,
+  Img,
+  Option,
+  OptionContainer,
+  Options,
+  SubWrapper,
   TextContainer,
-  ArrowWrapper,
-  ArrowContainer
-} from './components'
-import arrowRight from '../../../assets/arrowRight.svg'
-import GoBack from '../../common/goBack/GoBack';
+  Title,
+  Wrapper} from './components'
 import mailIcon from './mailIcon.svg'
 import phoneIcon from './phoneIcon.svg'
-import { EDIT_EMAIL, EDIT_PHONE_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
-import { useAppSelector } from '../../../app/hooks';
 
 
 const AccountSettings = () => {
