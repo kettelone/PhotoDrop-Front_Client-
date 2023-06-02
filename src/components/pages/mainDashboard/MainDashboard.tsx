@@ -25,6 +25,7 @@ const MainDashboard = () => {
         if (!data) {
           return
         }
+      console.log('hello')
       const { user, albums, allPhotos } = data.data
       const { selfieUrl, name, phone, email } = user
         if (allPhotos.length > photos.length) {
