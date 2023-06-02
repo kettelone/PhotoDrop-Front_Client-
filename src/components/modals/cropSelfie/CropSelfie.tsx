@@ -102,11 +102,11 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
             }
             const { user } = response.data
             const { selfieUrl } = user
-            navigate(props.page)
-            closeModal()
             dispatch(update({ selfieUrl }))
             setDisabled(false) 
             setIsLoading(false)
+            navigate(props.page)
+            closeModal()
           }, 3500)
       } catch (e) {
         console.log(e)

@@ -27,7 +27,6 @@ const AccountSettings = () => {
   const navigate = useNavigate()
   const phone = useAppSelector(state => state.userUpdate.phone)
   const email = useAppSelector(state => state.userUpdate.email)
-  
   return (
     <div>
       <span onClick={() => navigate(PROFILE_ROUTE)}>
@@ -67,7 +66,7 @@ const AccountSettings = () => {
                     Email
                   </Title>
                   <Description>
-                    {email}
+                    {email || 'example@gmail.com'}
                   </Description>
                 </TextContainer>
               </OptionContainer>

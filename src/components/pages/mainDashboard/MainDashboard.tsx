@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect} from 'react';
 
 import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
 import { useAppDispatch,useAppSelector } from '../../../app/hooks';
@@ -12,6 +12,7 @@ import NoAlbumsDashboard from '../noAlbumsDashboard/NoAlbumsDashboard'
 const MainDashboard = () => {
   const dispatch = useAppDispatch()
   const photos = useAppSelector(state => state.photosUpdate)
+  const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
   useEffect(() => {
     const fetchData = async () => {
         const data = await albumService.getAlbums()
@@ -20,7 +21,8 @@ const MainDashboard = () => {
         }
       const { user, albums, allPhotos } = data.data
       const { selfieUrl, name, phone, email } = user
-      if (allPhotos.length > photos.length) {
+      console.log(selfieUrl)
+      if (allPhotos.length > photos.length || selfie !== selfieUrl) {
           dispatch(update({ selfieUrl, name, phone, email }))
           dispatch(updateAlbum({ albums }))
           dispatch(updatePhoto({ allPhotos }))
