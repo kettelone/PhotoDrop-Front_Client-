@@ -99,16 +99,8 @@ const AppRouter = () => {
           <Album />
         </ProtectedRoute>
       } />
-      <Route path={SUCCESS_ROUTE} element={
-        <ProtectedRoute>
-          <PaymentSuccess />
-        </ProtectedRoute>
-      } />
-      <Route path={FAILED_ROUTE} element={
-        <ProtectedRoute>
-          <PaymentFailed />
-        </ProtectedRoute>
-      } />
+      <Route path={SUCCESS_ROUTE} element={ <PaymentSuccess />} />
+      <Route path={FAILED_ROUTE} element={<PaymentFailed /> } />
       <Route path={PRIVACY_POLICY_ROUTE} element={
         <ProtectedRoute>
           <PrivacyPolicy />
