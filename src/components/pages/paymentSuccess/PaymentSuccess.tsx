@@ -6,6 +6,7 @@ import { Container, ImageContainer,Img, P1, P2, P3,StyledButton,Title, Wrapper }
 import successGif from './successGif.gif'
 
 const PaymentSuccess = () => {
+  console.log("Hello")
   const navigate = useNavigate()
   const [id, setId] = useState(() => {
     return  localStorage.getItem('albumID')
@@ -19,9 +20,10 @@ const PaymentSuccess = () => {
     return localStorage.getItem('albumName')
 
   })
-  // const id = useAppSelector(state => state.paidAlbumsUpdate.albumID) 
-  // const albumCover = useAppSelector(state =>state.paidAlbumsUpdate.albumCover)
-  // const albumName = useAppSelector(state => state.paidAlbumsUpdate.albumName)
+
+  console.log(albumName)
+  console.log(albumCover)
+  console.log(id)
 
   const goToAlbum = () => {
     navigate(`/album/${id}`)
