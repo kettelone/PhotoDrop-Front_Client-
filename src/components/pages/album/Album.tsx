@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from 'react';
-import { Link,useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,8 +9,7 @@ import { updateOriginalPhotos } from '../../../app/originalPhotosSlice/originalP
 import arrowLeft from '../../../assets/arrowLeft.svg'
 import paymentService from '../../../service/paymentService';
 import photoService from '../../../service/photoService';
-import checkToken from '../../../utils/checkJWT';
-import { LOGIN_ROUTE,MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
+import {MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
 import Footer from '../../common/footer/Footer';
 import Loader from '../../modals/loader/Loader';
 import PhotoModal from '../../modals/photo/Photo';
@@ -33,7 +32,6 @@ import {
 
 const Album = () => {
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const { id } = useParams();
   const originalPhotos = useAppSelector(state => state.originalPhotosUpdate)
   const photos = useAppSelector(state => state.photosUpdate.filter(photo => photo.albumID === id))

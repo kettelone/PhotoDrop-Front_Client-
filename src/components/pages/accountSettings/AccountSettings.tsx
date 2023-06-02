@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../../app/hooks';
 import arrowRight from '../../../assets/arrowRight.svg'
-import checkToken from '../../../utils/checkJWT';
-import { EDIT_EMAIL, EDIT_PHONE_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
+import { EDIT_EMAIL, EDIT_PHONE_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
 import GoBack from '../../common/goBack/GoBack';
 import {
   ArrowContainer,

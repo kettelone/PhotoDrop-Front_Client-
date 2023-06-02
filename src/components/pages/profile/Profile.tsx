@@ -4,11 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector} from '../../../app/hooks';
 import arrowRight from '../../../assets/arrowRight.svg'
 import defaultImage from '../../../assets/defaultImage.svg';
-import checkToken from '../../../utils/checkJWT';
 import {
   ACCOUNT_SETTINGS,
   EDIT_NAME_ROUTE,
-  LOGIN_ROUTE,
   MAIN_DASHBOARD_ROUTE,
   PROFILE_ROUTE} from '../../../utils/consts';
 import GoBack from '../../common/goBack/GoBack';

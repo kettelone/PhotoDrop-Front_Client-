@@ -60,7 +60,6 @@ const Login = () => {
       setIsDisabledCountryInput(true)
       const fullNumber = `${dialCode.substring(1)}${digits}`
       dispatch(updateFullNumber({ fullNumber }))
-      // localStorage.setItem('phoneNumber', fullNumber)
       await loginService.requestOtp(fullNumber)
       setIsLoading(false)
       navigate(CODE_CONFIRMATION_ROUTE)
