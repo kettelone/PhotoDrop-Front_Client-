@@ -10,11 +10,10 @@ import { useAppSelector } from '../app/hooks'
 import { CODE_CONFIRMATION_ROUTE, LOGIN_ROUTE, MAIN_DASHBOARD_ROUTE, UPLOAD_SELFIE_ROUTE } from './consts'
 
 const ProtectedRoute = ({ children }: any) => {
-
 	const user = useAppSelector((state) => state.authUpdate)
-	const selfie  = useAppSelector(state => state.userUpdate)
-	const location = useLocation()
-
+	const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
+	const location = useLocation()	
+	console.log(selfie)
 	let tokenValid = false
 	if (cookies.get('jwt_auth')) {
 		const token = cookies.get('jwt_auth')
@@ -35,22 +34,23 @@ const ProtectedRoute = ({ children }: any) => {
 	} else if (
 		user.isAuthenticated &&
 		tokenValid &&
-		(location.pathname === LOGIN_ROUTE || location.pathname === CODE_CONFIRMATION_ROUTE)
+		(location.pathname === LOGIN_ROUTE )
 	) {
 		return <Navigate to={MAIN_DASHBOARD_ROUTE} state={{ from: location }} replace />
 	} else if (
 		user.isAuthenticated &&
 		tokenValid &&
-		selfie.selfieUrl && 
-		location.pathname === UPLOAD_SELFIE_ROUTE
-	) {
-		return <Navigate to={MAIN_DASHBOARD_ROUTE} state={{ from: location }} replace />
-	} else if (
+		location.pathname === MAIN_DASHBOARD_ROUTE &&
+		!selfie
+		) {
+		return <Navigate to={UPLOAD_SELFIE_ROUTE} state={{ from: location }} replace />
+	}else if (
 		user.isAuthenticated &&
 		tokenValid 
 	) {
 		return children
 	}
 }
+
 
 export default ProtectedRoute

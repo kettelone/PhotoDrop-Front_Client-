@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { setIsAuth, setIsFetching } from '../../../app/authSlice/authSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import {update} from '../../../app/userSlice/userSlice'
 import albumService from '../../../service/albumService';
 import loginService from '../../../service/loginService';
 import {
@@ -43,11 +44,12 @@ const CodeConfirmation = () => {
     if (response) {
         const fetchData = async () => {
           setTimeout(async () => {
-            dispatch(setIsFetching())
             const data = await albumService.getAlbums()
             if (data) {
               const { user } = data.data
               const { selfieUrl } = user
+              console.log(selfieUrl)
+              dispatch(update({ selfieUrl }))
               dispatch(setIsAuth())
               if (!selfieUrl) {
                 navigate(UPLOAD_SELFIE_ROUTE)
