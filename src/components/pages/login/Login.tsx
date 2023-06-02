@@ -32,13 +32,13 @@ import {
 
 
 const Login = () => {
-const navigate = useNavigate()
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const { country, dialCode } = useAppSelector(state => state.countryUpdate)
   const [digits, setDigits] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
   const [disabled, setDisabled] = useState(false)
   const [isDisabledCountryInput, setIsDisabledCountryInput] = useState(false)
-  const dispatch = useAppDispatch()
 
   const handlePhoneNumber = (event: ChangeEvent<HTMLInputElement>) => {
     const regex = /^[0-9\b]+$/;
@@ -60,7 +60,7 @@ const navigate = useNavigate()
       setIsDisabledCountryInput(true)
       const fullNumber = `${dialCode.substring(1)}${digits}`
       dispatch(updateFullNumber({ fullNumber }))
-      localStorage.setItem('phoneNumber', fullNumber)
+      // localStorage.setItem('phoneNumber', fullNumber)
       await loginService.requestOtp(fullNumber)
       setIsLoading(false)
       navigate(CODE_CONFIRMATION_ROUTE)

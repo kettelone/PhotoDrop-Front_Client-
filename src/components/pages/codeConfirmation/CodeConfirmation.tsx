@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { setIsAuth } from '../../../app/authSlice/authSlice';
-import { useAppDispatch } from '../../../app/hooks';
+import { setIsAuth, setIsFetching } from '../../../app/authSlice/authSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import albumService from '../../../service/albumService';
 import loginService from '../../../service/loginService';
 import {
@@ -32,7 +32,7 @@ const CodeConfirmation = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const navigate = useNavigate()
-  const  phoneNumber = localStorage.getItem('phoneNumber')
+  const  phoneNumber = useAppSelector(state => state.countryUpdate.fullNumber)
   const handleNext = async () => {
     if (!phoneNumber) {
       return 
@@ -43,6 +43,7 @@ const CodeConfirmation = () => {
     if (response) {
         const fetchData = async () => {
           setTimeout(async () => {
+            dispatch(setIsFetching())
             const data = await albumService.getAlbums()
             if (data) {
               const { user } = data.data
@@ -55,6 +56,7 @@ const CodeConfirmation = () => {
                 navigate(MAIN_DASHBOARD_ROUTE)
                 setIsLoading(false)
               }
+              dispatch(setIsFetching())
             }
             document.body.classList.remove('no-scroll')
           }, 1000)

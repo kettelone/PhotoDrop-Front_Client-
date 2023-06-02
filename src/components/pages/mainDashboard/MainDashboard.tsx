@@ -15,7 +15,7 @@ const MainDashboard = () => {
   const dispatch = useAppDispatch()
   const photos = useAppSelector(state => state.photosUpdate)
   const albums = useAppSelector(state => state.albumsUpdate)
-  // const [isLoading, setIsLoading] = useState(false)
+  const isLoading = useAppSelector(state => state.authUpdate.isFetching)
   useEffect(() => {
       const fetchData = async () => {
         const data = await albumService.getAlbums()
@@ -34,11 +34,11 @@ const MainDashboard = () => {
   }, [])
   return (
     <div>
-      {/* {
+      {
         isLoading
           ? <div><Blur /><Loader /></div>
           : ''
-      } */}
+      }
       {albums.length > 0 && <AlbumsDashboard />}
       {albums.length <= 0 && <Dashboard />}
       <Footer/>
