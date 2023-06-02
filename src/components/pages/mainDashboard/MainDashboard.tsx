@@ -22,7 +22,7 @@ const MainDashboard = () => {
       const { user, albums, allPhotos } = data.data
       const { selfieUrl, name, phone, email } = user
       console.log(selfieUrl)
-      if (allPhotos.length > photos.length || selfie !== selfieUrl) {
+      if (allPhotos.length > photos.length) {
           dispatch(update({ selfieUrl, name, phone, email }))
           dispatch(updateAlbum({ albums }))
           dispatch(updatePhoto({ allPhotos }))
