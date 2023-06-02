@@ -48,7 +48,10 @@ const AlbumsDashboard = () => {
       return
     }
     if (!album[0].isPaid) {
-      dispatch(update({ albumName: album[0].name, albumCover: album[0].url, albumID: albumID }))
+      localStorage.setItem('albumName', album[0].name)
+      localStorage.setItem('albumCover', album[0].url)
+      localStorage.setItem('albumID', albumID)
+      // dispatch(update({ albumName: album[0].name, albumCover: album[0].url, albumID: albumID }))
     }
   }
 
@@ -61,7 +64,10 @@ const AlbumsDashboard = () => {
       return
     }
     if (!album[0].isPaid) {
-      dispatch(update({ albumName: album[0].name, albumCover: album[0].url, albumID: albumID }))
+      localStorage.setItem('albumName', album[0].name)
+      localStorage.setItem('albumCover', album[0].url)
+      localStorage.setItem('albumID', albumID)
+      // dispatch(update({ albumName: album[0].name, albumCover: album[0].url, albumID: albumID }))
     }
     setAlbumId(albumID)
     setPhotoId(id)

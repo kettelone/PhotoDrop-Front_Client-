@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../../app/hooks';
@@ -7,9 +7,21 @@ import successGif from './successGif.gif'
 
 const PaymentSuccess = () => {
   const navigate = useNavigate()
-  const id = useAppSelector(state => state.paidAlbumsUpdate.albumID) 
-  const albumCover = useAppSelector(state =>state.paidAlbumsUpdate.albumCover)
-  const albumName = useAppSelector(state => state.paidAlbumsUpdate.albumName)
+  const [id, setId] = useState(() => {
+    return  localStorage.getItem('albumID')
+
+  })
+  const [albumCover, setAlbumCover] = useState(() => {
+    return localStorage.getItem('albumCover')
+
+  })
+  const [albumName, setAlbumName] = useState(() => {
+    return localStorage.getItem('albumName')
+
+  })
+  // const id = useAppSelector(state => state.paidAlbumsUpdate.albumID) 
+  // const albumCover = useAppSelector(state =>state.paidAlbumsUpdate.albumCover)
+  // const albumName = useAppSelector(state => state.paidAlbumsUpdate.albumName)
 
   const goToAlbum = () => {
     navigate(`/album/${id}`)
