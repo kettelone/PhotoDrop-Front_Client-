@@ -13,7 +13,6 @@ const ProtectedRoute = ({ children }: any) => {
 	const user = useAppSelector((state) => state.authUpdate)
 	const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
 	const location = useLocation()	
-	console.log(selfie)
 	let tokenValid = false
 	if (cookies.get('jwt_auth')) {
 		const token = cookies.get('jwt_auth')

@@ -5,14 +5,18 @@ import { useNavigate } from 'react-router-dom';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
 import { setIsAuth, setIsFetching } from '../../../app/authSlice/authSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { updatePhoto } from '../../../app/photosSlice/photosSlice';
 import {update} from '../../../app/userSlice/userSlice'
 import albumService from '../../../service/albumService';
 import loginService from '../../../service/loginService';
 import {
   MAIN_DASHBOARD_ROUTE,
   UPLOAD_SELFIE_ROUTE} from '../../../utils/consts';
+import Loader from '../../modals/loader/Loader';
+import { Blur } from '../addSelfie/components';
 import {
   ButtonContainer,
   Container,
@@ -31,6 +35,7 @@ const CodeConfirmation = () => {
   const [otp, setOtp] = useState('');
   const [resendPressed, setResendPressed] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [showLoader, setShowLoader] = useState(false)
   const [isError, setIsError] = useState(false)
   const navigate = useNavigate()
   const  phoneNumber = useAppSelector(state => state.countryUpdate.fullNumber)
@@ -42,14 +47,16 @@ const CodeConfirmation = () => {
     setIsLoading(true)
     const response = await loginService.login(phoneNumber, otp)
     if (response) {
-        const fetchData = async () => {
-          setTimeout(async () => {
+      const fetchData = async () => {
+        setShowLoader(true)
             const data = await albumService.getAlbums()
             if (data) {
-              const { user } = data.data
-              const { selfieUrl } = user
-              console.log(selfieUrl)
-              dispatch(update({ selfieUrl }))
+              const { user, albums, allPhotos } = data.data
+              const { selfieUrl, name, phone, email } = user
+                setIsLoading(true)
+                dispatch(update({ selfieUrl, name, phone, email }))
+                dispatch(updateAlbum({ albums }))
+                dispatch(updatePhoto({ allPhotos }))
               dispatch(setIsAuth())
               if (!selfieUrl) {
                 navigate(UPLOAD_SELFIE_ROUTE)
@@ -60,10 +67,11 @@ const CodeConfirmation = () => {
               }
               dispatch(setIsFetching())
             }
-            document.body.classList.remove('no-scroll')
-          }, 1000)
+            setShowLoader(false)
+
+        document.body.classList.remove('no-scroll')
         }
-        fetchData()
+      fetchData()
     } else {
       setIsError(true)
       setIsLoading(false)
@@ -84,6 +92,11 @@ const CodeConfirmation = () => {
 
   return (
     <Wrapper>
+      {
+        showLoader
+          ? <div><Blur /><Loader /></div>
+          : ''
+      }
     <Container>
       <Title>What`s the code?</Title>
       <SubTitle>Enter the code sent to <Phone>+{phoneNumber}</Phone></SubTitle>
