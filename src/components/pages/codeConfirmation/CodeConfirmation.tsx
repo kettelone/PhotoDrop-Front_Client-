@@ -48,7 +48,6 @@ const CodeConfirmation = () => {
     const response = await loginService.login(phoneNumber, otp)
     if (response) {
       const fetchData = async () => {
-        setShowLoader(true)
             const data = await albumService.getAlbums()
             if (data) {
               const { user, albums, allPhotos } = data.data
@@ -57,18 +56,21 @@ const CodeConfirmation = () => {
                 dispatch(update({ selfieUrl, name, phone, email }))
                 dispatch(updateAlbum({ albums }))
                 dispatch(updatePhoto({ allPhotos }))
-              dispatch(setIsAuth())
+                dispatch(setIsAuth())
               if (!selfieUrl) {
                 navigate(UPLOAD_SELFIE_ROUTE)
                 setIsLoading(false)
+                setShowLoader(false)
               } else {
-                navigate(MAIN_DASHBOARD_ROUTE)
-                setIsLoading(false)
+                setShowLoader(true)
+                setTimeout(() => {
+                  navigate(MAIN_DASHBOARD_ROUTE)
+                  setIsLoading(false)
+                  setShowLoader(false)
+                },1000)
               }
               dispatch(setIsFetching())
             }
-            setShowLoader(false)
-
         document.body.classList.remove('no-scroll')
         }
       fetchData()
