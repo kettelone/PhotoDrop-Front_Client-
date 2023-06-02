@@ -38,13 +38,6 @@ const ProtectedRoute = ({ children }: any) => {
 		return <Navigate to={MAIN_DASHBOARD_ROUTE} state={{ from: location }} replace />
 	} else if (
 		user.isAuthenticated &&
-		tokenValid &&
-		location.pathname === MAIN_DASHBOARD_ROUTE &&
-		!selfie
-		) {
-		return <Navigate to={UPLOAD_SELFIE_ROUTE} state={{ from: location }} replace />
-	}else if (
-		user.isAuthenticated &&
 		tokenValid 
 	) {
 		return children
