@@ -47,16 +47,6 @@ const Album = () => {
   const [isPhotoLoading, setIsPhotoLoading] = useState(false)
   const [isPaymentLoading, setIsPaymentLoading] = useState(false)
 
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE)
-    }
-    if (id == 'false' || id == 'null') {
-      navigate(MAIN_DASHBOARD_ROUTE)
-    }
-  }, [])
-
   const handlePayment = async () => {
     setIsPaymentLoading(true)
     setIsDisabled(true)

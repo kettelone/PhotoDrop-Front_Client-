@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import OtpInput from 'react-otp-input';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,8 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAppDispatch,useAppSelector } from '../../../app/hooks';
 import { update } from '../../../app/userSlice/userSlice'
 import accountService from '../../../service/accountService';
-import checkToken from '../../../utils/checkJWT';
-import { ACCOUNT_SETTINGS, LOGIN_ROUTE } from '../../../utils/consts';
+import { ACCOUNT_SETTINGS } from '../../../utils/consts';
 import Button from '../../common/button/Button';
 import GoBack from '../../common/goBack/GoBack';
 import { ButtonContainer, Container, ErrorMessage,Phone, ResendButton, SubTitle, Title, Wrapper } from './components'
@@ -17,14 +16,7 @@ import { ButtonContainer, Container, ErrorMessage,Phone, ResendButton, SubTitle,
 import './index.css'
 
 const NewCodeConfirmation = () => {
-const dispatch = useAppDispatch()
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE)
-    }
-  }, [])
-
+  const dispatch = useAppDispatch()
   const [otp, setOtp] = useState('');
   const [resendPressed, setResendPressed] = useState(false)
   const [isLoading, setIsLoading] = useState(false)

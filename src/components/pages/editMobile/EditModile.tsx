@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect,useState } from 'react';
+import React, { ChangeEvent,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
@@ -8,8 +8,7 @@ import { useAppDispatch,useAppSelector } from '../../../app/hooks'
 import { update } from '../../../app/userSlice/userSlice';
 import stroke from '../../../assets/stroke.svg'
 import accountService from '../../../service/accountService';
-import checkToken from '../../../utils/checkJWT';
-import { CONFIRM_EDIT_PHONE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts'
+import { CONFIRM_EDIT_PHONE_ROUTE } from '../../../utils/consts'
 import GoBack from '../../common/goBack/GoBack';
 import CountrySelect from '../../modals/countrySelect/CountrySelect';
 import {
@@ -64,12 +63,7 @@ const EditPhone = () => {
       setDisabled(false)
     }
   }
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE)
-    }
-  }, [])
+
   return (
     <Container>
       <span onClick={() => navigate(-1)}>

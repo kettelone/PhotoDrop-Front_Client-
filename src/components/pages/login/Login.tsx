@@ -1,4 +1,4 @@
-import React, { ChangeEvent ,useEffect,useState} from 'react';
+import React, { ChangeEvent ,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
@@ -8,8 +8,7 @@ import { updateFullNumber } from '../../../app/countrySlice/countrySlice'
 import { useAppDispatch,useAppSelector } from '../../../app/hooks'
 import stroke from '../../../assets/stroke.svg'
 import loginService from '../../../service/loginService';
-import checkToken from '../../../utils/checkJWT';
-import { CODE_CONFIRMATION_ROUTE, MAIN_DASHBOARD_ROUTE } from '../../../utils/consts'
+import { CODE_CONFIRMATION_ROUTE } from '../../../utils/consts'
 import CountrySelect from '../../modals/countrySelect/CountrySelect';
 import {
   Body,
@@ -34,13 +33,6 @@ import {
 
 const Login = () => {
 const navigate = useNavigate()
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (isLoggedIn) {
-      navigate(MAIN_DASHBOARD_ROUTE)
-    }
-  },[])
-
   const { country, dialCode } = useAppSelector(state => state.countryUpdate)
   const [digits, setDigits] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)

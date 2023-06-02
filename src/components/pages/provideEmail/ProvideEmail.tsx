@@ -1,25 +1,16 @@
-import React, { useEffect,useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import accountService from '../../../service/accountService';
-import checkToken from '../../../utils/checkJWT';
-import { LOGIN_ROUTE,MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
+import { MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
 import { Container, Input, Line, StyledButton, TermsNConditions,Title, TitleWrapper, Wrapper } from './components'
 import hey from './hey.svg'
 
 
 const ProvideEmail = () => {
-  
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE)
-    }
-  }, [])
-
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)

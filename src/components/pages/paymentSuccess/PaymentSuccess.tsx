@@ -1,21 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../../app/hooks';
-import checkToken from '../../../utils/checkJWT';
-import { LOGIN_ROUTE } from '../../../utils/consts';
 import { Container, ImageContainer,Img, P1, P2, P3,StyledButton,Title, Wrapper } from './components'
 import successGif from './successGif.gif'
 
 const PaymentSuccess = () => {
-  
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE)
-    }
-  }, [])
-
   const navigate = useNavigate()
   const id = useAppSelector(state => state.paidAlbumsUpdate.albumID) 
   const albumCover = useAppSelector(state =>state.paidAlbumsUpdate.albumCover)

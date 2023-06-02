@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import OtpInput from 'react-otp-input';
 import { useNavigate } from 'react-router-dom';
 
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { setIsAuth } from '../../../app/authSlice/authSlice';
+import { useAppDispatch } from '../../../app/hooks';
 import albumService from '../../../service/albumService';
 import loginService from '../../../service/loginService';
-import checkToken from '../../../utils/checkJWT';
 import {
   MAIN_DASHBOARD_ROUTE,
   UPLOAD_SELFIE_ROUTE} from '../../../utils/consts';
@@ -24,16 +25,8 @@ import {
 
 import './index.css'
 
-
 const CodeConfirmation = () => {
-
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (isLoggedIn) {
-      navigate(MAIN_DASHBOARD_ROUTE)
-    }
-  }, [])
-  
+  const dispatch = useAppDispatch()
   const [otp, setOtp] = useState('');
   const [resendPressed, setResendPressed] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -54,7 +47,7 @@ const CodeConfirmation = () => {
             if (data) {
               const { user } = data.data
               const { selfieUrl } = user
-
+              dispatch(setIsAuth())
               if (!selfieUrl) {
                 navigate(UPLOAD_SELFIE_ROUTE)
                 setIsLoading(false)

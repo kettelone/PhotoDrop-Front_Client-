@@ -33,29 +33,97 @@ EDIT_PHONE_ROUTE,
   PROVIDE_EMAIL_ROUTE,
   SUCCESS_ROUTE,
   TERMS_ROUTE,
-  UPLOAD_SELFIE_ROUTE} from '../utils/consts';
-
-
+  UPLOAD_SELFIE_ROUTE
+} from '../utils/consts';
+import ProtectedRoute from '../utils/protectedRoutes';
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path={LOGIN_ROUTE} element={<Login />} />
-      <Route path={CODE_CONFIRMATION_ROUTE} element={<CodeConfirmation />} />
-      <Route path={UPLOAD_SELFIE_ROUTE} element={<AddSelfie />} />
-      <Route path={MAIN_DASHBOARD_ROUTE} element={<MainDashboard />} />
-      <Route path={PROFILE_ROUTE} element={<Profile />} />
-      <Route path={EDIT_NAME_ROUTE} element={<EditName />} />
-      <Route path={EDIT_PHONE_ROUTE} element={<EditPhone />} />
-      <Route path={EDIT_EMAIL} element={<EditEmail/>} />
-      <Route path={CONFIRM_EDIT_PHONE_ROUTE} element={<NewCodeConfirmation />} />
-      <Route path={PROVIDE_EMAIL_ROUTE} element={<ProvideEmail />} />
-      <Route path={ACCOUNT_SETTINGS} element={<AccountSettings />} />
-      <Route path={ALBUM_ROUTE} element={<Album />} />
-      <Route path={SUCCESS_ROUTE} element={<PaymentSuccess />} />
-      <Route path={FAILED_ROUTE} element={<PaymentFailed />} />
-      <Route path={PRIVACY_POLICY_ROUTE} element={<PrivacyPolicy />} />
-      <Route path={TERMS_ROUTE} element={<Terms />} />
-      <Route path="*" element={<Login />} />
+      <Route path={LOGIN_ROUTE} element={
+        <ProtectedRoute>
+          <Login />
+        </ProtectedRoute>
+      } />
+      <Route path={CODE_CONFIRMATION_ROUTE} element={
+        <ProtectedRoute>
+          <CodeConfirmation />
+        </ProtectedRoute>
+      } />
+      <Route path={UPLOAD_SELFIE_ROUTE} element={
+        <ProtectedRoute>
+          <AddSelfie />
+        </ProtectedRoute>
+      } />
+      <Route path={MAIN_DASHBOARD_ROUTE} element={
+        <ProtectedRoute>  
+          <MainDashboard />
+        </ProtectedRoute>
+      } />
+      <Route path={PROFILE_ROUTE} element={
+        <ProtectedRoute>
+          <Profile />
+        </ProtectedRoute>
+      } />
+      <Route path={EDIT_NAME_ROUTE} element={
+        <ProtectedRoute>
+          <EditName />
+        </ProtectedRoute>
+      } />
+      <Route path={EDIT_PHONE_ROUTE} element={
+        <ProtectedRoute>
+          <EditPhone />
+        </ProtectedRoute>
+      } />
+      <Route path={EDIT_EMAIL} element={
+        <ProtectedRoute>
+          <EditEmail />
+        </ProtectedRoute>
+      } />
+      <Route path={CONFIRM_EDIT_PHONE_ROUTE} element={
+        <ProtectedRoute>
+          <NewCodeConfirmation />
+        </ProtectedRoute>
+      } />
+      <Route path={PROVIDE_EMAIL_ROUTE} element={
+        <ProtectedRoute>
+          <ProvideEmail />
+        </ProtectedRoute>
+      } />
+      <Route path={ACCOUNT_SETTINGS} element={
+        <ProtectedRoute>
+          <AccountSettings />
+        </ProtectedRoute>
+      } />
+      <Route path={ALBUM_ROUTE} element={
+        <ProtectedRoute>
+          <Album />
+        </ProtectedRoute>
+      } />
+      <Route path={SUCCESS_ROUTE} element={
+        <ProtectedRoute>
+          <PaymentSuccess />
+        </ProtectedRoute>
+      } />
+      <Route path={FAILED_ROUTE} element={
+        <ProtectedRoute>
+          <PaymentFailed />
+        </ProtectedRoute>
+      } />
+      <Route path={PRIVACY_POLICY_ROUTE} element={
+        <ProtectedRoute>
+          <PrivacyPolicy />
+        </ProtectedRoute>
+      } />
+      <Route path={TERMS_ROUTE} element={
+        <ProtectedRoute>
+          <Terms />
+        </ProtectedRoute>
+      } />
+      <Route path="*" element={
+        <ProtectedRoute>
+          <MainDashboard />
+        </ProtectedRoute>
+      } />
     </Routes>
   );
 };

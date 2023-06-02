@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useState } from 'react';
 
-import checkToken from '../../../utils/checkJWT';
-import {LOGIN_ROUTE,MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
+import {MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import {
   Blur,
@@ -20,14 +18,7 @@ import {
 import personIcon from './personIcon.svg'
 
 const AddSelfie = () => {
-const navigate = useNavigate()
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE) 
-    }
 
-  }, [])
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
 
   const selectPhoto = (event: any) => {

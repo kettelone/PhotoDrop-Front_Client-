@@ -1,14 +1,15 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import storage from 'redux-persist/lib/storage'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { persistReducer, persistStore } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
 
-import countryReducer from './countrySlice/countrySlice'
 import albumsReducer from './albumsSlice/albumsSlice'
-import userReducer from './userSlice/userSlice'
-import photosReducer from './photosSlice/photosSlice'
+import authReducer from './authSlice/authSlice'
+import countryReducer from './countrySlice/countrySlice'
 import originalPhotosReducer from './originalPhotosSlice/originalPhotosSlice'
 import paidAlbumsReducer from './paidAlbumSlice/PaidAlbumSlice'
+import photosReducer from './photosSlice/photosSlice'
+import userReducer from './userSlice/userSlice'
 
 const persistConfig = {
 	key: 'root',
@@ -17,6 +18,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
 	countryUpdate: countryReducer,
+	authUpdate: authReducer,
 	albumsUpdate: albumsReducer,
 	userUpdate: userReducer,
 	photosUpdate: photosReducer,

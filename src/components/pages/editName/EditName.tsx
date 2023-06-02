@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
@@ -7,19 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAppDispatch } from '../../../app/hooks';
 import { update } from '../../../app/userSlice/userSlice';
 import accountService from '../../../service/accountService';
-import checkToken from '../../../utils/checkJWT';
-import { LOGIN_ROUTE,PROFILE_ROUTE } from '../../../utils/consts';
+import { PROFILE_ROUTE } from '../../../utils/consts';
 import GoBack from '../../common/goBack/GoBack';
 import { Container, Input, StyledButton,Title, Wrapper } from './components'
 
 
 const EditName = () => {
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE)
-    }
-  }, [])
   const dispatch = useAppDispatch()
   const [name, setName] = useState('')
   const [isLoading, setIsLoading] = useState(false)

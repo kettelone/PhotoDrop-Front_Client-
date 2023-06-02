@@ -52,10 +52,7 @@ const Profile = () => {
   }
 
   useEffect(() => {
-    const loggedIn = checkToken()
-    if (!loggedIn) {
-      navigate(LOGIN_ROUTE);
-    }
+    return 
   }, [selfie])
   return (
     <Wrapper>

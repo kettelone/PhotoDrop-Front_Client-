@@ -28,14 +28,7 @@ const AccountSettings = () => {
   const navigate = useNavigate()
   const phone = useAppSelector(state => state.userUpdate.phone)
   const email = useAppSelector(state => state.userUpdate.email)
-
-  useEffect(() => {
-    const isLoggedIn = checkToken()
-    if (!isLoggedIn) {
-      navigate(LOGIN_ROUTE)
-    }
-  }, [])
-
+  
   return (
     <div>
       <span onClick={() => navigate(PROFILE_ROUTE)}>
