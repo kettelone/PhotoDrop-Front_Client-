@@ -102,6 +102,8 @@ const EditPhone = () => {
         <ButtonContainer>
           <StyledButton
             onClick={handleChange}
+            style={{ opacity: digits.length >= 10 ? 1 : 0.5 }}
+            disabled={digits.length >= 10 ? false : true}
           >{isLoading
             ? <FontAwesomeIcon icon={faSpinner} className="spinner" />
             : 'Next'
