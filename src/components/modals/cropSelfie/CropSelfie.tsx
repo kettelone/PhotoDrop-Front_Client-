@@ -94,20 +94,19 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
       setIsLoading(true)
       try {
           const presignedPostUrl = await selfieService.signSelfie()
-          await uploadToS3(croppedImage, presignedPostUrl)
-          setTimeout(async () => {
+        await uploadToS3(croppedImage, presignedPostUrl)
+        const waitFor = (delay:number) => new Promise(resolve => setTimeout(resolve, delay));
+        await waitFor(2000);
             const response = await albumService.getAlbums()
             if (!response) {
               return
             }
-            const { user } = response.data
-            const { selfieUrl } = user
+          const { selfieUrl } = response.data.user
             dispatch(update({ selfieUrl }))
             setDisabled(false) 
             setIsLoading(false)
             navigate(props.page)
             closeModal()
-          }, 3500)
       } catch (e) {
         console.log(e)
       }

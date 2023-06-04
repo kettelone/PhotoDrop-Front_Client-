@@ -3,7 +3,6 @@ import React, {useState } from 'react';
 import {MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import {
-  Blur,
   Circle,
   Container,
   Horizontal,

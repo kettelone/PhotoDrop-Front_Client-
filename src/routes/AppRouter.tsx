@@ -24,7 +24,7 @@ import {
   CONFIRM_EDIT_PHONE_ROUTE,
   EDIT_EMAIL,
   EDIT_NAME_ROUTE,
-EDIT_PHONE_ROUTE,
+  EDIT_PHONE_ROUTE,
   FAILED_ROUTE,
   LOGIN_ROUTE,
   MAIN_DASHBOARD_ROUTE,
@@ -38,22 +38,15 @@ EDIT_PHONE_ROUTE,
 import ProtectedRoute from '../utils/protectedRoutes';
 const AppRouter = () => {
   return (
-    
     <Routes>
       <Route path={LOGIN_ROUTE} element={
-        <ProtectedRoute>
           <Login />
-        </ProtectedRoute>
       } />
       <Route path={CODE_CONFIRMATION_ROUTE} element={
-        <ProtectedRoute>
           <CodeConfirmation />
-        </ProtectedRoute>
       } />
       <Route path={UPLOAD_SELFIE_ROUTE} element={
-        <ProtectedRoute>
           <AddSelfie />
-        </ProtectedRoute>
       } />
       <Route path={MAIN_DASHBOARD_ROUTE} element={
         <ProtectedRoute>  

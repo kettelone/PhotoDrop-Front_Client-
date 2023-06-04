@@ -4,16 +4,14 @@ import { Navigate, useLocation } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'universal-cookie'
 
-import { setIsAuth } from '../app/authSlice/authSlice'
-import { useAppDispatch, useAppSelector } from '../app/hooks'
 export const cookies = new Cookies()
-
 
 import { CODE_CONFIRMATION_ROUTE, LOGIN_ROUTE, MAIN_DASHBOARD_ROUTE, UPLOAD_SELFIE_ROUTE } from './consts'
 
 const ProtectedRoute = ({ children }: any) => {
 	const location = useLocation()
 	let tokenValid = false
+	console.log(!cookies.get('jwt_auth'))
 	if (cookies.get('jwt_auth')) {
 		const token = cookies.get('jwt_auth')
 		try {
@@ -34,6 +32,8 @@ const ProtectedRoute = ({ children }: any) => {
 		} catch (e) {
 			console.log(e)
 		}
+	} else if (!cookies.get('jwt_auth')){
+		return <Navigate to={LOGIN_ROUTE} state={{ from: location }} replace />
 	}
 }
 
