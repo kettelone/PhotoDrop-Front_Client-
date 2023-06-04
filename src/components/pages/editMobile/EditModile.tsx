@@ -8,6 +8,7 @@ import { useAppDispatch,useAppSelector } from '../../../app/hooks'
 import { update } from '../../../app/userSlice/userSlice';
 import stroke from '../../../assets/stroke.svg'
 import accountService from '../../../service/accountService';
+import albumService from '../../../service/albumService';
 import { CONFIRM_EDIT_PHONE_ROUTE } from '../../../utils/consts'
 import GoBack from '../../common/goBack/GoBack';
 import CountrySelect from '../../modals/countrySelect/CountrySelect';
@@ -56,11 +57,11 @@ const EditPhone = () => {
       setDisabled(true)
       setIsLoading(true)
       const fullNumber = `${dialCode.substring(1)}${digits}`
-      dispatch(update({newPhone:fullNumber}))
+      dispatch(update({ newPhone: fullNumber }))
       await accountService.editPhone(fullNumber)
-      setIsLoading(false)
-      navigate(CONFIRM_EDIT_PHONE_ROUTE)
-      setDisabled(false)
+        setIsLoading(false)
+        navigate(CONFIRM_EDIT_PHONE_ROUTE)
+        setDisabled(false)
     }
   }
 

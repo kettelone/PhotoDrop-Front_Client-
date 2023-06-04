@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useAppDispatch,useAppSelector } from '../../../app/hooks';
 import { update } from '../../../app/userSlice/userSlice'
 import accountService from '../../../service/accountService';
+import albumService from '../../../service/albumService';
 import { ACCOUNT_SETTINGS } from '../../../utils/consts';
 import Button from '../../common/button/Button';
 import GoBack from '../../common/goBack/GoBack';
@@ -31,7 +32,12 @@ const NewCodeConfirmation = () => {
       setDisabled(true)
       const response = await accountService.phoneVerify(phoneNumber, otp)
       if (response) {
-        dispatch(update({ phone: phoneNumber }))
+        const data = await albumService.getAlbums()
+        if (!data) {
+          return
+        }
+        const { selfieUrl,phone } = data.data.user
+        dispatch(update({ selfieUrl, phone }))
           navigate(ACCOUNT_SETTINGS)
           setIsLoading(false)
           setDisabled(false)
