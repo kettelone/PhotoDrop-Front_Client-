@@ -15,7 +15,7 @@ export const authSlice = createSlice({
 			state.isFetching === true ? false : true
 		},
 		setIsAuth: (state) => {
-			state.isAuthenticated = true
+			state.isAuthenticated === true ? false : true
 		}
 	}
 })

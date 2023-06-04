@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route,Routes } from 'react-router-dom'
+import { Route,Routes} from 'react-router-dom'
 
 import AccountSettings from '../components/pages/accountSettings/AccountSettings';
 import AddSelfie from '../components/pages/addSelfie/AddSelfie';
@@ -38,6 +38,7 @@ EDIT_PHONE_ROUTE,
 import ProtectedRoute from '../utils/protectedRoutes';
 const AppRouter = () => {
   return (
+    
     <Routes>
       <Route path={LOGIN_ROUTE} element={
         <ProtectedRoute>

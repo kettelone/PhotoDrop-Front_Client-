@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import photoDrop from '../../../assets/photoDrop.svg'
+import { MAIN_DASHBOARD_ROUTE } from '../../../utils/consts';
 
 const StyledHeader = styled.header`
   display:flex;
@@ -27,7 +29,9 @@ const Img = styled.img`
 const Header = () => {
   return (
     <StyledHeader id="header">
-      <Img src={photoDrop} alt='photoDrop' />
+      <Link to={MAIN_DASHBOARD_ROUTE}>
+        <Img src={photoDrop} alt='photoDrop' />
+      </Link>
     </StyledHeader>
   );
 };
