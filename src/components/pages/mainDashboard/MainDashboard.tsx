@@ -1,5 +1,7 @@
 import React,{useEffect} from 'react';
 
+import styled from 'styled-components';
+
 import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
 import { useAppDispatch,useAppSelector } from '../../../app/hooks';
 import { updatePhoto } from '../../../app/photosSlice/photosSlice';
@@ -10,6 +12,10 @@ import { Response } from '../../interfaces/interfaces';
 import AlbumsDashboard from '../albumsDashboard/AlbumsDashboard';
 import NoAlbumsDashboard from '../noAlbumsDashboard/NoAlbumsDashboard'
 
+
+const Wrapper = styled.div`
+  height:100vh
+`
 const MainDashboard = () => {
   const dispatch = useAppDispatch()
   const photos = useAppSelector(state => state.photosUpdate)
@@ -38,11 +44,11 @@ const MainDashboard = () => {
       fetchData()
   }, [])
   return (
-    <div>
+    <Wrapper >
       {photos.length > 0 && <AlbumsDashboard />}
       {photos.length === 0 && <NoAlbumsDashboard />}
       <Footer/>
-    </div>
+    </Wrapper>
   );
 };
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import Button from '../../common/button/Button'
 
 const StyledGoBack = styled.div`background-color: yellow;`
@@ -10,6 +11,7 @@ const Wrapper = styled.div`
 	z-index: 2;
 	width: 100%;
 	min-height: 700px;
+	height: 100vh;
 `
 
 const GoBack = styled.div`
