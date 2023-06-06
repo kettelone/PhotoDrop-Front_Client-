@@ -32,7 +32,6 @@ const AlbumsDashboard = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const albums = useAppSelector(state => state.albumsUpdate)
-  console.log({albums})
   const photos = useAppSelector(state => state.photosUpdate)
   const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
   const originalPhotos = useAppSelector(state => state.originalPhotosUpdate)
@@ -63,7 +62,6 @@ const AlbumsDashboard = () => {
     }
     if (!album[0].isPaid) {
       dispatch(update({ albumID }))
-
     }
     setAlbumId(albumID)
     setPhotoId(id)

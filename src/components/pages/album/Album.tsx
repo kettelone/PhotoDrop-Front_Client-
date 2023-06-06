@@ -59,23 +59,22 @@ const Album = () => {
     },1000)
   }
 
-  const handlePhoto = async (id: string) => {
+  const handlePhoto = async (photoId: string) => {
     document.body.classList.add('noScroll')
     setOriginalPhotoUrl('')
-
     if (!album[0].isPaid) { 
       dispatch(update({ albumID: id }))
     }
 
-    if (originalPhotos[id]) {
-      setOriginalPhotoUrl(originalPhotos[id])
+    if (originalPhotos[photoId]) {
+      setOriginalPhotoUrl(originalPhotos[photoId])
     } else {
       setIsPhotoLoading(true)
-      const data = await photoService.getOriginalPhoto(id)
+      const data = await photoService.getOriginalPhoto(photoId)
       if (!data) {
         return
       }
-      dispatch(updateOriginalPhotos({ [id]: data?.data }))
+      dispatch(updateOriginalPhotos({ [photoId]: data?.data }))
       setOriginalPhotoUrl(data?.data)
       setIsPhotoLoading(false)
     }
