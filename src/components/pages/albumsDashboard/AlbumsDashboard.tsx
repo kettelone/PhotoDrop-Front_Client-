@@ -35,6 +35,7 @@ const AlbumsDashboard = () => {
   const photos = useAppSelector(state => state.photosUpdate)
   const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
   const originalPhotos = useAppSelector(state => state.originalPhotosUpdate)
+  console.log({ originalPhotos })
   const [isPhotoLoading, setIsPhotoLoading] = useState(false)
   const [originalPhotoUrl, setOriginalPhotoUrl] = useState('')
   const [photoId, setPhotoId] = useState('')
@@ -67,7 +68,7 @@ const AlbumsDashboard = () => {
     setPhotoId(id)
     setIsPaid(album[0].isPaid)
 
-    if (!originalPhotos[id]) {
+    if (originalPhotos[id]) {
       setOriginalPhotoUrl(originalPhotos[id])
     } else {
       setIsPhotoLoading(true)
@@ -76,7 +77,6 @@ const AlbumsDashboard = () => {
         return
       }
 
-      // TO DO: if paid, refresh the orifinal photos store. As the Big photo with watermark remains
       dispatch(updateOriginalPhotos({ [id]: data?.data }))
       setOriginalPhotoUrl(data?.data) 
       setIsPhotoLoading(false)

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
 import { useAppDispatch,useAppSelector} from '../../../app/hooks';
+import { updateOriginalPhotos} from '../../../app/originalPhotosSlice/originalPhotosSlice'
 import { updatePhoto } from '../../../app/photosSlice/photosSlice';
 import albumService from '../../../service/albumService';
 import { Response } from '../../interfaces/interfaces';
@@ -11,9 +12,12 @@ import { Container, ImageContainer,Img, P1, P2, P3,StyledButton,Title, Wrapper }
 import successGif from './successGif.gif'
 
 const PaymentSuccess = () => {
+  interface IntialState {
+    [key: string]: string | undefined
+  }
+
   const dispatch = useAppDispatch()
   const id = useAppSelector(state => state.paidAlbumsUpdate.albumID)
-  console.log({id})
   const [albumName, setAlbumName] = useState('')
   const [albumCover, setAlbumCover] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -25,6 +29,14 @@ const PaymentSuccess = () => {
         return
       }
       const { albums, allPhotos } = data.data
+      const justPaidPhotoIds: IntialState = {}
+      allPhotos.filter(photo => { 
+        if (photo.albumID === id) {
+          justPaidPhotoIds[photo.photoID] = undefined
+        }
+      })
+      dispatch(updateOriginalPhotos( justPaidPhotoIds ))
+      
       const album = albums.filter(album => album.albumID === id)
       setAlbumName(album[0].name)
       setAlbumCover(album[0].url)
