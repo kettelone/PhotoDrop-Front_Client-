@@ -32,6 +32,7 @@ const AlbumsDashboard = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const albums = useAppSelector(state => state.albumsUpdate)
+  console.log({albums})
   const photos = useAppSelector(state => state.photosUpdate)
   const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
   const originalPhotos = useAppSelector(state => state.originalPhotosUpdate)
@@ -40,7 +41,7 @@ const AlbumsDashboard = () => {
   const [photoId, setPhotoId] = useState('')
   const [albumId, setAlbumId] = useState('')
   const [isPaid, setIsPaid] = useState(false)
-  
+
   // handle open album
   const handleAlbum = (albumID:string) => {
     const album = albums?.filter(album => album.albumID === albumID)
@@ -48,10 +49,7 @@ const AlbumsDashboard = () => {
       return
     }
     if (!album[0].isPaid) {
-      localStorage.setItem('albumName', album[0].name)
-      localStorage.setItem('albumCover', album[0].url)
-      localStorage.setItem('albumID', albumID)
-      // dispatch(update({ albumName: album[0].name, albumCover: album[0].url, albumID: albumID }))
+      dispatch(update({  albumID }))
     }
   }
 
@@ -64,16 +62,14 @@ const AlbumsDashboard = () => {
       return
     }
     if (!album[0].isPaid) {
-      localStorage.setItem('albumName', album[0].name)
-      localStorage.setItem('albumCover', album[0].url)
-      localStorage.setItem('albumID', albumID)
-      // dispatch(update({ albumName: album[0].name, albumCover: album[0].url, albumID: albumID }))
+      dispatch(update({ albumID }))
+
     }
     setAlbumId(albumID)
     setPhotoId(id)
     setIsPaid(album[0].isPaid)
 
-    if (originalPhotos[id]) {
+    if (!originalPhotos[id]) {
       setOriginalPhotoUrl(originalPhotos[id])
     } else {
       setIsPhotoLoading(true)
@@ -81,6 +77,8 @@ const AlbumsDashboard = () => {
       if (!data) {
         return
       }
+
+      // TO DO: if paid, refresh the orifinal photos store. As the Big photo with watermark remains
       dispatch(updateOriginalPhotos({ [id]: data?.data }))
       setOriginalPhotoUrl(data?.data) 
       setIsPhotoLoading(false)

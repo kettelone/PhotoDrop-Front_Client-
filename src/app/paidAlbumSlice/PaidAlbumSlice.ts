@@ -3,14 +3,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
 interface IntialState {
-	albumName: string
-	albumCover: string
 	albumID: string
 }
 
 const initialState: IntialState = {
-	albumName: '',
-	albumCover: '',
 	albumID: ''
 }
 

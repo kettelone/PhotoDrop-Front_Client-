@@ -6,27 +6,35 @@ import { updatePhoto } from '../../../app/photosSlice/photosSlice';
 import { update } from '../../../app/userSlice/userSlice'
 import albumService from '../../../service/albumService';
 import Footer from '../../common/footer/Footer';
+import { Response } from '../../interfaces/interfaces';
 import AlbumsDashboard from '../albumsDashboard/AlbumsDashboard';
 import NoAlbumsDashboard from '../noAlbumsDashboard/NoAlbumsDashboard'
 
 const MainDashboard = () => {
   const dispatch = useAppDispatch()
   const photos = useAppSelector(state => state.photosUpdate)
-  const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
+  const albumsStore = useAppSelector(state => state.albumsUpdate)
   useEffect(() => {
     const fetchData = async () => {
-        const data = await albumService.getAlbums()
+        const data:Response | false = await albumService.getAlbums()
         if (!data) {
           return
         }
       const { user, albums, allPhotos } = data.data
       const { selfieUrl, name, phone, email } = user
-      // if (allPhotos.length > photos.length) {
-          dispatch(update({ selfieUrl, name, phone, email }))
-          dispatch(updateAlbum({ albums }))
-          dispatch(updatePhoto({ allPhotos }))
+      const paidInStore = albumsStore.filter(album => album.isPaid === true)
+      const paidInResponse = albums.filter(album => album.isPaid === true)
+
+      if (
+        allPhotos.length !== photos.length
+        ||
+        paidInStore.length !== paidInResponse.length 
+      ) {
+        dispatch(update({ selfieUrl, name, phone, email }))
+        dispatch(updateAlbum({ albums }))
+        dispatch(updatePhoto({ allPhotos }))
+      }
         }
-      // }
       fetchData()
   }, [])
   return (

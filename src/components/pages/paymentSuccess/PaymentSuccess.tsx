@@ -1,49 +1,64 @@
-import React, {useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../../app/hooks';
+import { updateAlbum } from '../../../app/albumsSlice/albumsSlice';
+import { useAppDispatch,useAppSelector} from '../../../app/hooks';
+import { updatePhoto } from '../../../app/photosSlice/photosSlice';
+import albumService from '../../../service/albumService';
+import { Response } from '../../interfaces/interfaces';
+import Loader from '../../modals/loader/Loader';
 import { Container, ImageContainer,Img, P1, P2, P3,StyledButton,Title, Wrapper } from './components'
 import successGif from './successGif.gif'
 
 const PaymentSuccess = () => {
-  console.log("Hello")
+  const dispatch = useAppDispatch()
+  const id = useAppSelector(state => state.paidAlbumsUpdate.albumID)
+  console.log({id})
+  const [albumName, setAlbumName] = useState('')
+  const [albumCover, setAlbumCover] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      const data: Response | false = await albumService.getAlbums()
+      if (!data) {
+        return
+      }
+      const { albums, allPhotos } = data.data
+      const album = albums.filter(album => album.albumID === id)
+      setAlbumName(album[0].name)
+      setAlbumCover(album[0].url)
+      dispatch(updateAlbum({ albums }))
+      dispatch(updatePhoto({ allPhotos }))
+      setIsLoading(false)
+    }
+    fetchData()
+  },[])
   const navigate = useNavigate()
-  const [id, setId] = useState(() => {
-    return  localStorage.getItem('albumID')
-
-  })
-  const [albumCover, setAlbumCover] = useState(() => {
-    return localStorage.getItem('albumCover')
-
-  })
-  const [albumName, setAlbumName] = useState(() => {
-    return localStorage.getItem('albumName')
-
-  })
-
-  console.log(albumName)
-  console.log(albumCover)
-  console.log(id)
-
+  
   const goToAlbum = () => {
     navigate(`/album/${id}`)
   }
   return (
     <Wrapper>
-    <Container>
-      <Title>Thank you!</Title>
-        <P1>The album <b>{albumName ? albumName: 'Your album'}</b> is now unlocked.</P1>
-        <P2>You can now download, share, post, and print your hi-res, watermark-free, glorious memories.</P2>
-        <ImageContainer>
-          <Img src={albumCover ? albumCover : successGif} alt="congrats_unlocked" />
+      {
+        !isLoading
+          ? <Container>
+            <Title>Thank you!</Title>
+            <P1>The album <b>{albumName ? albumName : 'Your album'}</b> is now unlocked.</P1>
+            <P2>You can now download, share, post, and print your hi-res, watermark-free, glorious memories.</P2>
+            <ImageContainer>
+              <Img src={albumCover ? albumCover : successGif} alt="congrats_unlocked" />
 
-        </ImageContainer>
-        <StyledButton
-          onClick={goToAlbum}
-        >See Photos
-        </StyledButton>
-        <P3>You will receive an email with your order details.</P3>
-      </Container>
+            </ImageContainer>
+            <StyledButton
+              onClick={goToAlbum}
+            >See Photos
+            </StyledButton>
+            <P3>You will receive an email with your order details.</P3>
+          </Container>
+          : <Loader />
+    }
     </Wrapper>
   );
 };

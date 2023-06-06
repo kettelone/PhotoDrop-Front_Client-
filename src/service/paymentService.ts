@@ -16,6 +16,7 @@ class Payment {
 			const response = await $host.post(
 				'/stripe/payment',
 				{
+					// successLink: `https://c137-86-99-243-248.ngrok-free.app/success`,
 					successLink: `https://photo-drop-front-client.vercel.app/success`,
 					failLink: `https://photo-drop-front-client.vercel.app/failed`,
 					albumID: albumID,

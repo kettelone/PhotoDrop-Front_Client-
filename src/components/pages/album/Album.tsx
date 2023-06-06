@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { updateOriginalPhotos } from '../../../app/originalPhotosSlice/originalPhotosSlice'
+import { update } from '../../../app/paidAlbumSlice/PaidAlbumSlice';
 import arrowLeft from '../../../assets/arrowLeft.svg'
 import paymentService from '../../../service/paymentService';
 import photoService from '../../../service/photoService';
@@ -61,6 +62,11 @@ const Album = () => {
   const handlePhoto = async (id: string) => {
     document.body.classList.add('noScroll')
     setOriginalPhotoUrl('')
+
+    if (!album[0].isPaid) { 
+      dispatch(update({ albumID: id }))
+    }
+
     if (originalPhotos[id]) {
       setOriginalPhotoUrl(originalPhotos[id])
     } else {

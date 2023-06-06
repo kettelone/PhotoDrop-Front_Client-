@@ -11,11 +11,12 @@ import { CODE_CONFIRMATION_ROUTE, LOGIN_ROUTE, MAIN_DASHBOARD_ROUTE, UPLOAD_SELF
 const ProtectedRoute = ({ children }: any) => {
 	const location = useLocation()
 	let tokenValid = false
-	console.log(!cookies.get('jwt_auth'))
 	if (cookies.get('jwt_auth')) {
 		const token = cookies.get('jwt_auth')
 		try {
-			const { exp }: { exp: number } = jwtDecode(token)
+			const { exp, iat }: { exp: number, iat: number } = jwtDecode(token)
+			// console.log('exp',(new Date(exp*1000)).toISOString()); // => "2019-10-30T20:45:16.000Z"
+			// console.log('iat',(new Date(iat*1000)).toISOString()); // => "2019-10-30T20:55:16.000Z"
 			tokenValid = exp * 1000 > Date.now()
 			if (!tokenValid) {
 				return <Navigate to={LOGIN_ROUTE} state={{ from: location }} replace />
