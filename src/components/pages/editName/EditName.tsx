@@ -62,4 +62,4 @@ const EditName = () => {
   );
 };
 
-export default EditName;
+export default EditName

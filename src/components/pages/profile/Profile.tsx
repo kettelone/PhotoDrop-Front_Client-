@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 
 import { useAppSelector} from '../../../app/hooks';
 import arrowRight from '../../../assets/arrowRight.svg'
@@ -35,7 +35,8 @@ const Profile = () => {
   const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
   const navigate = useNavigate()
-
+  const {state} = useLocation();
+  console.log(state)
   
   const selectPhoto = (event: any) => {
     if (event.target.files) {
@@ -46,12 +47,17 @@ const Profile = () => {
   }
 
   const goBack = () => {
-     navigate(MAIN_DASHBOARD_ROUTE)
+    if (state) {
+      navigate(state)
+    } else {
+      navigate(MAIN_DASHBOARD_ROUTE)
+
+    }
   }
 
-  useEffect(() => {
-    return 
-  }, [selfie])
+  // useEffect(() => {
+  //   return 
+  // }, [selfie])
   return (
     <Wrapper>
       <span onClick={goBack}>
