@@ -35,7 +35,6 @@ const AlbumsDashboard = () => {
   const photos = useAppSelector(state => state.photosUpdate)
   const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
   const originalPhotos = useAppSelector(state => state.originalPhotosUpdate)
-  console.log({ originalPhotos })
   const [isPhotoLoading, setIsPhotoLoading] = useState(false)
   const [originalPhotoUrl, setOriginalPhotoUrl] = useState('')
   const [photoId, setPhotoId] = useState('')

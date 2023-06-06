@@ -28,7 +28,6 @@ class Payment {
 					}
 				}
 			)
-			console.log({ response })
 			return response.data
 		} catch (e) {
 			return false

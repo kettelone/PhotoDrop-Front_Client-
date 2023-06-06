@@ -13,8 +13,6 @@ export const originalPhotosSlice = createSlice({
 	initialState,
 	reducers: {
 		updateOriginalPhotos: (state, { payload: onePhoto }) => {
-			console.log({ ...state, ...onePhoto })
-
 			return { ...state, ...onePhoto }
 		}
 	}
