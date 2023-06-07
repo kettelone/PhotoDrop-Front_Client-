@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children }: any) => {
 		const token = cookies.get('jwt_auth')
 		try {
 			const { exp, iat }: { exp: number, iat: number } = jwtDecode(token)
-			console.log("now: ",Date.now() < (exp*1000 - 18*60*60*1000))
+			// the token has to be refreshed every 6 hours as presigned url is valid for 6 hours as well
 			tokenValid = Date.now() < (exp * 1000 - 18 * 60 * 60 * 1000)
 			// tokenValid = exp * 1000 > Date.now()
 			if (!tokenValid) {

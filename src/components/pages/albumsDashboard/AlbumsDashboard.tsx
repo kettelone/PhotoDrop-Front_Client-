@@ -103,9 +103,9 @@ const AlbumsDashboard = () => {
           >
         <Img src={selfie || defaultImage} alt="selfie" />
       </PhotoIcon>
-          <AlbumsContainer>
-        <Title>Albums</Title>
-        <Albums className='albums-cover'>
+        <AlbumsContainer>
+          <Title>Albums</Title>
+          <Albums className='albums-cover'>
             {albums?.map(album => 
               <Link
                 onClick={()=>handleAlbum(album.albumID)}

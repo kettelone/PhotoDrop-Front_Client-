@@ -27,13 +27,13 @@ const Wrapper = styled.div`
 	transform: translate(-50%, -50%);
 	width: 379px;
 	height: 653px;
-	@media only screen and (max-width: 400px) {
+	@media only screen and (max-width: 400px) and (max-height: 740px) {
 		width: 100vw;
 		height: 100vh;
 		max-width: 100%;
 		max-height: 100vh;
 	}
-	@media only screen and (max-height: 653px) {
+	@media only screen and (max-width: 400px) {
 		width: 100vw !important;
 		height: 100vh !important;
 		max-width: 379px;

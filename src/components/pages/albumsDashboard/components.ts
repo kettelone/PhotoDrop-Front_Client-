@@ -32,6 +32,9 @@ const AlbumsContainer = styled.div`
 	padding-top: 5px;
 	margin-bottom: 10.5%;
 	margin-top: 3.335%;
+	max-width: 1200px;
+	overflow-x: scroll;
+	overflow-y: hidden;
 	@media only screen and (min-width: 1200px) {
 		padding-left: 0px;
 	}
@@ -70,7 +73,6 @@ const Title = styled.div`
 `
 const Albums = styled.div`
 	display: flex;
-	overflow-y: scroll;
 	height: 144px;
 	@media only screen and (min-width: 740px) {
 		height: 258px;
