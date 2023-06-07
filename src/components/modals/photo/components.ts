@@ -1,12 +1,13 @@
 import styled from 'styled-components'
+
 import Button from '../../common/button/Button'
 
 const Img = styled.img`
 	object-fit: contain;
 	width: 100%;
 	height: 100%;
-	max-width: 90%;
-	@media only screen and (max-height: 647px) {
+	max-width: 100%;
+	@media only screen and (max-width: 400px) {
 		max-width: 100%;
 		max-height: 65%;
 	}
@@ -48,6 +49,10 @@ const CloseButton = styled.button`
 	margin-left: 1em;
 	width: 27;
 	height: 27px;
+	@media only screen and (max-width: 400px) {
+		margin-top: 22px;
+		margin-left: 15px;
+	}
 `
 
 const DownloadContainer = styled.a`
