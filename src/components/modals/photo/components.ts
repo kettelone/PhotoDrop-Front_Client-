@@ -9,7 +9,7 @@ const Img = styled.img`
 	max-width: 100%;
 	@media only screen and (max-width: 400px) {
 		max-width: 100%;
-		max-height: 65%;
+		max-height: 70%;
 	}
 `
 const Wrapper = styled.div`
