@@ -15,9 +15,9 @@ const ProtectedRoute = ({ children }: any) => {
 		const token = cookies.get('jwt_auth')
 		try {
 			const { exp, iat }: { exp: number, iat: number } = jwtDecode(token)
-			// console.log('exp',(new Date(exp*1000)).toISOString()); // => "2019-10-30T20:45:16.000Z"
-			// console.log('iat',(new Date(iat*1000)).toISOString()); // => "2019-10-30T20:55:16.000Z"
-			tokenValid = exp * 1000 > Date.now()
+			console.log("now: ",Date.now() < (exp*1000 - 18*60*60*1000))
+			tokenValid = Date.now() < (exp * 1000 - 18 * 60 * 60 * 1000)
+			// tokenValid = exp * 1000 > Date.now()
 			if (!tokenValid) {
 				return <Navigate to={LOGIN_ROUTE} state={{ from: location }} replace />
 			} else if (

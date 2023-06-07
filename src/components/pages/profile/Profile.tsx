@@ -36,7 +36,6 @@ const Profile = () => {
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
   const navigate = useNavigate()
   const {state} = useLocation();
-  console.log(state)
   
   const selectPhoto = (event: any) => {
     if (event.target.files) {
