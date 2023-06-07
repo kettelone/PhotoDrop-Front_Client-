@@ -33,11 +33,14 @@ const AlbumsContainer = styled.div`
 	margin-bottom: 10.5%;
 	margin-top: 3.335%;
 	max-width: 1200px;
-	overflow-x: scroll;
-	overflow-y: hidden;
 	@media only screen and (min-width: 1200px) {
 		padding-left: 0px;
 	}
+`
+
+const AlbumsWrapper = styled.div`
+	overflow-x: scroll;
+	overflow-y: hidden;
 `
 
 const AlbumName = styled.div`
@@ -129,6 +132,7 @@ export {
 	PhotoIcon,
 	Img,
 	AlbumsContainer,
+	AlbumsWrapper,
 	Title,
 	Albums,
 	Album,

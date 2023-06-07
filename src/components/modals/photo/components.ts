@@ -7,9 +7,12 @@ const Img = styled.img`
 	width: 100%;
 	height: 100%;
 	max-width: 100%;
+
 	@media only screen and (max-width: 400px) {
 		max-width: 100%;
 		max-height: 70%;
+		/* padding-left: 15px;
+		padding-right: 15px; */
 	}
 `
 const Wrapper = styled.div`
@@ -45,8 +48,8 @@ const CloseButton = styled.button`
 	z-index: 3;
 	background-color: rgba(0, 0, 0, 0);
 	border: none;
-	margin-top: 1.5em;
-	margin-left: 1em;
+	margin-top: 23px;
+	margin-left: 40px;
 	width: 27;
 	height: 27px;
 	@media only screen and (max-width: 400px) {

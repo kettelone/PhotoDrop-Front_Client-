@@ -15,6 +15,7 @@ import {
   AlbumName,
   Albums,
   AlbumsContainer,
+  AlbumsWrapper,
   Blur,
   Container,
   GridContainer,
@@ -103,8 +104,9 @@ const AlbumsDashboard = () => {
           >
         <Img src={selfie || defaultImage} alt="selfie" />
       </PhotoIcon>
-        <AlbumsContainer>
+          <AlbumsContainer>
           <Title>Albums</Title>
+          <AlbumsWrapper>
           <Albums className='albums-cover'>
             {albums?.map(album => 
               <Link
@@ -117,7 +119,8 @@ const AlbumsDashboard = () => {
                 </Album>
               </Link>
           )}
-        </Albums>
+          </Albums>
+        </AlbumsWrapper>
       </AlbumsContainer>
       <TitlePhotos>All photos</TitlePhotos> 
           <GridWrapper>
