@@ -93,7 +93,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
       setDisabled(true)
       setIsLoading(true)
       try {
-          const presignedPostUrl = await selfieService.signSelfie()
+        const presignedPostUrl = await selfieService.signSelfie()
         await uploadToS3(croppedImage, presignedPostUrl)
         const waitFor = (delay:number) => new Promise(resolve => setTimeout(resolve, delay));
         await waitFor(3000);

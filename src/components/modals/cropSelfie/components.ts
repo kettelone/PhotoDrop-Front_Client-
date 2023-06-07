@@ -53,8 +53,11 @@ const Title = styled.div`
 	font-size: 18px;
 	font-weight: 500;
 
-	@media (max-width: 400px) and (max-height: 550px) {
+	/* @media (max-width: 400px) and (max-height: 550px) {
 		margin-top: 4rem;
+	} */
+	@media (max-width: 400px) {
+		margin-top: 22px;
 	}
 `
 
@@ -67,8 +70,11 @@ const CloseButton = styled.button`
 	margin-left: 15px;
 	padding: 0px;
 	cursor: pointer;
-	@media (max-width: 400px) and (max-height: 550px) {
+	/* @media (max-width: 400px) and (max-height: 550px) {
 		margin-top: 4rem;
+	} */
+	@media (max-width: 400px) {
+		margin-top: 22px;
 	}
 `
 const Instruction = styled.div`
@@ -99,7 +105,8 @@ const ButtonsContainer = styled.div`
 	bottom: 0;
 	right: 50%;
 	transform: translate(50%);
-	margin-bottom: 60px;
+	/* margin-bottom: 60px; */
+	margin-bottom: 40px;
 	justify-content: space-between;
 	max-width: 100%;
 	padding: 0px 15px;
