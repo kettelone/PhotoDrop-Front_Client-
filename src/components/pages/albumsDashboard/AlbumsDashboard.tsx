@@ -18,6 +18,7 @@ import {
   AlbumsWrapper,
   Blur,
   Container,
+  Gradient,
   GridContainer,
   GridWrapper,
   Img,
@@ -113,8 +114,11 @@ const AlbumsDashboard = () => {
                 onClick={()=>handleAlbum(album.albumID)}
                 to={`/album/${album.albumID}`} key={album.albumID}
               >
+                
                 <Album>
-                  <AlbumCover src={album.url} alt="cover" />
+                  <Gradient>
+                    <AlbumCover src={album.url} alt="cover" />
+                  </Gradient>
                   <AlbumName>{album.name}</AlbumName>
                 </Album>
               </Link>

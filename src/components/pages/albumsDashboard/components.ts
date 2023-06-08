@@ -74,6 +74,16 @@ const Title = styled.div`
 		font-size: 16px;
 	}
 `
+
+const Gradient = styled.div`
+	background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+	border-radius: 10px;
+	height: 140px;
+	top: 50%;
+	@media only screen and (min-width: 740px) {
+		height: 254px;
+	}
+`
 const Albums = styled.div`
 	display: flex;
 	height: 144px;
@@ -84,6 +94,8 @@ const Albums = styled.div`
 const Album = styled.div`margin-right: 5px;`
 
 const AlbumCover = styled.img`
+	position: relative;
+	z-index: -1;
 	width: 110px;
 	height: 140px;
 	border-radius: 10px;
@@ -131,6 +143,7 @@ export {
 	Container,
 	PhotoIcon,
 	Img,
+	Gradient,
 	AlbumsContainer,
 	AlbumsWrapper,
 	Title,
