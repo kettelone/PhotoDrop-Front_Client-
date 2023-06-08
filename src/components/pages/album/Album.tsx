@@ -91,13 +91,13 @@ const Album = () => {
           ? <div><Loader /><Blur /></div>
           : ''
       }
+      <PhotoModal
+        url={originalPhotoUrl}
+        photoId={photoId}
+        isPaid={isPaid}
+        albumId={id}
+      />
       <TopContainer id="top">
-        <PhotoModal
-          url={originalPhotoUrl}
-          photoId={photoId}
-          isPaid={isPaid}
-          albumId={id}
-        />
         <GoBack>
           <Link to={MAIN_DASHBOARD_ROUTE}>
           <div>
