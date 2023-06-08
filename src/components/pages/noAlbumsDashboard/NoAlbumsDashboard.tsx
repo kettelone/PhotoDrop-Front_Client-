@@ -29,8 +29,10 @@ const Dashboard = () => {
   const navigate = useNavigate()
   const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
   const [url, setUrl] = useState(test1)
+
   const handlePhoto = (url: string) => {
     document.body.classList.add('noScroll')
+    document.getElementById('root')?.classList.add('noScroll')
     document.getElementById('singlePhoto')?.classList.add('show')
     setUrl(url)
   }
