@@ -48,9 +48,9 @@ const PhotoModal = (props:{
     document.body.classList.remove('noScroll')
   }
 
-  const saveImage = (url:string) => {
-    saveAs(url, 'image.jpg') // Put your image url here.
-  }
+  // const saveImage = (url:string) => {
+  //   saveAs(url, 'image.jpg') // Put your image url here.
+  // }
 
   return (
     <Wrapper id='singlePhoto'>
@@ -61,7 +61,6 @@ const PhotoModal = (props:{
       </CloseButton>
       <Container>
         <Img src={props.url} alt={props.photoId} />
-
       </Container>
       {
         props.isPaid
