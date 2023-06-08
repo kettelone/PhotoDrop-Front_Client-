@@ -20,6 +20,8 @@ const GoBack = styled.div`
 		margin-left: 40px;
 	}
 `
+
+const Container = styled.div`position: absolute;`
 const TopContainer = styled.div`
 	display: flex;
 	align-items: baseline;
@@ -129,6 +131,7 @@ export {
 	Wrapper,
 	StyledGoBack,
 	TopContainer,
+	Container,
 	Name,
 	Date,
 	Amount,

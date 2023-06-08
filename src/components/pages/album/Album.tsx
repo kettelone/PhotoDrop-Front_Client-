@@ -18,6 +18,7 @@ import {
   Amount,
   Blur,
   ButtonContainer,
+  Container,
   Date,
   DateAmount,
   GoBack,
@@ -90,7 +91,7 @@ const Album = () => {
           ? <div><Loader /><Blur /></div>
           : ''
       }
-      <div>
+      <Container>
       <TopContainer id="top">
         <GoBack>
           <Link to={MAIN_DASHBOARD_ROUTE}>
@@ -148,9 +149,9 @@ const Album = () => {
             }
               </StyledButton>
           </ButtonContainer>
-      }
-      </div>
-      {/* <Footer /> */}
+        }
+        <Footer />
+      </Container>
     </Wrapper>
   );
 };
