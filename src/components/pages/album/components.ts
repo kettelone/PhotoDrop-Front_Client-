@@ -21,7 +21,7 @@ const GoBack = styled.div`
 	}
 `
 
-const Container = styled.div`position: absolute;`
+const Container = styled.div``
 const TopContainer = styled.div`
 	display: flex;
 	align-items: baseline;
