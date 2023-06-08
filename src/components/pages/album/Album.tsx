@@ -91,12 +91,6 @@ const Album = () => {
           : ''
       }
       <div>
-      <PhotoModal
-        url={originalPhotoUrl}
-        photoId={photoId}
-        isPaid={isPaid}
-        albumId={id}
-      />
       <TopContainer id="top">
         <GoBack>
           <Link to={MAIN_DASHBOARD_ROUTE}>
@@ -115,7 +109,13 @@ const Album = () => {
           </TextContainer>
         </TextWrapper>
       </TopContainer>
-      <GridWrapper>
+        <GridWrapper>
+          <PhotoModal
+            url={originalPhotoUrl}
+            photoId={photoId}
+            isPaid={isPaid}
+            albumId={id}
+          />
         <GridContainer id="grid">
           {
             photos && photos.length > 0
