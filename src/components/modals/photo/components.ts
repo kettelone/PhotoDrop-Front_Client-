@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 	background-color: #262626;
 	width: 100%;
 	height: 100%;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	z-index: 3;
 	@media only screen and (min-width: 800px) {
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 	}
 `
 const Container = styled.div`
-	position: fixed;
+	position: absolute;
 	display: flex;
 	justify-content: center;
 	align-items: center;
