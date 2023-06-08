@@ -149,8 +149,8 @@ const Album = () => {
               </StyledButton>
           </ButtonContainer>
       }
-        <Footer />
       </div>
+      <Footer />
     </Wrapper>
   );
 };
