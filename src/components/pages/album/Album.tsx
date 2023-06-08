@@ -63,7 +63,7 @@ const Album = () => {
   const handlePhoto = async (photoId: string) => {
 
     document.body.classList.add('noScroll')
-
+    document.getElementById('footer')?.classList.add('hide')
     setOriginalPhotoUrl('')
     if (!album[0].isPaid) { 
       dispatch(update({ albumID: id }))
@@ -150,7 +150,7 @@ const Album = () => {
               </StyledButton>
           </ButtonContainer>
         }
-        <Footer />
+        <Footer id="footer"/>
       </Container>
     </Wrapper>
   );
