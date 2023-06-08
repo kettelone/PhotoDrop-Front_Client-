@@ -61,7 +61,6 @@ const Album = () => {
 
   const handlePhoto = async (photoId: string) => {
 
-    document.getElementById('root')?.classList.add('noScroll')
     document.body.classList.add('noScroll')
 
     setOriginalPhotoUrl('')
@@ -91,6 +90,7 @@ const Album = () => {
           ? <div><Loader /><Blur /></div>
           : ''
       }
+      <div>
       <PhotoModal
         url={originalPhotoUrl}
         photoId={photoId}
@@ -149,7 +149,8 @@ const Album = () => {
               </StyledButton>
           </ButtonContainer>
       }
-      <Footer/>
+        <Footer />
+      </div>
     </Wrapper>
   );
 };
