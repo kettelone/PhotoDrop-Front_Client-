@@ -18,8 +18,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <BrowserRouter>
           <Header />
           <App/>
-        </BrowserRouter>,
+        </BrowserRouter>
       </PersistGate>
       </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )

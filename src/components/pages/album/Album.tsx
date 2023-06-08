@@ -85,18 +85,18 @@ const Album = () => {
 
   return (
     <Wrapper>
-      <PhotoModal
-        url={originalPhotoUrl}
-        photoId={photoId}
-        isPaid={isPaid}
-        albumId={id}
-      />
       {
         isPhotoLoading
           ? <div><Loader /><Blur /></div>
           : ''
       }
       <TopContainer id="top">
+        <PhotoModal
+          url={originalPhotoUrl}
+          photoId={photoId}
+          isPaid={isPaid}
+          albumId={id}
+        />
         <GoBack>
           <Link to={MAIN_DASHBOARD_ROUTE}>
           <div>

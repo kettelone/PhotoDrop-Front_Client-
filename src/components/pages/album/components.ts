@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 	background: white;
 	z-index: 2;
 	width: 100%;
-	min-height: 700px;
+	/* min-height: 700px; */
 	height: 100vh;
 `
 
