@@ -60,7 +60,7 @@ const Album = () => {
   }
 
   const handlePhoto = async (photoId: string) => {
-    
+
     document.getElementById('root')?.classList.add('noScroll')
     document.body.classList.add('noScroll')
 
@@ -149,7 +149,6 @@ const Album = () => {
               </StyledButton>
           </ButtonContainer>
       }
-
       <Footer/>
     </Wrapper>
   );

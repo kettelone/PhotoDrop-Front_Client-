@@ -17,8 +17,8 @@ const Img = styled.img`
 const Wrapper = styled.div`
 	display: none;
 	background-color: #262626;
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
 	position: absolute;
 	top: 0;
 	z-index: 3;
