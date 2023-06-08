@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../../app/hooks';
@@ -8,6 +8,9 @@ import {
   Container, Img, P, PhotoIcon,
 SubContainer, SubTitle, Title} from './components'
 const Terms = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[])
   const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
   const navigate = useNavigate()
   return (
