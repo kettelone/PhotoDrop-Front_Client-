@@ -61,6 +61,8 @@ const Album = () => {
 
   const handlePhoto = async (photoId: string) => {
     document.body.classList.add('noScroll')
+    document.getElementById('root')?.classList.add('noScroll')
+
     setOriginalPhotoUrl('')
     if (!album[0].isPaid) { 
       dispatch(update({ albumID: id }))
