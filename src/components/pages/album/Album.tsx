@@ -150,7 +150,7 @@ const Album = () => {
           </ButtonContainer>
       }
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Wrapper>
   );
 };
