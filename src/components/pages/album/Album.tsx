@@ -150,7 +150,7 @@ const Album = () => {
               </StyledButton>
           </ButtonContainer>
         }
-        <Footer id="footer"/>
+          <Footer />
       </Container>
     </Wrapper>
   );

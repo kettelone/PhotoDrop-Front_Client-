@@ -22,7 +22,7 @@ import frameoLogy from './frameologyLogo.png'
 
 const Footer = () => {
   return (
-    <Container>
+    <Container id="footer">
       <FirstContainer>
         <Title>PhotoDrop is brought to you by</Title>
         <Frameology>
