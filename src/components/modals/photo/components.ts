@@ -8,11 +8,10 @@ const Img = styled.img`
 	height: 100%;
 	max-width: 100%;
 
-	@media only screen and (max-width: 400px) {
+	@media only screen and (max-width: 420px) {
 		max-width: 100%;
 		max-height: 70%;
-		/* padding-left: 15px;
-		padding-right: 15px; */
+		margin-top: -21px;
 	}
 `
 const Wrapper = styled.div`
