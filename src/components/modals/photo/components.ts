@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 	}
 `
 const Container = styled.div`
-	position: fixed;
+	position: absolute;
 	display: flex;
 	justify-content: center;
 	align-items: center;
