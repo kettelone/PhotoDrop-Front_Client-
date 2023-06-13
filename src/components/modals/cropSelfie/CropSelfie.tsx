@@ -34,7 +34,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   const [preview, setPreview] = useState<undefined | string>()
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(-2)
-  const [croppedImage, setCroppedImage] = useState<Blob | null>()
+  const [croppedImage, setCroppedImage] = useState<File | null>()
   const [isLoading, setIsLoading] = useState(false)
   const [disabled, setDisabled] = useState(false)
   const navigate = useNavigate()
@@ -93,16 +93,18 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
       setDisabled(true)
       setIsLoading(true)
       try {
+        const localImage = URL.createObjectURL(croppedImage);
         const presignedPostUrl = await selfieService.signSelfie()
         await uploadToS3(croppedImage, presignedPostUrl)
-        const waitFor = (delay:number) => new Promise(resolve => setTimeout(resolve, delay));
-        await waitFor(3000);
-            const response = await albumService.getAlbums()
-            if (!response) {
-              return
-            }
-          const { selfieUrl } = response.data.user
-            dispatch(update({ selfieUrl }))
+        // const waitFor = (delay:number) => new Promise(resolve => setTimeout(resolve, delay));
+        // await waitFor(3000);
+        //     const response = await albumService.getAlbums()
+        //     if (!response) {
+        //       return
+        //     }
+        //   const { selfieUrl } = response.data.user
+        //     dispatch(update({ selfieUrl }))
+            dispatch(update({ selfieUrl: localImage }))
             setDisabled(false) 
             setIsLoading(false)
             navigate(props.page)
