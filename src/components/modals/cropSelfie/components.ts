@@ -18,6 +18,10 @@ const Container = styled.div`
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	min-height: 100vh; /* fall-back */
+	min-height: -moz-available;
+	min-height: -webkit-fill-available;
+	min-height: fill-available;
 `
 
 const Wrapper = styled.div`
@@ -31,7 +35,6 @@ const Wrapper = styled.div`
 	@media only screen and (max-width: 480px) and (max-height: 920px) {
 		width: 100vw;
 		height: 100vh;
-		min-height: fill-available;
 	}
 `
 const Img = styled.img``
