@@ -27,9 +27,11 @@ const Wrapper = styled.div`
 	transform: translate(-50%, -50%);
 	width: 379px;
 	height: 653px;
+
 	@media only screen and (max-width: 480px) and (max-height: 920px) {
 		width: 100vw;
 		height: 100vh;
+		min-height: fill-available;
 	}
 `
 const Img = styled.img``
