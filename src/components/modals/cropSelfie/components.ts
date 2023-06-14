@@ -27,17 +27,9 @@ const Wrapper = styled.div`
 	transform: translate(-50%, -50%);
 	width: 379px;
 	height: 653px;
-	@media only screen and (max-width: 400px) and (max-height: 740px) {
+	@media only screen and (max-width: 480px) and (max-height: 920px) {
 		width: 100vw;
 		height: 100vh;
-		max-width: 100%;
-		max-height: 100vh;
-	}
-	@media only screen and (max-width: 400px) {
-		width: 100vw !important;
-		height: 100vh !important;
-		max-width: 379px;
-		max-height: 100vh;
 	}
 `
 const Img = styled.img``
@@ -52,11 +44,7 @@ const Title = styled.div`
 	z-index: 2;
 	font-size: 18px;
 	font-weight: 500;
-
-	/* @media (max-width: 400px) and (max-height: 550px) {
-		margin-top: 4rem;
-	} */
-	@media (max-width: 400px) {
+	@media (max-width: 480px) {
 		margin-top: 22px;
 	}
 `
@@ -70,10 +58,7 @@ const CloseButton = styled.button`
 	margin-left: 15px;
 	padding: 0px;
 	cursor: pointer;
-	/* @media (max-width: 400px) and (max-height: 550px) {
-		margin-top: 4rem;
-	} */
-	@media (max-width: 400px) {
+	@media (max-width: 480px) {
 		margin-top: 22px;
 	}
 `
@@ -105,7 +90,6 @@ const ButtonsContainer = styled.div`
 	bottom: 0;
 	right: 50%;
 	transform: translate(50%);
-	/* margin-bottom: 60px; */
 	margin-bottom: 40px;
 	justify-content: space-between;
 	max-width: 100%;

@@ -19,9 +19,9 @@ const Wrapper = styled.div`
 	background-color: #262626;
 	width: 100vw;
 	height: 100vh;
-	position: absolute;
-	top: 0;
+	position: fixed;
 	z-index: 3;
+	top: 0;
 	@media only screen and (min-width: 800px) {
 		background-color: rgba(0, 0, 0, 0.9);
 	}

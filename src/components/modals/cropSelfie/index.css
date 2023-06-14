@@ -10,7 +10,7 @@
 	background-color: #262626;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 480px) and (max-height: 920px) {
 	.reactEasyCrop_Container {
 		border-radius: 0px;
 		width: 100vw;

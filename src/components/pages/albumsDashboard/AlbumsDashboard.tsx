@@ -57,7 +57,6 @@ const AlbumsDashboard = () => {
   // handle open photo
   const handlePhoto = async (id: string, albumID: string) => {
     document.body.classList.add('noScroll')
-    document.getElementById('root')?.classList.add('noScroll')
     setOriginalPhotoUrl('')
     const album = albums?.filter(album => album.albumID === albumID)
     if (!album) {

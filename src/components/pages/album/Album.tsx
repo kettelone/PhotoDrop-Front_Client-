@@ -61,7 +61,6 @@ const Album = () => {
   }
 
   const handlePhoto = async (photoId: string) => {
-
     document.body.classList.add('noScroll')
     document.getElementById('footer')?.classList.add('hide')
     setOriginalPhotoUrl('')
