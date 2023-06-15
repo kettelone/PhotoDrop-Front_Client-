@@ -14,7 +14,7 @@ import NoAlbumsDashboard from '../noAlbumsDashboard/NoAlbumsDashboard'
 
 
 const Wrapper = styled.div`
-  height:100vh
+  height:100%
 `
 const MainDashboard = () => {
   const dispatch = useAppDispatch()

@@ -100,11 +100,6 @@ const countries = [
 		code: 'BB'
 	},
 	{
-		name: 'Belarus',
-		dial_code: '+375',
-		code: 'BY'
-	},
-	{
 		name: 'Belgium',
 		dial_code: '+32',
 		code: 'BE'
@@ -878,11 +873,6 @@ const countries = [
 		name: 'Romania',
 		dial_code: '+40',
 		code: 'RO'
-	},
-	{
-		name: 'Russia',
-		dial_code: '+7',
-		code: 'RU'
 	},
 	{
 		name: 'Rwanda',
