@@ -2,23 +2,25 @@ import React, { useState } from 'react';
 
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { saveAs } from 'file-saver';
+import axios from 'axios';
 
 import closeIcon from '../../../assets/closeIcon.svg'
 import paymentService from '../../../service/paymentService';
 import arrowDown from './arrowDown.svg'
 import {
-  Arrow,
   ButtonContainer,
   CloseButton,
   Container,
-  DownloadContainer,
+  ContainerWrapper,
+  Icon,
   Img,
   Line,
   StyledButton,
+  SubWrapper,
   Text,
   Wrapper
 } from './components'
+import share from './share.svg'
 
 
 const PhotoModal = (props:{
@@ -30,6 +32,7 @@ const PhotoModal = (props:{
   
   const [isLoading, setIsLoading] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
+
   const handlePayment = async () => {
     setIsLoading(true)
     setIsDisabled(true)
@@ -43,6 +46,19 @@ const PhotoModal = (props:{
     },2000)
   }
   
+  const handleShare = async (url: string) => {
+    try {
+      const shareData = {
+        title: "PhotoDropImage",
+        text: "Learn web development on MDN!",
+        url: url,
+      };
+      await navigator.share(shareData);
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   const closeModal = () => {
     document.getElementById('singlePhoto')?.classList.remove('show')
     document.getElementById('footer')?.classList.remove('hide')
@@ -56,18 +72,27 @@ const PhotoModal = (props:{
       >
         <img src={closeIcon} alt="closeIcon" />
       </CloseButton>
-      <Container>
+      <SubWrapper>
         <Img src={props.url} alt={props.photoId} />
-      </Container>
+      </SubWrapper>
       {
         props.isPaid
-          ? <DownloadContainer
-            href={props.url} download
-          >
-          <Arrow src={arrowDown} alt="arrowDown" />
-          <Line />
-          <Text>Download</Text>
-        </DownloadContainer>
+          ?
+          <ContainerWrapper>
+            <Container
+              href={props.url} download
+            >
+              <Icon src={arrowDown} alt="arrowDown" />
+              <Line />
+              <Text>Download</Text>
+            </Container>
+            <Container
+              onClick={()=>handleShare(props.url)}
+            >
+              <Icon src={share} alt="arrowDown" style={{marginTop:'1.25px'}}/>
+              <Text>Share</Text>
+            </Container>
+          </ContainerWrapper>
           :<ButtonContainer>
             <StyledButton
               onClick={handlePayment}

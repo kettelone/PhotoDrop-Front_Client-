@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 		background-color: rgba(0, 0, 0, 0.9);
 	}
 `
-const Container = styled.div`
+const SubWrapper = styled.div`
 	position: absolute;
 	display: flex;
 	justify-content: center;
@@ -55,21 +55,25 @@ const CloseButton = styled.button`
 		margin-left: 15px;
 	}
 `
-
-const DownloadContainer = styled.a`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+const ContainerWrapper = styled.div`
 	position: absolute;
 	bottom: 36px;
 	left: 15px;
-	cursor: pointer;
-	@media only screen and (min-width: 376px) {
+	display: flex;
+	@media only screen and (min-width: 480px) {
 		left: 50%;
 		transform: translate(-50%, 0%);
 	}
 `
-const Arrow = styled.img`margin-bottom: 4.33px;`
+
+const Container = styled.a`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+	margin-right: 29px;
+`
+const Icon = styled.img`margin-bottom: 4.33px;`
 const Line = styled.div`
 	width: 24px;
 	height: 1.25px;
@@ -107,10 +111,11 @@ const StyledButton = styled(Button)`
 export {
 	Img,
 	Wrapper,
-	Container,
+	SubWrapper,
 	CloseButton,
-	DownloadContainer,
-	Arrow,
+	ContainerWrapper,
+	Container,
+	Icon,
 	Line,
 	Text,
 	ButtonContainer,
