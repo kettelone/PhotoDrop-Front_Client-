@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import Button from '../../common/button/Button'
 
-const Container = styled.div`overflow: hidden;`
+const Container = styled.div``
 
 const BodyWrapper = styled.div`
 	max-width: 100vw;
