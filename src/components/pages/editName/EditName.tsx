@@ -8,8 +8,8 @@ import { useAppDispatch } from '../../../app/hooks';
 import { update } from '../../../app/userSlice/userSlice';
 import accountService from '../../../service/accountService';
 import { PROFILE_ROUTE } from '../../../utils/consts';
-import GoBack from '../../common/goBack/GoBack';
-import { Container, Input, StyledButton,Title, Wrapper } from './components'
+import { GoBack, GoBackWrapper } from '../../common/goBack/GoBack';
+import { Container, Input, StyledButton, Title, Wrapper } from './components'
 
 
 const EditName = () => {
@@ -38,9 +38,9 @@ const EditName = () => {
 
   return (
     <Wrapper>
-      <span onClick={() => navigate(-1)}>
+      <GoBackWrapper onClick={() => navigate(-1)}>
         <GoBack />
-      </span>
+      </GoBackWrapper>
       <Container>
         <Title>Your name</Title>
         <Input

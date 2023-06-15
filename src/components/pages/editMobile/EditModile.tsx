@@ -10,7 +10,7 @@ import stroke from '../../../assets/stroke.svg'
 import accountService from '../../../service/accountService';
 import albumService from '../../../service/albumService';
 import { CONFIRM_EDIT_PHONE_ROUTE } from '../../../utils/consts'
-import GoBack from '../../common/goBack/GoBack';
+import { GoBack, GoBackWrapper } from '../../common/goBack/GoBack';
 import CountrySelect from '../../modals/countrySelect/CountrySelect';
 import {
   Body,
@@ -67,9 +67,9 @@ const EditPhone = () => {
 
   return (
     <Container>
-      <span onClick={() => navigate(-1)}>
+      <GoBackWrapper onClick={() => navigate(-1)}>
         <GoBack />
-      </span>
+      </GoBackWrapper>
       <CountrySelect />
       <Body>
         <Title>Mobile number</Title>

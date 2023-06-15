@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation,useNavigate } from 'react-router-dom';
 
 import { useAppSelector} from '../../../app/hooks';
@@ -8,8 +8,9 @@ import {
   ACCOUNT_SETTINGS,
   EDIT_NAME_ROUTE,
   MAIN_DASHBOARD_ROUTE,
-  PROFILE_ROUTE} from '../../../utils/consts';
-import GoBack from '../../common/goBack/GoBack';
+  PROFILE_ROUTE
+} from '../../../utils/consts';
+import { GoBack, GoBackWrapper } from '../../common/goBack/GoBack';
 import CropSelfie from '../../modals/cropSelfie/CropSelfie';
 import {
   ArrowContainer,
@@ -26,8 +27,7 @@ import {
   Title,
   Welcome,
   Wrapper,
-  YourSelfie,
- } from './components'
+  YourSelfie } from './components'
 import pen from './pen.svg'
 
 const Profile = () => {
@@ -50,14 +50,13 @@ const Profile = () => {
       navigate(state)
     } else {
       navigate(MAIN_DASHBOARD_ROUTE)
-
     }
   }
   return (
     <Wrapper>
-      <span onClick={goBack}>
+      <GoBackWrapper onClick={goBack}>
         <GoBack />
-      </span>
+      </GoBackWrapper>
       <Container>
       <CropSelfie selfie={selectedFile} page={PROFILE_ROUTE} />
       <Welcome>Welcome, {userName || "Guest"}.</Welcome>

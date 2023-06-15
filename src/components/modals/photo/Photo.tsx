@@ -50,7 +50,7 @@ const PhotoModal = (props:{
     try {
       const shareData = {
         title: "PhotoDropImage",
-        text: "Learn web development on MDN!",
+        text: "Your PhotoDrop Image",
         url: url,
       };
       await navigator.share(shareData);

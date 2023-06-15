@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../app/hooks';
 import arrowRight from '../../../assets/arrowRight.svg'
 import { EDIT_EMAIL, EDIT_PHONE_ROUTE, PROFILE_ROUTE } from '../../../utils/consts';
-import GoBack from '../../common/goBack/GoBack';
+import { GoBack, GoBackWrapper } from '../../common/goBack/GoBack';
 import {
   ArrowContainer,
   ArrowWrapper,
@@ -29,9 +29,9 @@ const AccountSettings = () => {
   const email = useAppSelector(state => state.userUpdate.email)
   return (
     <div>
-      <span onClick={() => navigate(PROFILE_ROUTE)}>
+      <GoBackWrapper onClick={() => navigate(PROFILE_ROUTE)}>
         <GoBack />
-      </span>
+      </GoBackWrapper>
       <Wrapper>
         <SubWrapper>
       <Header>Account settings</Header>

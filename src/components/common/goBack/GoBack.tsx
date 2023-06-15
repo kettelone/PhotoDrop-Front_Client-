@@ -4,19 +4,24 @@ import styled from 'styled-components';
 
 import arrowLeft from '../../../assets/arrowLeft.svg'
 
-const Container = styled.div`
-	position: absolute;
-	top: 19px;
-	left: 15px;
-  cursor: pointer;
+ const GoBackWrapper = styled.div`
+    width: 50px;
+    height: 55px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -10px;
 `
 
 const GoBack = () => {
   return (
-      <Container>
+      <div>
         <img src={arrowLeft} alt="arrow-let " />
-      </Container>
+      </div>
   );
 };
 
-export default GoBack;
+export {GoBackWrapper,GoBack};
