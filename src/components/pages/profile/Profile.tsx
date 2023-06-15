@@ -65,8 +65,8 @@ const Profile = () => {
           <Img src={
             selfieUrl
               ? selfieUrl
-              : localSelfie
-                ? localSelfie
+              // : localSelfie
+              //   ? localSelfie
                 : defaultImage
           } alt="selfie" />
         <IconContainer htmlFor='imageOnly'>

@@ -96,10 +96,11 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
       setIsLoading(true)
       try {
         if (!selfie) {
+          console.log("not Selfie")
           const base64 = await convertBase64(croppedImage)
-          dispatch(update({ localSelfie: base64 }))
           const presignedPostUrl = await selfieService.signSelfie()
           await uploadToS3(croppedImage, presignedPostUrl)
+          dispatch(update({ localSelfie: base64 }))
           setDisabled(false)
           setIsLoading(false)
           navigate(props.page)
@@ -114,7 +115,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
             return
           }
           const { selfieUrl } = response.data.user
-          dispatch(update({ selfieUrl }))
+          dispatch(update({ selfieUrl: selfieUrl }))
           setDisabled(false)
           setIsLoading(false)
           navigate(props.page)

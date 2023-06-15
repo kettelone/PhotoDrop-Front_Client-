@@ -11,7 +11,7 @@ import accountService from '../../../service/accountService';
 import albumService from '../../../service/albumService';
 import { ACCOUNT_SETTINGS } from '../../../utils/consts';
 import Button from '../../common/button/Button';
-import GoBack from '../../common/goBack/GoBack';
+import {GoBack, GoBackWrapper} from '../../common/goBack/GoBack';
 import { ButtonContainer, Container, ErrorMessage,Phone, ResendButton, SubTitle, Title, Wrapper } from './components'
 
 import './index.css'
@@ -63,9 +63,9 @@ const NewCodeConfirmation = () => {
 
   return (
     <Wrapper>
-      <span onClick={() => navigate(-1)}>
+      <GoBackWrapper onClick={() => navigate(-1)}>
         <GoBack />
-      </span>
+      </GoBackWrapper>
       <Container>
         <Title>What`s the code?</Title>
         <SubTitle>Enter the code sent to <Phone>+{phoneNumber}</Phone></SubTitle>

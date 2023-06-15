@@ -14,6 +14,10 @@ import arrowLeft from '../../../assets/arrowLeft.svg'
     justify-content: center;
     align-items: center;
     margin-left: -10px;
+    cursor: pointer;
+    @media only screen and (min-width: 480px) {
+		  margin-left: 15px;
+	}
 `
 
 const GoBack = () => {
