@@ -2,7 +2,11 @@ import styled from 'styled-components'
 
 import Button from '../../common/button/Button'
 
-const Container = styled.div``
+const Container = styled.div`
+	position: fixed;
+	width: 100%;
+	height: 100%;
+`
 
 const BodyWrapper = styled.div`
 	max-width: 100vw;
