@@ -82,6 +82,7 @@ const BrowseTitle = styled.div`
 const PreviewContainer = styled.div`
 	display: flex;
 	margin-left: 10px;
+	margin-right: 10px;
 	overflow-x: scroll;
 	@media only screen and (min-width: 734px) {
 		margin-left: 120px;
