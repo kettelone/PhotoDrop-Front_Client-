@@ -27,7 +27,7 @@ import test3 from './test3.jpg';
 
 const Dashboard = () => {
   const navigate = useNavigate()
-  const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
+  const {selfieUrl, localSelfie } = useAppSelector(state => state.userUpdate)
   const [url, setUrl] = useState(test1)
 
   const handlePhoto = (url: string) => {
@@ -49,8 +49,14 @@ const Dashboard = () => {
         <PhotoIcon
           onClick={() => navigate(PROFILE_ROUTE)}
         >
-          <Img src={selfie || defaultImage} alt="selfie" />
-            </PhotoIcon>
+          <Img src={
+            selfieUrl
+              ? selfieUrl
+              : localSelfie
+                ? localSelfie
+                : defaultImage
+          } alt="selfie" />
+        </PhotoIcon>
             <Wrapper>
               <GraphicsContainer>
                 <Graphics src={graphics} alt="graphics

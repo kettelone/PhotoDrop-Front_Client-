@@ -4,6 +4,7 @@ import { RootState } from '../store'
 
 const initialState = {
 	selfieUrl: null,
+	localSelfie: null,
 	phone: null,
 	email: 'youremail@gmail.com',
 	name: null,

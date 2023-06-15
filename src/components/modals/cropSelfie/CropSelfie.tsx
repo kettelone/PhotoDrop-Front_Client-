@@ -6,11 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector} from '../../../app/hooks';
 import { update } from '../../../app/userSlice/userSlice';
 import closeIcon from '../../../assets/closeIcon.svg'
 import albumService from '../../../service/albumService';
 import selfieService from '../../../service/selfieService';
+import convertBase64 from '../../../utils/toBase64';
 import {
   Background,
   ButtonsContainer,
@@ -37,6 +38,7 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
   const [croppedImage, setCroppedImage] = useState<File | null>()
   const [isLoading, setIsLoading] = useState(false)
   const [disabled, setDisabled] = useState(false)
+  const selfie  = useAppSelector(state => state.userUpdate.selfieUrl)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
@@ -93,22 +95,31 @@ const CropSelfie = (props: { selfie: File |null , page:string}) => {
       setDisabled(true)
       setIsLoading(true)
       try {
-        const localImage = URL.createObjectURL(croppedImage);
-        const presignedPostUrl = await selfieService.signSelfie()
-        await uploadToS3(croppedImage, presignedPostUrl)
-        // const waitFor = (delay:number) => new Promise(resolve => setTimeout(resolve, delay));
-        // await waitFor(3000);
-        //     const response = await albumService.getAlbums()
-        //     if (!response) {
-        //       return
-        //     }
-        //   const { selfieUrl } = response.data.user
-        //     dispatch(update({ selfieUrl }))
-            dispatch(update({ selfieUrl: localImage }))
-            setDisabled(false) 
-            setIsLoading(false)
-            navigate(props.page)
-            closeModal()
+        if (!selfie) {
+          const base64 = await convertBase64(croppedImage)
+          dispatch(update({ localSelfie: base64 }))
+          const presignedPostUrl = await selfieService.signSelfie()
+          await uploadToS3(croppedImage, presignedPostUrl)
+          setDisabled(false)
+          setIsLoading(false)
+          navigate(props.page)
+          closeModal()
+        } else {
+          const presignedPostUrl = await selfieService.signSelfie()
+          await uploadToS3(croppedImage, presignedPostUrl)
+          const waitFor = (delay: number) => new Promise(resolve => setTimeout(resolve, delay));
+          await waitFor(3000);
+          const response = await albumService.getAlbums()
+          if (!response) {
+            return
+          }
+          const { selfieUrl } = response.data.user
+          dispatch(update({ selfieUrl }))
+          setDisabled(false)
+          setIsLoading(false)
+          navigate(props.page)
+          closeModal()
+        }
       } catch (e) {
         console.log(e)
       }

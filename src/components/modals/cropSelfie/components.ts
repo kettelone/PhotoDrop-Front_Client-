@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 const MainContainer = styled.div``
 const vh = window.innerHeight + 'px'
-console.log('vh: ', vh)
 const Background = styled.div`
 	display: none;
 	position: absolute;

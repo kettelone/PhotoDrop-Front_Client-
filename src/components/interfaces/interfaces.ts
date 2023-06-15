@@ -2,6 +2,7 @@ export interface Response {
 	data: {
 		user: {
 			selfieUrl: string
+			localSelfie: string
 			name: string
 			phone: string
 			email: string
