@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Container = styled.div``
 const PhotoIcon = styled.div`
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0;
 	padding: 8px;
