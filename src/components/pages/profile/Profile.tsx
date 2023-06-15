@@ -32,7 +32,7 @@ import pen from './pen.svg'
 
 const Profile = () => {
   const userName = useAppSelector(state => state.userUpdate.name)
-  const selfie = useAppSelector(state => state.userUpdate.selfieUrl)
+  const { selfieUrl ,localSelfie} = useAppSelector(state => state.userUpdate)
   const [selectedFile, setSelectedFile] = useState<null | File>(null)
   const navigate = useNavigate()
   const {state} = useLocation();
@@ -53,10 +53,6 @@ const Profile = () => {
 
     }
   }
-
-  // useEffect(() => {
-  //   return 
-  // }, [selfie])
   return (
     <Wrapper>
       <span onClick={goBack}>
@@ -67,7 +63,13 @@ const Profile = () => {
       <Welcome>Welcome, {userName || "Guest"}.</Welcome>
       <YourSelfie>Your selfie</YourSelfie>
       <SelfieContainer>
-        <Img src={selfie || defaultImage} alt="selfie" />
+          <Img src={
+            selfieUrl
+              ? selfieUrl
+              : localSelfie
+                ? localSelfie
+                : defaultImage
+          } alt="selfie" />
         <IconContainer htmlFor='imageOnly'>
           <Pen src={pen} alt="pen" />
           <Input
